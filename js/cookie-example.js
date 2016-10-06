@@ -20,6 +20,8 @@ $(function () {
 	    }else{
 		this.dataUnits = "MBs"
 	    }
+	    $(".spaceLeft")[0].innerHTML = Math.round(100 - (this.images*100/21000)) + "%"
+	    $(".imageSize").attr("width",0.0115*this.images)
         }
     };
     
