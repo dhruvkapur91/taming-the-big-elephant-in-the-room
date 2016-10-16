@@ -28,6 +28,9 @@
 
 	<section>
 	  <img src="art/ElephantEmptySpacesWithFeather.png" class="nostyle"/>
+	  <!-- Is it RDBMS? -->
+	  <!-- Do I need supercomputers? -->
+	  <!-- Do we need big data? -->
 	</section>
 
 	<section class="stack">
@@ -46,21 +49,17 @@
 	  <section>
 	    Count number of cats in all my image collection
 	    <img src="art/CatOrDogWithCleanBackground.png" class="nostyle"/>
-	  </section>
-	  <section>
-	    Count number of cats in all my image collection
-	    <img src="art/CatOrDogWithCleanBackground.png" class="nostyle"/>
 	    <div class="fragment">Check each image if its a <a href="./catOrNot.html" target="_blank">Cat or not?</a></div>
 	    <div class="fragment">Find number of all images that had cats in them</div>
 	  </section>
 	  <section>
 	    Sounds simple but depends upon my collection...
 	  </section>
-	  <section>
+	  <section id="over_here">
 	    <div id="change_number_of_images">
 	      <p>Having <span data-var="numberOfImages" class="TKAdjustableNumber" data-min="1" data-max="100000" data-step="500"> <span data-var="description"></span></span>, takes <span data-var="totalSize"></span> <span data-var="dataUnits"></span>.</p>
 	      <p>We loop over each and find if it has a cat..</p>
-	    <i><span data-var="tooMuchMessage"></span></i>
+	      <i><span data-var="tooMuchMessage"></span></i>
 	    </div>
 	    <svg width="400" height="300">
 	      <rect x = "50" y = "50" width="250" height="156" style="fill:rgb(191,191,191);stroke-width:5;stroke:rgb(0,0,0);" rx="15" />
@@ -75,27 +74,123 @@
 	    </svg>
 	  </section>
 
-	  <section id="current">
-	    Now we can scale up...
-	    <div id="scale_up">
-	      <p>Having <span data-var="numberOfImages" class="TKAdjustableNumber" data-min="1" data-max="100000" data-step="500"> <span data-var="description"></span></span>, takes <span data-var="totalSize"></span> <span data-var="dataUnits"></span>.</p>
-	      <p>We loop over each and find if it has a cat..</p>
-	    <i><span data-var="tooMuchMessage"></span></i>
-	    <svg width="600" height="300">
-	      <rect x = "50" y = "50" width="250" height="156" style="fill:rgb(191,191,191);stroke-width:5;stroke:rgb(0,0,0);" rx="15" />
-	      <rect x = "25" y = "208" width="300" height="15" style="fill:rgb(127,127,127);" />
-	      <rect x = "30" y = "223" width="290" height="5" style="fill:rgb(170,170,170);" />
-	      <rect x = "170" y = "210" width="25" height="3" style="fill:rgb(255,255,255);" />
-	      <rect x = "275" y = "214" width="25" height="3" style="fill:rgb(0,0,0);" />
-	      <rect class="imageSize" x = "55" y = "55" width="240" height="146" style="fill:rgb(255,0,0);" rx="15"/>
-	      <text class ="scaleUpSpaceLeft" x = "150" y = "110">  </text>
-	      <image xlink:href="art/appleBackgroundRemoved.png" x="155" y="150" height="50px" width="50px"/>
-	      <text x = "100" y = "145"> space left </text>	      
+	  <section id="scale_up_limit">
+	    Now we can scale up... but there is a limit...
+	    <svg width = "400" height = "300">
 	    </svg>
-	    </div>
 	  </section>
+
+	  <section>
+	    Or we can scale out :)
+	    But there are problems... reduncacy.. fault tolerance..
+	    (Can we paralleize reduce?)
+	  </section>
+
+	  <section>
+	    Welcome to hadoop...
+	  </section>	  
 	  
 	</section>
+
+	<section id="scale_out_with_map_reduce">
+
+	  <section>
+	    Scaling out with map-reduce...
+	  </section>
+
+	  <section>
+	    <br/> Lets try a word count
+	    <pre class="nostyle">
+	      var sentences = ['there are some some repeated words in this this sentence']
+	      var words = []
+	      for(i = 0; i< sentences.length; i++){
+		 words = words.concat(sentences[i].split(" "))
+	      }
+	      var wordFrequencies = {}
+	      for(i = 0; i < words.length; i++){
+	         if(wordFrequencies[words[i]]) {
+		     wordFrequencies[words[i]] += 1
+		 } else {
+		     wordFrequencies[words[i]] = 1
+		}
+	     } <div class="fragment green">
+	     Output:
+	     wordFrequencies {
+		there : 1, are : 1, some : 2, repeated : 1,
+	        words : 1, in : 1, this : 2, sentence : 1
+	     } </div>  <div class ="fragment red">
+	     Can we get rid of counter and state?
+	    </div>
+	    </pre>
+	  </section>
+
+	  <section>
+	    <br/> Lets try a word count
+	    <pre class="nostyle">
+	      var sentences = ['there are some some repeated words in this this sentence']
+	      sentences
+	         .map(function(sentence){return sentence.split(" ")})
+	         .flatten()
+	         .reduce(function(dictionarySoFar,current){
+	             dictionarySoFar[current] = (dictionarySoFar[current]||0) + 1
+       	             return dictionarySoFar;
+	         },{})
+	     } <div class="fragment green">
+	     Output:
+	     wordFrequencies {
+		there : 1, are : 1, some : 2, repeated : 1,
+	        words : 1, in : 1, this : 2, sentence : 1
+	     } </div>  <div class ="fragment red">
+	     Can we get rid of counter and state?
+	    </div>
+	    </pre>
+	  </section>
+
+	  
+	</section>
+
+	<section>
+       One of the pain points: Slow feedback life cycle
+	</section>
+
+	<section>
+	  
+	  <section>
+	    Hello to world count<br/>
+	    Example of scala word count on presenter machine...
+	  </section>
+
+	  <section>
+	    Map-reduce of hadoop...
+	  </section>
+
+
+	</section>
+
+	<section>
+	  HDFS...
+	</section>
+
+	<section>
+	  <section>
+	    Landscape
+	  </section>
+	  <section>
+	    Mapreduce <br/>
+	    Hive <br/>
+	    Oozie <br/>
+	    Sqoop <br/>
+	  </section>
+	</section>
+
+	<section>
+	  Pain points - slow feedback cycle
+	</section>
+
+	<section>
+	  
+	</section>
+	
 
 	<section id="show-a-link">
 	  <h1>Show a live link</h1>
@@ -114,15 +209,12 @@
     <script src="lib/js/head.min.js"></script>
     <script src="js/reveal.js"></script>
     <script src="js/jquery-3.1.1.min.js"></script>
-    <script type="text/javascript" src="js/scaleUp.js"></script>
     <script type="text/javascript" src="js/storeInAMac.js"></script>
     <script type="text/javascript" src="js/TangleKit/tangle.js"></script>
     <script type="text/javascript" src="js/TangleKit/mootools.js"></script>
     <script type="text/javascript" src="js/TangleKit/sprintf.js"></script>
     <script type="text/javascript" src="js/TangleKit/BVTouchable.js"></script>
     <script type="text/javascript" src="js/TangleKit/TangleKit.js"></script>
-    
-
     <script>
       // Required, even if empty.
       Reveal.initialize({

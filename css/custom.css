@@ -3,3 +3,18 @@
     border: none;
     box-shadow: none;
 }
+
+.reveal section pre.nostyle {
+    background: none;
+    border: none;
+    box-shadow: none;
+    margin-left: -12%;
+}
+
+.green {
+    color:green;
+}
+
+.red {
+    
+}
