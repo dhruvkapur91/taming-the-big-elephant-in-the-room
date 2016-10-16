@@ -22,7 +22,7 @@ $(function () {
 		this.dataUnits = "MBs"
 	    }
 	    $(".spaceLeft")[0].innerHTML = Math.round(100 - (this.numberOfImages*100/21000)) + "%"
-	    $(".imageSize").attr("width",0.0115*this.numberOfImages)
+	    $("#store_in_a_mac .imageSize").attr("width",0.0115*this.numberOfImages)
 	    if(this.numberOfImages > 21000) {
 		console.log("Here")
 		this.tooMuchMessage = "But we can't store more than 21,000 images"
