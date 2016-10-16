@@ -56,6 +56,8 @@ $(function () {
 		$("#scale_up_limit .appleLogo").attr("y",150);
 		$(".slide-background .present").css("background-color","rgba(255,0,0,0)");
 		this.tooMuchMessage = "";
+		$("#scale_up_limit svg text")[0].innerHTML = ""		
+		
 	    }
         }
     };
