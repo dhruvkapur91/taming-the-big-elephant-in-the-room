@@ -35,9 +35,8 @@ $(function () {
 	    }
         }
     };
-    
-    var id = "change_number_of_images";
-    var element = document.getElementById(id);
+
+    var element = $("#store_in_a_mac .change_number_of_images")[0]
     new Tangle(element,model);
     
 });
