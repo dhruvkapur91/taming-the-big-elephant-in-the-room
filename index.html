@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="css/theme/sky.css" id="theme">
     <link rel="stylesheet" href="css/custom.css">
     <link rel="stylesheet" href="css/TangleKit/TangleKit.css" type="text/css">
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
     <!--Add support for earlier versions of Internet Explorer -->
     <!--[if lt IE 9]>
 	<script src="lib/js/html5shiv.js"></script>
@@ -14,221 +16,968 @@
   </head>
 
   <body>
-    <!-- Wrap the entire slide show in a div using the "reveal" class. -->
     <div class="reveal">
-      <!-- Wrap all slides in a single "slides" class -->
       <div class="slides">
 
-	<!-- ALL SLIDES GO HERE -->
-	<!-- Each section element contains an individual slide -->
-	
-        <section data-background="art/ElephantEmptySpacesWithLowAlpha0.2.png">
+        <section data-background="art/ElephantEmptySpacesWithLowAlpha0.2.png" id="talk_intro" data-background-transition="zoom">
 	  <h1>Taming the <b>big elephant</b> in the room</h1>
 	</section>
 
-	<section>
+	<section id="questions_and_guidelines_intro" data-background-transition="zoom">
 	  <img src="art/ElephantEmptySpacesWithFeather.png" class="nostyle"/>
-	  <!-- Is it RDBMS? -->
-	  <!-- Do I need supercomputers? -->
-	  <!-- Do we need big data? -->
+	  <aside class="notes">Talk about structure of presentation - 2 parts</aside>
 	</section>
 
-	<section class="stack">
+	<section id="what_is_big_data" class="vertical_1">
 	  <section>
 	    What is <b>Big Data</b>?<br/><br/>
-	    <div class="fragment">Its story of 3 V's...</div>
-	    <ol>
-	      <li class="fragment">Volume</li>
-	      <li class="fragment">Variety</li>
-	      <li class="fragment">Velocity</li>
-	    </ol>
 	  </section>
 	  <section>
-	    How <b>Big</b> is big?
+	    Its story of 3 <span class="BigV" style="font-size:500%;vertical-align:middle;">V</span>
+	    <span class="fragment" style="top:17%;position:absolute">olume</span>
+	    <span class="fragment" style="top:31%;position:absolute;left:65%">ariety</span>
+	    <span class="fragment" style="top:47%;position:absolute;left:63%">elocity</span>
+	    <span class="fragment" fragment-data-state="too_abstract">
+	      <img src="art/abstract_elephant.jpg" style="position:absolute;opacity:0.2;z-index:-1;top:-371%;width:250%;max-width:none;max-height:none;left:-75%" />
+	      <p>Too <b>abstract?</b> Lets take an example!</p>
+	    </span>
 	  </section>
 	  <section>
-	    Count number of cats in all my image collection
-	    <img src="art/CatOrDogWithCleanBackground.png" class="nostyle"/>
-	    <div class="fragment">Check each image if its a <a href="./catOrNot.html" target="_blank">Cat or not?</a></div>
-	    <div class="fragment">Find number of all images that had cats in them</div>
+	    <p>Problem: <span>Count</span> how many <span class="fragment highlight-blue">blue</span> photos in a collection?<p>
 	  </section>
 	  <section>
-	    Sounds simple but depends upon my collection...
+	    <p style="position:absolute;font-size:45%;left:46%;top:6%">My image<br/>collection</p>
+	    <p style="position:absolute;font-size:40%;top:16%;left:46%">5k Photos</p>
+	    <div><img src="art/data.png" class="nostyle"/></div>
+	    <div><img src="art/computer.png" class="nostyle"/></div>
 	  </section>
-	  <section id="store_in_a_mac">
-	    <div class="change_number_of_images">
-	      <p>Having <span data-var="numberOfImages" class="TKAdjustableNumber" data-min="1" data-max="100000" data-step="500"> <span data-var="description"></span></span>, takes <span data-var="totalSize"></span> <span data-var="dataUnits"></span>.</p>
-	      <p>We loop over each and find if it has a cat..</p>
-	      <i><span data-var="tooMuchMessage"></span></i>
+	  <section>
+	    <p class="fragment">Fits in my computer!</p>
+	    <p style="position:absolute;font-size:45%;left:46%;top:30%">My image<br/>collection</p>
+	    <div><img src="art/computerWithData.png" class="nostyle"/></div>
+	  </section>
+	  <section>
+	    <p class="fragment">Loop over and count!</p>
+	    <p style="position:absolute;font-size:45%;left:46%;top:30%">My image<br/>collection</p>
+	    <div><img src="art/computerWithDataLoop.png" class="nostyle"/></div>
+	  </section>
+	  <section>
+	    <p style="position:absolute;font-size:54%;left:43%;top:6%">Flicker's image<br/>collection</p>
+	    <p style="position:absolute;font-size:88%;top:20%;left:36%">80 trillion+ photos</p>
+	    <div><img src="art/flickerData.png" class="nostyle"/></div>
+	    <div><img src="art/computer.png" class="nostyle"/></div>
+	  </section>
+	  <section>
+	    <p style="position:absolute;left:27%;top:-4%">Doesnt't fit in computer...</p>
+	    <img style="position:absolute;top:25%;left:17%;" src="art/flickerData.png" class="nostyle"/>
+	    <p style="position:absolute;font-size:54%;left:43%;top:29%">Flicker's image<br/>collection</p>	    
+	    <div><img src="art/computer.png" class="nostyle"/></div>
+	  </section>
+	  <section>
+	    <p style="position:absolute;font-size:54%;left:43%;top:9%">Flicker's image<br/>collection</p>
+	    <div><img src="art/flickerData.png" class="nostyle"/></div>
+	    <p class="fragment">And split it into <b>blocks</b></p>
+	    <span style="position:absolute;font-size:80%;top:67%;left:20%">Block<br/>1</span>
+	    <span style="position:absolute;font-size:80%;top:67%;left:33%">Block<br/>2</span>
+	    <span style="position:absolute;font-size:80%;top:67%;left:46%">Block<br/>3</span>
+	    <span style="position:absolute;font-size:80%;top:67%;left:59%">Block<br/>4</span>
+	    <span style="position:absolute;font-size:80%;top:67%;left:72%">Block<br/>5</span>
+	    <img src="art/flickerDataBlock.png" class="nostyle"/>
+	    <img src="art/flickerDataBlock.png" class="nostyle"/>
+	    <img src="art/flickerDataBlock.png" class="nostyle"/>
+	    <img src="art/flickerDataBlock.png" class="nostyle"/>
+	    <img src="art/flickerDataBlock.png" class="nostyle"/>
+	  </section>
+	  <section>
+	    <p class="fragment">And put them in <b>nodes</b></p>
+	    <div class="fragment">
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:6%;top:36%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:25%;top:36%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:44%;top:36%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:63%;top:36%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:82%;top:36%"/>
+ 	      <span style="position:absolute;font-size:80%;top:46%;left:8%">Block<br/>1</span>
+	      <span style="position:absolute;font-size:80%;top:46%;left:27%">Block<br/>2</span>
+	      <span style="position:absolute;font-size:80%;top:46%;left:46%">Block<br/>3</span>
+	      <span style="position:absolute;font-size:80%;top:46%;left:65%">Block<br/>4</span>
+	      <span style="position:absolute;font-size:80%;top:46%;left:84%">Block<br/>5</span>
 	    </div>
-	    <svg width="400" height="300">
-	      <rect x = "50" y = "50" width="250" height="156" style="fill:rgb(191,191,191);stroke-width:5;stroke:rgb(0,0,0);" rx="15" />
-	      <rect x = "25" y = "208" width="300" height="15" style="fill:rgb(127,127,127);" />
-	      <rect x = "30" y = "223" width="290" height="5" style="fill:rgb(170,170,170);" />
-	      <rect x = "170" y = "210" width="25" height="3" style="fill:rgb(255,255,255);" />
-	      <rect x = "275" y = "214" width="25" height="3" style="fill:rgb(0,0,0);" />
-	      <rect class="imageSize" x = "55" y = "55" width="240" height="146" style="fill:rgb(255,0,0);" rx="15"/>
-	      <text class ="spaceLeft" x = "150" y = "110">  </text>
-	      <image xlink:href="art/appleBackgroundRemoved.png" x="155" y="150" height="50px" width="50px"/>
-	      <text x = "100" y = "145"> space left </text>	      
+	    <div>
+	      <img src="art/computer.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/computer.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/computer.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/computer.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/computer.png" class="nostyle" style="width:18%;"/>
+	    </div>
+	  </section>
+	  <section>
+	    <p class="fragment">And <b>loop</b> over each</p>
+	    <div>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:6%;top:40%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:25%;top:40%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:44%;top:40%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:63%;top:40%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:82%;top:40%"/>
+ 	      <span style="position:absolute;font-size:80%;top:46%;left:8%">Block<br/>1</span>
+	      <span style="position:absolute;font-size:80%;top:46%;left:27%">Block<br/>2</span>
+	      <span style="position:absolute;font-size:80%;top:46%;left:46%">Block<br/>3</span>
+	      <span style="position:absolute;font-size:80%;top:46%;left:65%">Block<br/>4</span>
+	      <span style="position:absolute;font-size:80%;top:46%;left:84%">Block<br/>5</span>
+	    </div>
+	    <div>
+	      <img src="art/computerWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/computerWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/computerWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/computerWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/computerWithLoop.png" class="nostyle" style="width:18%;"/>
+	    </div>
+	  </section>
+	  <section>
+	    <p>Sending data to one...</p>
+	    <div>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:6%;top:24%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:25%;top:24%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:44%;top:24%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:63%;top:24%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:82%;top:24%"/>
+ 	      <span style="position:absolute;font-size:80%;top:28%;left:8%">Block<br/>1</span>
+	      <span style="position:absolute;font-size:80%;top:28%;left:27%">Block<br/>2</span>
+	      <span style="position:absolute;font-size:80%;top:28%;left:46%">Block<br/>3</span>
+	      <span style="position:absolute;font-size:80%;top:28%;left:65%">Block<br/>4</span>
+	      <span style="position:absolute;font-size:80%;top:28%;left:84%">Block<br/>5</span>
+	    </div>
+	    <div>
+	      <img src="art/computerWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/computerWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/computerWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/computerWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/computerWithLoop.png" class="nostyle" style="width:18%;"/>
+	    </div>
+	    <img src="art/computer.png" class="nostyle" style="width:18%;"/>
+	    <img class="fragment nostyle" data-fragment-index="1" src="art/flickerDataBlock.png" style="position:absolute;left:44.5%;top:60%;width:45px;"/>
+	    <img class="fragment nostyle" data-fragment-index="1" src="art/flickerDataBlock.png" style="position:absolute;left:44.5%;top:67%;width:45px;"/>
+	    <img class="fragment nostyle" data-fragment-index="1" src="art/flickerDataBlock.png" style="position:absolute;left:44.5%;top:75%;width:45px;"/>
+	    <img class="fragment nostyle" data-fragment-index="1" src="art/flickerDataBlock.png" style="position:absolute;left:50.5%;top:60%;width:45px;"/>
+	    <img class="fragment nostyle" data-fragment-index="1" src="art/flickerDataBlock.png" style="position:absolute;left:50.5%;top:67%;width:45px;"/>
+	    <img class="fragment nostyle" data-fragment-index="1" src="art/flickerDataBlock.png" style="position:absolute;left:50.5%;top:75%;width:45px;"/>
+	    <svg width="1000px" height="100px" style="position:absolute;left:36%">
+	      <defs>
+		<marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth">
+		  <path d="M0,0 L0,6 L9,3 z" fill="#f00" />
+		</marker>
+	      </defs>
+	      <line x1="303" y1="-38" x2="198" y2="53" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="-50" y1="-38" x2="80" y2="60" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="137" y1="-38" x2="137" y2="16" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
 	    </svg>
 	  </section>
-
-	  <section id="scale_up_limit">
-	    Now we can scale up... 
-	    <div class="change_number_of_images">
-	      <p>Having <span data-var="numberOfImages" class="TKAdjustableNumber" data-min="1" data-max="1000000" data-step="1000"> <span data-var="description"></span></span>, takes <span data-var="totalSize"></span> <span data-var="dataUnits"></span>.</p>
-	      <i><span data-var="tooMuchMessage"></span></i>
+	  <section>
+	    <div style="opacity:0.2;">
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:6%;top:14%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:25%;top:14%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:44%;top:14%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:63%;top:14%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:82%;top:14%"/>
 	    </div>
-		    
-	    <svg width = "400" height = "300">
-	      <rect class="laptopSize" x = "50" y = "50" width="250" height="156" style="fill:rgb(191,191,191);stroke-width:5;stroke:rgb(0,0,0);" rx="15"/>
-	      <rect class="imageSize" x = "55" y = "55" width="240" height="146" style="fill:rgb(255,0,0);" rx="15"/>
-	      <text x = "100" y = "145" font-size="20"> </text>
-	      <image xlink:href="art/appleBackgroundRemoved.png" class="appleLogo" x="155" y="150" height="50px" width="50px"/>	      
+	    <div style="opacity:0.3;">
+	      <img src="art/computerWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/computerWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/computerWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/computerWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/computerWithLoop.png" class="nostyle" style="width:18%;"/>
+	    </div>
+	    <p style="position:absolute;top:15%;left:4%;background-color:rgba(255,255,255,0.5)" class="fragment" data-fragment-index="1">Often called <b>Map</b>. Computes if an image is blue or not.</p>
+	    <p style="position:absolute;top:25%;left:19%;background-color:rgba(255,255,255,0.5)" class="fragment" data-fragment-index="1">This phase can already be <b>parallelized</b>.</p>
+	    <img src="art/computer.png" class="nostyle" style="width:18%;opacity:0.2;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:44.5%;top:55%;width:45px;opacity:0.2;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:44.5%;top:62.5%;width:45px;opacity:0.2;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:44.5%;top:70%;width:45px;opacity:0.2;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:50.5%;top:55%;width:45px;opacity:0.2;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:50.5%;top:62.5%;width:45px;opacity:0.2;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:50.5%;top:70%;width:45px;opacity:0.2;"/>
+	    <svg width="1000px" height="100px" style="position:absolute;left:36%;opacity:0.2">
+	      <defs>
+		<marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth">
+		  <path d="M0,0 L0,6 L9,3 z" fill="#f00" />
+		</marker>
+	      </defs>
+	      <line x1="303" y1="-38" x2="198" y2="53" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="-50" y1="-38" x2="80" y2="60" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="137" y1="-38" x2="137" y2="16" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	    </svg>
+	    <p style="position:absolute;top:63%;left:5%;background-color:rgba(255,255,255,0.5)" class="fragment" data-fragment-index="2">Often called <b>reduce</b>.Computes sum from all mappers.</p>
+	    <p style="position:absolute;top:75%;left:16%;background-color:rgba(255,255,255,0.5)" class="fragment" data-fragment-index="3"> Food for thought: Can we parallelize this? </p>
+	  </section>
+	  
+	  <section>
+	    <h2>Quiz Time</h2>
+	    <img src="art/QuizTime.jpg"/>
+	    <p class="fragment"> If you buy a harddisk today, what are the <b>chances</b> that its broken? </p>
+	  </section>
+	  <section>
+	    <p class="fragment grow">Pretty slim.</p>
+	    <p>Unless you are...</p>
+	    <img class="fragment" style="width:47%;" src = "art/unlucky.jpg"/>
+	  </section>
+	  <section>
+	    <p>What about if you buy 1000 harddisks and that <b> all </b> of them are broken?</p>
+	  </section>
+	  <section>
+	    <img src="art/foreveralone.png" class="nostyle"/>
+	    <p> A hard task, even for...</p>
+	  </section>
+	  <section>
+	    <p>Laslty, what are the <p class="fragment grow">chances</p> that <p class="fragment grow">atleast one is broken??</p></p>
+	  </section>
+	  <section>
+	    <p class="fragment grow">Pretty decent.</p>
+	    <blockquote class="fragment grow">At scale, everything rare happens frequently.</blockquote>
+	  </section>
+	  <section>
+	    <p>Any of these machines can fail!<span class="fragment"> Anytime!</span></p>
+	    <div>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:6%;top:24%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:25%;top:24%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:44%;top:24%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:63%;top:24%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:82%;top:24%"/>
+ 	      <span style="position:absolute;font-size:80%;top:28%;left:8%">Block<br/>1</span>
+	      <span style="position:absolute;font-size:80%;top:28%;left:27%">Block<br/>2</span>
+	      <span style="position:absolute;font-size:80%;top:28%;left:46%">Block<br/>3</span>
+	      <span style="position:absolute;font-size:80%;top:28%;left:65%">Block<br/>4</span>
+	      <span style="position:absolute;font-size:80%;top:28%;left:84%">Block<br/>5</span>
+	    </div>
+	    <div>
+	      <img src="art/computerWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/computerWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/computerWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/computerWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/computerWithLoop.png" class="nostyle" style="width:18%;"/>
+	    </div>
+	    <img src="art/computer.png" class="nostyle" style="width:18%;"/>
+	    <img class=" nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:44.5%;top:60%;width:45px;"/>
+	    <img class=" nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:44.5%;top:67%;width:45px;"/>
+	    <img class=" nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:44.5%;top:75%;width:45px;"/>
+	    <img class=" nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:50.5%;top:60%;width:45px;"/>
+	    <img class=" nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:50.5%;top:67%;width:45px;"/>
+	    <img class=" nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:50.5%;top:75%;width:45px;"/>
+	    <svg width="1000px" height="100px" style="position:absolute;left:36%">
+	      <defs>
+		<marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth">
+		  <path d="M0,0 L0,6 L9,3 z" fill="#f00" />
+		</marker>
+	      </defs>
+	      <line x1="303" y1="-38" x2="198" y2="53" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="-50" y1="-38" x2="80" y2="60" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="137" y1="-38" x2="137" y2="16" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
 	    </svg>
 	  </section>
-
 	  <section>
-	    Or we can scale out :)
-	    But there are problems... reduncacy.. fault tolerance..
-	    (Can we paralleize reduce?)
+	    <p class="fragment grow">High</p><span>chances of loosing the data!</span>
 	  </section>
-
 	  <section>
-	    Welcome to hadoop...
+	    <p>Handle these failures by</p><p class="fragment grow"> redundacy.. </p>
+	  </section>
+	  <section>
+	    <span>So instead of just storing the block in 1 node.</span>
+	    <span class="fragment" data-fragment-index="1"> We store it in <b>multiple</b> nodes.</span>
+	    <span class="fragment" data-fragment-index="2"> <b>Reducing chances</b> of loosing data.</span>
+	    <div>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:6%;top:22%"/>
+ 	      <span style="position:absolute;font-size:80%;top:26%;left:8%">Block<br/>1</span>
+	    </div>
+	    <div class="fragment" data-fragment-index="3"> 
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:25%;top:22%"/>
+ 	      <span style="position:absolute;font-size:80%;top:26%;left:27%">Block<br/>3</span>
+	    </div>
+	    <div class="fragment" data-fragment-index="3">
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:44%;top:22%"/>
+ 	      <span style="position:absolute;font-size:80%;top:26%;left:46%">Block<br/>2</span>
+	    </div>
+	    <div class="fragment" data-fragment-index="3">
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:63%;top:22%"/>
+ 	      <span style="position:absolute;font-size:80%;top:26%;left:65%">Block<br/>3</span>
+	    </div>
+	    <div class="fragment" data-fragment-index="3">
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:82%;top:22%"/>
+ 	      <span style="position:absolute;font-size:80%;top:26%;left:84%">Block<br/>4</span>
+	    </div>
+	    
+	    <div class="fragment" data-fragment-index="1">
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:63%;top:63%"/>
+ 	      <span style="position:absolute;font-size:80%;top:67%;left:65%">Block<br/>1</span>
+	    </div>
+	    <div class="fragment" data-fragment-index="3">
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:6%;top:63%"/>
+ 	      <span style="position:absolute;font-size:80%;top:67%;left:8%">Block<br/>1</span>
+	    </div>
+	    <div class="fragment" data-fragment-index="3"> 
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:25%;top:63%"/>
+ 	      <span style="position:absolute;font-size:80%;top:67%;left:27%">Block<br/>3</span>
+	    </div>
+	    <div class="fragment" data-fragment-index="3">
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:44%;top:63%"/>
+ 	      <span style="position:absolute;font-size:80%;top:67%;left:46%">Block<br/>4</span>
+	    </div>
+	    <div class="fragment" data-fragment-index="3">
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:82%;top:63%"/>
+ 	      <span style="position:absolute;font-size:80%;top:67%;left:84%">Block<br/>2</span>
+	    </div>
+	    <div>
+	      <img src="art/computer.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/computer.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/computer.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/computer.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/computer.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/computer.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/computer.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/computer.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/computer.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/computer.png" class="nostyle" style="width:18%;"/>
+	    </div>
+	  </section>
+	  <section>
+	    <p style="position:absolute;top:-11%;left:21%;"> But how does one store like that? </p>
+	    <div><img src="art/flickerData.png" class="nostyle" style="position:relative;left:3%;"/></div>
+	    <p style="position:absolute;font-size:54%;left:47%;top:21%">Flicker's image<br/>collection</p>	    
+	    <img src="art/computer.png" class="nostyle" style="width:18%;position:absolute;height:91%;left:10%"/>
+	    <img src="art/computer.png" class="nostyle" style="width:18%;position:absolute;height:91%;left:27%"/>
+	    <img src="art/computer.png" class="nostyle" style="width:18%;position:absolute;height:91%;left:44%"/>
+	    <img src="art/computer.png" class="nostyle" style="width:18%;position:absolute;height:91%;left:61%"/>
+	    <img src="art/computer.png" class="nostyle" style="width:18%;position:absolute;height:91%;left:78%"/>
+	    <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:13%;top:97%"/>
+ 	    <span style="position:absolute;font-size:80%;top:115%;left:15%">Block<br/>1</span>
+	    <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:30%;top:97%"/>
+ 	    <span style="position:absolute;font-size:80%;top:115%;left:32%">Block<br/>3</span>
+	    <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:47%;top:97%"/>
+ 	    <span style="position:absolute;font-size:80%;top:115%;left:49%">Block<br/>2</span>
+	    <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:64%;top:97%"/>
+ 	    <span style="position:absolute;font-size:80%;top:115%;left:66%">Block<br/>3</span>
+	    <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:81%;top:97%"/>
+ 	    <span style="position:absolute;font-size:80%;top:115%;left:83%">Block<br/>4</span>
+
+	    <img src="art/computer.png" class="nostyle" style="width:18%;position:absolute;height:91%;left:10%;top:184%;"/>
+	    <img src="art/computer.png" class="nostyle" style="width:18%;position:absolute;height:91%;left:27%;top:184%;"/>
+	    <img src="art/computer.png" class="nostyle" style="width:18%;position:absolute;height:91%;left:44%;top:184%;"/>
+	    <img src="art/computer.png" class="nostyle" style="width:18%;position:absolute;height:91%;left:61%;top:184%;"/>
+	    <img src="art/computer.png" class="nostyle" style="width:18%;position:absolute;height:91%;left:78%;top:184%;"/>
+	    <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:13%;top:191%;"/>
+ 	    <span style="position:absolute;font-size:80%;top:209%;left:15%">Block<br/>1</span>
+	    <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:30%;top:191%;"/>
+ 	    <span style="position:absolute;font-size:80%;top:209%;left:32%">Block<br/>3</span>
+	    <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:47%;top:191%;"/>
+ 	    <span style="position:absolute;font-size:80%;top:209%;left:49%">Block<br/>4</span>
+	    <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:64%;top:191%;"/>
+ 	    <span style="position:absolute;font-size:80%;top:209%;left:66%">Block<br/>1</span>
+	    <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:81%;top:191%"/>
+ 	    <span style="position:absolute;font-size:80%;top:209%;left:83%">Block<br/>2</span>
+	  </section>
+	  <section>
+	    How does one store file in distributed, replicated blocks?
+	  </section>
+	  <section>
+	    And then how does computation happen? 
+	  </section>
+	  <section>
+	    <p class="fragment" style="text-align:left;">To address all these concerns with Distributed computing, we need...</p>
+	    <p class="fragment" style="text-align:right;">A distributed computing framework</p>
+	    <p class="fragment"><b>Hadoop</b></p>
+	  </section>
+	</section>
+
+	<section id="premier_to_functional_programming">
+	  <section data-background="art/functional_programming.png">
+	    <p style="text-align:right;background:rgba(255,255,255,0.4);">Premier To<br/><b>Functional Programming</b></p>
+	    <p class="fragment" style="text-align:right;background:rgba(255,255,255,0.4);">Checkout the talk - <a href="https://www.youtube.com/watch?v=DFAdLCqDbLQ">Why big data must be functional</a></p>
+	  </section>
+	  <section>
+	    <p>Familiar word count</p>
+	    <pre data-trim contenteditable class="hljs wordCountInput" style="padding:1%" onkeypress="updateWordCount()">Type some some more duplicated words</pre>
+	    <span>Output : <span class="wordCountOutput green"></span></span>
+	  </section>
+	  <section>
+	    <h3>On high level</h3>
+	    <p class="fragment">Given a <b>list</b> of sentences</p>
+	    <p class="fragment"><span style="background-color:wheat">This is one sentence </span><span style="background-color:white">This is another sentence</span></p>
+	    <p class="fragment">We <b>split</b> it into words</p>
+	    <p class="fragment"><span style="background-color:rgb(245,222,179)">This</span> <span style="background-color:rgb(245,222,82)">is</span> <span style="background-color:rgb(195,222,179)">one</span> <span style="background-color:rgb(245,190,179)">sentence</span> <span style="background-color:rgb(212,200,179)">This</span> <span style="background-color:rgb(245,222,179)">is</span> <span style="background-color:rgb(188,199,211)">another</span> <span style="background-color:rgb(245,222,179)">sentence</span></p>
+	  </section>
+	  <section data-state="functional_word_count">
+	    <h3>On high level cont'd...</h3>
+	    <p style="text-align:left;">Initialize a dictionary</p>
+	    <p class="wordCountDictionary"></p>
+	    <p style="text-align:left;">With each word</p>
+	    <p><span class="fragment wordZero" data-fragment-index="0" style="background-color:rgb(245,222,179)">This</span> <span class="fragment wordOne" data-fragment-index="1" style="background-color:rgb(245,222,82)">is</span> <span class="fragment wordTwo" data-fragment-index="2" style="background-color:rgb(195,222,179)">one</span> <span class="fragment wordThree" data-fragment-index="3" style="background-color:rgb(245,190,179)">sentence</span> <span class="fragment wordFour" data-fragment-index="4" style="background-color:rgb(212,200,179)">This</span> <span class="fragment wordFive" data-fragment-index="5" style="background-color:rgb(245,222,179)">is</span> <span class="fragment wordSix" data-fragment-index="6" style="background-color:rgb(188,199,211)">another</span> <span class="fragment wordSeven" data-fragment-index="7" style="background-color:rgb(245,222,179)">sentence</span></p>
+	    <p style="text-align:right;">Either add new entry</p>
+	    <p style="text-align:right;">Or update count<p>
 	  </section>	  
-	  
-	</section>
-
-	<section id="scale_out_with_map_reduce">
-
 	  <section>
-	    Scaling out with map-reduce...
-	  </section>
-
-	  <section>
-	    <br/> Lets try a word count
-	    <pre class="nostyle">
-	      var sentences = ['there are some some repeated words in this this sentence']
-	      var words = []
-	      for(i = 0; i< sentences.length; i++){
-		 words = words.concat(sentences[i].split(" "))
-	      }
-	      var wordFrequencies = {}
-	      for(i = 0; i < words.length; i++){
-	         if(wordFrequencies[words[i]]) {
-		     wordFrequencies[words[i]] += 1
-		 } else {
-		     wordFrequencies[words[i]] = 1
-		}
-	     } <div class="fragment green">
-	     Output:
-	     wordFrequencies {
-		there : 1, are : 1, some : 2, repeated : 1,
-	        words : 1, in : 1, this : 2, sentence : 1
-	     } </div>  <div class ="fragment red">
-	     Can we get rid of counter and state?
+	    <h3 style="background-color:white;">Defining sentences</h3>
+	    <div style="background-color: rgb(20, 98, 135); width: 100%; height: 1600%; position: absolute; top: -400%; left: -45%; z-index: -1;"></div>
+	    <div style="width:44%; float:right; text-align:left">
+	      <p class="fragment" data-fragment-index="1" style="font-size:75%;"><span class="ScalaVal">val</span> sentenceOne = <span class="ScalaString">"This is one sentence"</span></p>	      
+	      <p class="fragment" data-fragment-index="2" style="font-size:75%;"><span class="ScalaVal">val</span> sentenceTwo = <span class="ScalaString">"This is another sentence"</span></p>	      
+	      <p class="fragment" data-fragment-index="7" style="font-size:75%;"><span class="ScalaVal">val</span> sentences = Seq( sentenceOne, sentenceTwo )</p>	      
 	    </div>
-	    </pre>
+	    <div class="fragment" data-fragment-index="3" style="color:white;position:absolute;float:left;width:54%;text-align:right;top:31%;">val to declare <i>"final"</i> variables...</div>	    
+	    <div class="fragment" data-fragment-index="4" style="color:white;position:absolute;float:left;width:54%;text-align:right;top:60%;left:-45%">Scala is type</div>	    
+	    <div class="fragment" data-fragment-index="5" style="color:white;position:absolute;float:left;width:54%;text-align:right;top:60%;left:-28%"><b>-inferred</b></div>
+	    <div class="fragment" data-fragment-index="6" style="color:white;position:absolute;float:left;width:54%;text-align:right;top:78%;">No semicolons <em>;</em>)</div>	    	    
 	  </section>
-
 	  <section>
-	    <br/> Lets try a word count
-	    <pre class="nostyle">
-	      var sentences = ['there are some some repeated words in this this sentence']
-	      sentences
-	         .map(function(sentence){return sentence.split(" ")})
-	         .flatten()
-	         .reduce(function(dictionarySoFar,current){
-	             dictionarySoFar[current] = (dictionarySoFar[current]||0) + 1
-       	             return dictionarySoFar;
-	         },{})
-	     } <div class="fragment green">
-	     Output:
-	     wordFrequencies {
-		there : 1, are : 1, some : 2, repeated : 1,
-	        words : 1, in : 1, this : 2, sentence : 1
-	     } </div>  <div class ="fragment red">
-	     Can we get rid of counter and state?
+	    <h3 style="background-color:white;">Printing sentences</h3>
+	    <div style="background-color: rgb(20, 98, 135); width: 100%; height: 1600%; position: absolute; top: -400%; left: -45%; z-index: -1;"></div>
+	    <div style="width:44%; float:right; text-align:left">
+	      <p class="fragment" data-fragment-index="1" style="font-size:75%;"><span class="ScalaVal">for</span> ( i <- 0 to sentences.size -1) {</p>
+	      <pre class="fragment nostyle" style="font-size:75%;" data-fragment-index="3">     println(sentence)</pre>	      
+	      <p class="fragment" data-fragment-index="1" style="font-size:75%;">}</p>
 	    </div>
-	    </pre>
+	    <div class="fragment" data-fragment-index="2" style="color:white;position:absolute;float:left;width:54%;text-align:right;top:39%;">We loop over sentences</div>	    
+	    <div class="fragment" data-fragment-index="3" style="color:white;position:absolute;float:left;width:54%;text-align:right;top:90%;">And print each:<br>This is a sentence<br>This is another sentence</div>	    
+	  </section>
+	  <section>
+	    <h3 style="background-color:white;">Printing words</h3>
+	    <div style="background-color: rgb(20, 98, 135); width: 100%; height: 1600%; position: absolute; top: -400%; left: -45%; z-index: -1;"></div>
+	    <div style="width:44%; float:right; text-align:left">
+	      <p class="fragment" data-fragment-index="1" style="font-size:75%;"><span class="ScalaVal">for</span> ( i <- 0 to sentences.size -1) {</p>
+	      <p class="fragment nostyle" data-fragment-index="3" style="font-size:75%;">&nbsp;&nbsp;val words = sentences(i).split(" ")</p>
+	      <p class="fragment nostyle" data-fragment-index="5" style="font-size:75%;">&nbsp;&nbsp;for(j <-0 to words.size -1) {</p>
+	      <p class="fragment nostyle" data-fragment-index="5" style="font-size:75%;">&nbsp;&nbsp; println(words(j))</p>
+	      <p class="fragment nostyle" data-fragment-index="5" style="font-size:75%;">&nbsp;&nbsp;}</p>
+	      <p class="fragment" data-fragment-index="1" style="font-size:75%;">}</p>
+	    </div>
+	    <div class="fragment" data-fragment-index="2" style="color:white;position:absolute;float:left;width:54%;text-align:right;top:25%;">We loop over sentences</div>	    	    
+	    <div class="fragment" data-fragment-index="4" style="color:white;position:absolute;float:left;width:54%;text-align:right;top:37%;">Get words</div>	    	    
+	    <div class="fragment" data-fragment-index="6" style="color:white;position:absolute;float:left;width:54%;text-align:right;top:48%;">Loop over words</div>	    	    
+	    <div class="fragment" data-fragment-index="7" style="color:white;position:absolute;float:left;width:54%;text-align:right;top:60%;">Print them:</div>	    	    
+	    <div class="fragment" data-fragment-index="8" style="color:white;position:absolute;float:left;width:54%;text-align:right;top:70%;">This<br/>is<br/>a<br/>sentence<br/>This<br/>is<br/>another<br/>sentence</div>	    	    
+	  </section>
+
+	  <section>
+	    <h3 style="background-color:white;">Making Dictionary or Map</h3>
+	    <div style="background-color: rgb(20, 98, 135); width: 100%; height: 1600%; position: absolute; top: -400%; left: -81%; z-index: -1;"></div>
+	    <div style="width:80%; float:right; text-align:left">
+	      <p class="fragment" data-fragment-index="1" style="font-size:75%;line-height:0%;"><span class="ScalaVal">import</span> scala.collection.mutable.{Map => MutableMap}</p>
+	      <p class="fragment" data-fragment-index="3" style="font-size:75%;"><span class="ScalaVal">val</span> wordCount = MutableMap[String,Int]()</p>
+	      <p class="fragment" data-fragment-index="5" style="font-size:75%;line-height:0%;opacity:0.5;"><span class="ScalaVal">for</span> ( i <- 0 to sentences.size -1) {</p>
+	      <p class="fragment nostyle" data-fragment-index="6"  style="font-size:75%;opacity:0.5;">&nbsp;&nbsp;val words = sentences(i).split(" ")</p>
+	      <p class="fragment nostyle" data-fragment-index="6" style="font-size:75%;line-height:0%;opacity:0.5;">&nbsp;&nbsp;<span class="ScalaVal">for</span>(j <-0 to words.size -1) {</p>
+	      <p class="fragment nostyle" data-fragment-index="6" style="font-size:75%;">&nbsp;&nbsp;&nbsp;&nbsp;val currentWord = words(j)</p>
+	      <p class="fragment nostyle" data-fragment-index="7" style="font-size:75%;line-height:0%;">&nbsp;&nbsp;&nbsp;&nbsp;<span class="ScalaVal">if</span> (wordCount.isDefinedAt(currentWord)) {</p>
+	      <p class="fragment nostyle"  style="font-size:75%;">&nbsp;&nbsp;&nbsp;&nbsp;wordCount(currentWord) = wordCount(currentWord) + 1</p>
+	      <p class="fragment nostyle" data-fragment-index="7" style="font-size:75%;line-height:0%;">&nbsp;&nbsp;&nbsp;&nbsp;}<span class="ScalaVal">else</span> {</p>
+	      <p class="fragment nostyle"  style="font-size:75%;">&nbsp;&nbsp;&nbsp;&nbsp;wordCount(currentWord) = 1}</p>
+	      <p class="fragment nostyle" data-fragment-index="7" style="font-size:75%;line-height:0%;">&nbsp;&nbsp;&nbsp;&nbsp;}</p>	      
+	      <p class="fragment nostyle" data-fragment-index="6"  style="font-size:75%;line-height:0%;opacity:0.5;">&nbsp;&nbsp;}</p>
+	      <p class="fragment" data-fragment-index="5" style="font-size:75%;opacity:0.5;">}</p>
+	      <div class="fragment" data-fragment-index="2"  style="color:white;position:absolute;float:left;width:40%;left:-22%;text-align:right;top:19%;font-size:60%;">Import MutableMap via renaming</div>	    	    
+	      <div class="fragment" data-fragment-index="4" style="color:white;position:absolute;float:left;width:40%;left:-22%;text-align:right;top:25%;font-size:60%;">Scala - many-a-times new is optional</div>	    	    
+	      <div class="fragment" data-fragment-index="9" style="color:white;position:absolute;float:left;width:40%;left:-22%;text-align:right;top:56%;font-size:60%;">Check if word is defined</div>	    	    
+	      <div class="fragment"  style="color:white;position:absolute;float:left;width:40%;left:-22%;text-align:right;top:63%;font-size:60%;">Access using Uniform Access & Update</div>	    	    
+	    </div>
+	  </section>
+	  <section>
+	    <h3 style="background-color:white;">Things I don't like</h3>
+	    <div style="background-color: rgb(20, 98, 135); width: 100%; height: 1600%; position: absolute; top: -400%; left: -81%; z-index: -1;"></div>
+	    <div style="width:80%; float:right; text-align:left">
+	      <p style="color:gray;font-size:75%;line-height:0%;"><span>import</span> scala.collection.mutable.{Map => MutableMap}</p>
+	      <p style="color:gray;font-size:75%;"><span>val</span> wordCount = MutableMap[String,Int]()</p>
+	      <p style="color:gray;font-size:75%;line-height:0%;"><span>for</span> ( <span data-fragment-index="1" class="fragment highlight-red">i <- 0</span> to <span data-fragment-index="2" class="fragment highlight-red">sentences.size -1)</span> {</p>
+	      <p class=" nostyle"   style="color:gray;font-size:75%;">&nbsp;&nbsp;val <span data-fragment-index="3" class="fragment highlight-green">words</span> = sentences(i).<span class="fragment highlight-blue" data-fragment-index="4">split(" ")</span></p>
+	      <p class=" nostyle"  style="color:gray;font-size:75%;line-height:0%;">&nbsp;&nbsp;<span>for</span>(<span data-fragment-index="1" class="fragment highlight-red">j <-0</span> to <span data-fragment-index="2" class="fragment highlight-red">words.size -1</span>) {</p>
+	      <p class=" nostyle"  style="color:gray;font-size:75%;">&nbsp;&nbsp;&nbsp;&nbsp;val currentWord = words(j)</p>
+	      <p class=" nostyle"  style="color:gray;font-size:75%;line-height:0%;">&nbsp;&nbsp;&nbsp;&nbsp;<span>if</span> (wordCount.<span class="fragment highlight-blue" data-fragment-index="4">isDefinedAt</span>(currentWord)) {</p>
+	      <p class=" nostyle"  style="color:gray;font-size:75%;">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fragment highlight-blue" data-fragment-index="4">wordCount(currentWord)</span> = wordCount(currentWord) + 1</p>
+	      <p class=" nostyle"  style="color:gray;font-size:75%;line-height:0%;">&nbsp;&nbsp;&nbsp;&nbsp;}<span>else</span> {</p>
+	      <p class=" nostyle"  style="color:gray;font-size:75%;">&nbsp;&nbsp;&nbsp;&nbsp;<span class="fragment highlight-blue" data-fragment-index="4">wordCount(currentWord)</span> = 1}</p>
+	      <p class=" nostyle"  style="color:gray;font-size:75%;line-height:0%;">&nbsp;&nbsp;&nbsp;&nbsp;}</p>	      
+	      <p class=" nostyle"   style="color:gray;font-size:75%;line-height:0%;">&nbsp;&nbsp;}</p>
+	      <p class=""  style="color:gray;font-size:75%;">}</p>
+	      <div class="fragment" data-fragment-index="1"  style="color:white;position:absolute;float:left;width:40%;left:-22%;text-align:right;top:30%;font-size:60%;">Unnecessary index <span class="fragment" data-fragment-index="2">& edge conditions.</span></div>	    	    
+	      <div class="fragment" data-fragment-index="3"  style="color:white;position:absolute;float:left;width:40%;left:-22%;text-align:right;top:37%;font-size:60%;">Temp Variable</div>	    	    
+	      <div class="fragment" data-fragment-index="4"  style="color:white;position:absolute;float:left;width:40%;left:-22%;text-align:right;top:47%;">Many things at once: <br/>Splitting<br/>Lookup<br/>Updation</div>	    	    
+	      <div class="fragment" data-fragment-index="4"  style="color:white;position:absolute;float:left;width:40%;left:-22%;text-align:right;top:87%;font-size:110%;">Can't paralleize this!</div>	    	    
+	    </div>
+	  </section>
+	  
+
+	  <section data-background="rgba(128,128,128,0.9)">
+	    <h3 style="background-color:white;">Things I don't like</h3>
+	    <div style="background-color: rgb(20, 98, 135); width: 100%; height: 1600%; position: absolute; top: -400%; left: -81%; z-index: -1;"></div>
+	    <div style="width:80%; float:right; text-align:left">
+	      <p style="color:gray;font-size:75%;line-height:0%;"><span>import</span> scala.collection.mutable.{Map => MutableMap}</p>
+	      <p style="color:gray;font-size:75%;"><span>val</span> wordCount = MutableMap[String,Int]()</p>
+	      <p style="color:gray;font-size:75%;line-height:0%;"><span>for</span> ( <span  class=" lightHighlight">i <- 0</span> to <span  class=" lightHighlight">sentences.size -1)</span> {</p>
+	      <p class=" nostyle"   style="color:gray;font-size:75%;">&nbsp;&nbsp;val <span  class=" lightHighlight">words</span> = sentences(i).<span class=" lightHighlight" >split(" ")</span></p>
+	      <p class=" nostyle"  style="color:gray;font-size:75%;line-height:0%;">&nbsp;&nbsp;<span>for</span>(<span  class=" lightHighlight">j <-0</span> to <span  class=" lightHighlight">words.size -1</span>) {</p>
+	      <p class=" nostyle"  style="color:gray;font-size:75%;">&nbsp;&nbsp;&nbsp;&nbsp;val currentWord = words(j)</p>
+	      <p class=" nostyle"  style="color:gray;font-size:75%;line-height:0%;">&nbsp;&nbsp;&nbsp;&nbsp;<span>if</span> (wordCount.<span class=" lightHighlight" >isDefinedAt</span>(currentWord)) {</p>
+	      <p class=" nostyle"  style="color:gray;font-size:75%;">&nbsp;&nbsp;&nbsp;&nbsp;<span class=" lightHighlight" >wordCount(currentWord)</span> = wordCount(currentWord) + 1</p>
+	      <p class=" nostyle"  style="color:gray;font-size:75%;line-height:0%;">&nbsp;&nbsp;&nbsp;&nbsp;}<span>else</span> {</p>
+	      <p class=" nostyle"  style="color:gray;font-size:75%;">&nbsp;&nbsp;&nbsp;&nbsp;<span class=" lightHighlight" >wordCount(currentWord)</span> = 1}</p>
+	      <p class=" nostyle"  style="color:gray;font-size:75%;line-height:0%;">&nbsp;&nbsp;&nbsp;&nbsp;}</p>	      
+	      <p class=" nostyle"   style="color:gray;font-size:75%;line-height:0%;">&nbsp;&nbsp;}</p>
+	      <p class=""  style="color:gray;font-size:75%;">}</p>
+	      <div class=""   style="color:white;position:absolute;float:left;width:40%;left:-22%;text-align:right;top:30%;font-size:60%;">Unnecessary index <span class="" >& edge conditions.</span></div>	    	    
+	      <div class=""   style="color:white;position:absolute;float:left;width:40%;left:-22%;text-align:right;top:37%;font-size:60%;">Temp Variable</div>	    	    
+	      <div class=""   style="color:white;position:absolute;float:left;width:40%;left:-22%;text-align:right;top:47%;">Many things at once: <br/>Splitting<br/>Lookup<br/>Updation</div>	    	    
+	      <div class=""   style="color:white;position:absolute;float:left;width:40%;left:-22%;text-align:right;top:87%;font-size:110%;">Can't paralleize this!</div>	    	    
+	    </div>
+	  </section>
+	  
+	  <section>	    
+	    <h3>Separate splitting from counting</h3>
+	    <div class="fragment" style="position:absolute;background-color:lightblue;padding:5px;line-height:97%;top:38%;left:5%;width:84%;text-align:left;z-index:-1">S<br/>P</br/>L<br/>I<br/>T</div>
+	    <div class="fragment" style="position:absolute;background-color:lightblue;padding:5px;line-height:97%;top:66%;left:5%;width:84%;text-align:right;z-index:-1">C<br/>O</br/>U<br/>N<br/>T</div>
+            <img src="art/splittingLoops.png" class="nostyle">
+          </section>
+
+          <section>
+	    <h3>Small detour</h3>
+	    <p class="fragment" data-fragment-index="5">Are <b>2 reasons</b> why we <b>iterate</b></p>
+	    <span class="fragment" data-fragment-index="1" style="float:left;text-align:left;"><b>Transforming</b> one<br/>list into another</span>
+	    <span class="fragment" data-fragment-index="3" style="float:right;text-align:right;"><b>Aggregating</b> one<br/>list into value</span>
+ 	    <span class="fragment" data-fragment-index="2" style="float:left;text-align:left;position:absolute;top:95%;left:0%;">I/P: [1,2,3,4,5]</span>
+ 	    <span class="fragment" data-fragment-index="2" style="float:left;text-align:left;position:absolute;top:120%;left:0%;">O/P: [2,3,4,5,6]</span>
+ 	    <span class="fragment" data-fragment-index="4" style="float:left;text-align:left;position:absolute;top:95%;left:71%;">I/P: [1,2,3,4,5]</span>
+ 	    <span class="fragment" data-fragment-index="4" style="float:left;text-align:left;position:absolute;top:120%;left:71%;">O/P: 15</span>
+	    <p class="fragment" data-fragment-index="6" style="position:absolute;top:137%;left:32%">Name the patterns?</p>
+	    <p class="fragment" data-fragment-index="6" style="position:absolute;top:147%;left:7%"><b>Map</b></p>
+	    <p class="fragment" data-fragment-index="6" style="position:absolute;top:147%;left:73%"><b>Reduce/Fold</b></p>
+	  </section>
+
+          <section>
+	    <h3>Transforming - Map</h3>
+	    <span class="" style="float:left;text-align:left;"><b>Transforming</b> one<br/>list into another</span>
+	    <span class="" style="float:right;text-align:right;">e.g.<br/> * List of full names in first names<br/>* Add one to each number</span>
+	  </section>
+	  
+	  <section>
+	    <h3>Traditionally</h3>
+	    <img src="art/map.png"/>
+	    <div class="fragment" style="position:absolute;left:2%;width:95%;background-color:rgba(0,0,0,0.2);top:22%;height:22%;text-align:right;">Setup </div>
+	    <div class="fragment" style="position:absolute;left:2%;width:95%;background-color:rgba(255,0,0,0.2);top:44%;height:22%;text-align:right;">Involves <b>temp variables</b>, <br/><b> mutation</b>, <b>indexes!</b> </div>
+	    <p class="fragment">Irrelevant details.</p>
+	    <p class="fragment">B/w <b>Case Classes</b> are Scala syntactic-sugar.</p>
+	  </section>
+
+	  <section>
+	    <h3>Instead</h3>
+	    <img src="art/map.png"/>
+	    <div style="position:absolute;left:24%;width:28%;background-color:rgba(0,255,0,0.2);top:61%;height:6%;text-align:right;"></div>
+	    <p class="fragment">Capture transformation <b>on one element</b>.</p>
+	  </section>
+
+	  <section>
+	    <p>fullNames.map(<span class="fragment highlight-blue" data-fragment-index="1">fullName => fullName.firstName</span>)</p>
+	    <div style="position:absolute;background-color:rgb(20,98,135);top:74%;width:1000%;left:-500%;height:200%;"></div>
+	    <p class="fragment" data-fragment-index="1" style="left:46%;position:absolute;top:53%;color:white;">Lambda expression<span class="fragment" data-fragment-index="3"> executes for <b>each element</b>.</span></p>
+	    <p class="fragment" data-fragment-index="2" style="left:23%;position:absolute;top:53%;color:white;">Iterates<br/> over <b>list</b>.</p>
+	    <p class="fragment" data-fragment-index="4" style="left:23%;position:absolute;top:173%;color:white;">Finally returns a <b>transformed list</b>.</p>
+	  </section>
+
+	  <section>
+	    One step towards functional word count
+	    <img src="art/mapWordCount.png"/>
+	  </section>
+
+          <section>
+	    <h3>Aggregating - Reduce/Fold</h3>
+	    <span class="" style="float:left;text-align:left;"><b>Aggregating</b> one list into value</span>
+	    <span class="fragment" style="float:right;text-align:right;">e.g.
+	      <br/> * List of salaries into average salary
+	      <br/>* Given list of words, find most frequent word
+	      <br/>* Given list of words, find word count
+	    </span>
+	  </section>
+
+	  <section>
+	    <h3>Traditionally</h3>
+	    <img src="art/reduce.png"/>
+	    <p class="fragment">Again - temp variables, indexes, mutations...</p>
+	  </section>
+
+	  <section>
+	    <h3>Instead</h3>
+	    <img src="art/reduce.png"/>
+	    <div style="position:absolute;left:35%;width:56%;background-color:rgba(0,255,0,0.2);top:56%;height:7%;text-align:right;"></div>	    
+	    <p class="fragment">Focus on aggregation</p>
+	  </section>
+
+	  <section>
+	    <div style="position:absolute;background-color:rgb(20,98,135);top:79%;width:1000%;left:-500%;height:100%;"></div>
+	    <div style="position:absolute;background-color:rgb(20,98,135);top:-79%;width:1000%;left:-500%;height:100%;"></div>
+	    <p style="text-align:left;">salaries.foldLeft(<span class="fragment highlight-blue" data-fragment-index="1">0.0</span>)((<span class="fragment highlight-blue" data-fragment-index="2">avgSalary</span>,<span class="fragment highlight-blue" data-fragment-index="3">currentSalary</span>)=><span class="fragment highlight-blue" data-fragment-index="4">avgSalary+currentSalary/salaries.size)</span></p>
+	    <div style="position:absolute;left:27%;top:-31%;color:white;" class="fragment" data-fragment-index="1">Initial<br/>Value</div>
+	    <div style="position:absolute;left:2%;top:78%;color:white;" class="fragment" data-fragment-index="2">Previous<br/>Value</div>
+	    <div style="position:absolute;left:20%;top:78%;color:white;" class="fragment" data-fragment-index="3">Current value<br/>from list</div>
+	    <div style="position:absolute;left:70%;top:78%;color:white;" class="fragment" data-fragment-index="4">Becomes next "previous" value<br/>or return value</div>
+	  </section>
+
+	  <section style="text-align:left;">
+	    <p>Seq(<span style="color:red;">1</span>,<span style="color:green">2,3,4</span>).foldLeft(<span style="color:blue;">0</span>)((<span style="color:blue;">acc</span>,<span style="color:red;">current</span>)=><span style="color:darkorchid">acc+current</span>)</p>
+	  </section>
+	  <section style="text-align:left;">
+	    <p>Seq(<span style="color:red;">1</span>,<span style="color:green">2,3,4</span>).foldLeft(<span style="color:blue;">0</span>)((<span style="color:blue;">acc</span>,<span style="color:red;">current</span>)=><span style="color:darkorchid">acc+current</span>)</p>
+	    <p class="fragment" data-fragment-index="1"> Value for <span style="color:blue;">acc</span> is <span style="color:blue;">0</span>
+	    <p class="fragment" data-fragment-index="2"> Value for <span style="color:red;">current</span> is <span style="color:red">1</span>
+	    <p class="fragment" data-fragment-index="3"> Remaining items in seq are <span style="color:green;">2,3,4</span>
+	    <p class="fragment" data-fragment-index="4"> Result of expression <span style="color:darkorchid">acc+current</span> is <span style="color:darkorchid">1</span> 
+	  </section>
+	  <section style="text-align:left;">
+	    <p>Seq(1,<span style="color:red;">2</span>,<span style="color:green">3,4</span>).foldLeft(0)((<span style="color:blue;">acc</span>,<span style="color:red;">current</span>)=><span style="color:darkorchid">acc+current</span>)</p>
+	    <p> Value for <span style="color:blue;">acc</span> is <span style="color:blue;">1</span>
+	    <p> Value for <span style="color:red;">current</span> is <span style="color:red">2</span>
+	    <p> Remaining items in seq are <span style="color:green;">3,4</span>
+	    <p> Result of expression <span style="color:darkorchid">acc+current</span> is <span style="color:darkorchid">3</span> 
+	  </section>
+	  <section style="text-align:left;">
+	    <p>Seq(1,2,<span style="color:red;">3</span>,<span style="color:green">4</span>).foldLeft(0)((<span style="color:blue;">acc</span>,<span style="color:red;">current</span>)=><span style="color:darkorchid">acc+current</span>)</p>
+	    <p> Value for <span style="color:blue;">acc</span> is <span style="color:blue;">3</span>
+	    <p> Value for <span style="color:red;">current</span> is <span style="color:red">3</span>
+	    <p> Remaining items in seq are <span style="color:green;">4</span>
+	    <p> Result of expression <span style="color:darkorchid">acc+current</span> is <span style="color:darkorchid">6</span> 
+	  </section>
+	  <section style="text-align:left;">
+	    <p>Seq(1,2,3,<span style="color:red;">4</span>).foldLeft(0)((<span style="color:blue;">acc</span>,<span style="color:red;">current</span>)=><span style="color:darkorchid">acc+current</span>)</p>
+	    <p> Value for <span style="color:blue;">acc</span> is <span style="color:blue;">6</span>
+	    <p> Value for <span style="color:red;">current</span> is <span style="color:red">4</span>
+	    <p> No more remaining items.</p>
+	    <p> Result of expression <span style="color:darkorchid">acc+current</span> is <span style="color:darkorchid">10</span> 
+	  </section>
+	  <section style="text-align:left;">
+	    <p>Seq(1,2,3,4).foldLeft(0)((acc,current)=>acc+current) == <b>10</b></p>
+	  </section>
+	  <section>
+	    <p>One more step towards functional word count.</p>
+	    <img src="art/withReduce.png"/>
+	  </section>
+	  <section>
+	    <p>How will you test it?</p>
+	    <p>What will be the scenarios you'll test?</p>
+	  </section>
+	  <section>
+	    <p>Say Hello to <a href="http://www.scalatest.org/getting_started_with_fun_suite">FunSuite</a>.</p>
+	    <p>One of the testing frameworks of <a href="http://www.scalatest.org/">ScalaTest</a>.</p>
+	    <img src="art/funsuite.png"/>
+	  </section>
+	  <section>
+	    <p>Scala allows to extend functionality with <a href="http://baddotrobot.com/blog/2014/09/22/scala-mixins/">mixins</a>.</p>
+	  </section>
+	  <section>
+	    <p>Say Hello to <a href="http://www.scalatest.org/user_guide/using_matchers">ShouldMatchers</a>.</p>
+	    <p>Allows BDD style of test</p>
+	    <img src="art/shouldMatchers.png"/>
+	  </section>
+	  <section>
+	    <p> Say Hello to <a href="http://www.scalatest.org/user_guide/tests_as_specifications">GivenWhenThen</a> </p>
+	    <img class="fragment" src="art/givenwhenthen.png"/>
+	    <img class="fragment" src="art/givenwhenthenlog.png"/>
 	  </section>
 
 	  
+        </section>
+
+	<section id="distributed_storage">
+	  <h1 style="text-align:left;">DISTRIBUTED</h1>
+	  <p style="position:absolute;top:67%;left:67%">Storage</p>
 	</section>
 
-	<section>
-       One of the pain points: Slow feedback life cycle
+	<section id="landscape_before_spark" >
+	  <section data-background="art/before_spark.png">
+	    <h1 style="text-align:left;">Landscape</h1>
+	    <h2>of big data</h2>
+	  </section>
+	  <section>
+	    <p>Will need:</p>
+	    <ul>
+	      <li>Distrubuted storage</li>
+	      <li>Cluster Manager</li>
+	      <li>Computation mechanism</li>
+	      <li>Security</li>
+	      <li>Workflow management</li>
+	    </ul>
+	  </section>
+	  <section>
+	    Maybe put a picture like:
+	    Computers in base
+	  </section>
+	  <section>
+	    <p class="fragment">Sqoop</p>
+	    <img src="art/sqoopLogo.png"/ class="nostyle">
+	    <p class="fragment"><b>Transferring</b> bulk data</p>
+	    <ul>
+	      <li>RDBMS to HDFS</li>
+	      <li>HDFS to RDBMS</li>
+	    </ul>
+	  </section>
 	</section>
 
-	<section>
+	<section id="spark_execution_model" >
+	  <section data-background="art/spark.png">
+	    <h2 style="position:absolute;top:-78%;left:33%;">How</h2>
+	    <h1 style="position:absolute;left:33%">Spark</h1>
+	    <h2 style="position:absolute;top:350%;left:45%">Works</h2>
+	  </section>
+
+	  <section>
+	    <h2>Spark is:</h2>
+	    <ul>
+	      <li class="fragment"><s>Data storage solution</s></li>
+	      <li class="fragment"><s>Cluster Manager</s></li>
+	    </ul>
+	  </section>
 	  
 	  <section>
-	    Hello to world count<br/>
-	    Example of scala word count on presenter machine...
+	    <span><b>Spark</b> is open source framework providing</span>
+	    <span>highly <span class="fragment highlight-blue">generalized</span> methods for processing data in <span class="fragment highlight-blue">parallel</span>.
 	  </section>
 
 	  <section>
-	    Map-reduce of hadoop...
+	    <p class="fragment" data-fragment-index="1">Spark can <span class="fragment highlight-blue" data-fragment-index="6">hook up</span> to a <b>filesystem</b></p>
+	    <ul style="text-align:left;">
+	      <li class="fragment grow" data-fragment-index="2">Local<span class="fragment" data-fragment-index="3"> - <i>Likely</i> spark on your laptop </span></li>
+	      <li class="fragment grow" data-fragment-index="4">HDFS<span class="fragment" data-fragment-index="5"> - Spark on cluster </span> </li>
+	      <li>S3</li>
+	    </ul>
+	    <p style="position:absolute;top:0%;left:40%;font-size:39%" class="fragment" data-fragment-index="7">Read and Write</p>
 	  </section>
 
-
-	</section>
-
-	<section>
-	  HDFS...
-	</section>
-
-	<section>
 	  <section>
-	    Landscape
+	    <p>Spark can run</p>
+	    <ul style="text-align:left;">
+	      <li class="fragment" data-fragment-index="2">Locally<span class="fragment" data-fragment-index="3"> - Single machine, single JVM </span></li>
+	      <li class="fragment" data-fragment-index="4">Or on a cluster</li>
+	      <ul class="fragment">
+		Through a cluster manager:
+		<li>Standalone</li>
+		<li>Mesos</li>
+		<li>YARN</li>
+	      </ul>
+	    </ul>
+	  </section>
+
+	  <section>
+	    <p>How spark runs</p>
+	    <img src="art/spark_model.jpg" style="width:65%;"/>
+	  </section>
+
+	  <section>
+	    <img src="art/spark_executor_rdd_partitions.png" style="width:68%;"/>
+	  </section>
+
+	    
+	</section>
+
+	<section id="hands_on">
+	  <section>
+	    <h1>Hands on with Spark</h1>
 	  </section>
 	  <section>
-	    Mapreduce <br/>
-	    Hive <br/>
-	    Oozie <br/>
-	    Sqoop <br/>
+	    <p>Word Count with spark.</p>
+	    <p>Similar logic, slightly different API.</p>
 	  </section>
-	</section>
-
-	<section>
-	  Pain points - slow feedback cycle
-	</section>
-
-	<section>
+	  <section>
+	    Why should you test?
+	  </section>
+	  <section>
+	    <p> Why should you test? </p>
+	    <p class="fragment"> Because spark job results might end up <b>directly in prod</b>.</p>
+	    <img src="art/survey_prod.jpg"/>
+	  </section>
+	  <section>
+	    <p>Why should you test?</p>
+	    <p><b>High <span class="fragment highlight-blue" data-fragment-index="0">Cost</span></b> of running job with production data.</p>
+	    <p class="fragment" style="text-align:left;" data-fragment-index="1"><span class="fragment highlight-blue" data-fragment-index="1">Cost</span>: Cluster usage cost</p>
+	    <p class="fragment" style="text-align:left;" data-fragment-index="2"><span class="fragment highlight-blue" data-fragment-index="2">Cost</span>: Latencies and delay because of all the stack</p>
+	  </section>
+	  <section>
+	    <p>What tests will you write for Word Count?</p>
+	    <p class="fragment"> Cool! Lets write spark tests for these.</p>
+	  </section>
+	  <section>
+	    <p>Things I don't like about this.</p>
+	    <ul>
+	      <li class="fragment">Unnecessary ceremony with Spark Context!</li>
+	      <li class="fragment">"collect" is not good for large datasets.</li>
+	    </ul>
+	  </section>
+	  <section>
+	    <p>Say Hello to <a href="https://github.com/holdenk/spark-testing-base">SparkTestingBase.</a></p>
+	    <ul>
+	      <li class="fragment">Manages sparkContext.</li>
+	      <li class="fragment">Provides RDDCollection <span class="fragment">to test in <span class="fragment highlight-blue">distributed</span> manner.</span></li>
+	    </ul>
+	  </section>
+	  <section>
+	    <p>Consider case:</p>
+	    <p style="text-align:left;"><span style="color:blue">This</span> <span style="color:darkblue">is</span> <span style="color:darkgreen;">one</span> <span style="color:red">sentence</span>. <span style="color:blue">This</span> <span style="color:darkblue">is</span> <span style="color:pink;">another</span> <span style="color:red">sentence</span>!</p>
+	    <p class="fragment" style="text-align:right;"> Both "<span style="color:red">sentence</span>" word should be treated as one.</p>
+	    <p class="fragment">Test this?</p>
+	  </section>
+	  <section>
+	    <p>Server logs analysis</p>
+	    <table style="border:10;text-align:left;font-size:25px;">
+	      <tr>
+		<th>User Id</th>
+		<th>Session Id</th>
+		<th>Current Location</th>
+		<th>Search Location</th>
+		<th>Search Location Filter</th>
+		<th>Minuimum Price Filter</th>
+		<th>Maximum Price Filter</th>
+	      </tr>
+	      <tr class="fragment" style="color:darkgreen;" data-fragment-index="1">
+		<td>1537</td>
+		<td>3069</td>
+		<td>L</td>
+		<td>B</td>
+		<td>B</td>
+		<td>6853.456700981886</td>
+		<td>-1.0</td>
+	      </tr>
+	      <tr class="fragment" style="color:red;" data-fragment-index="2">
+		<td>20</td>
+		<td>26258</td>
+		<td>J</td>
+		<td></td>
+		<td></td>
+		<td>-1.0</td>
+		<td>-1.0</td>
+	      </tr>
+	      <tr class="fragment" style="color:red;" data-fragment-index="3">
+		<td>20</td>
+		<td>26258</td>
+		<td>J</td>
+		<td></td>
+		<td></td>
+		<td>100.56</td>
+		<td>-1.0</td>
+	      </tr>	      
+	    </table>
+	    <p class="fragment" data-fragment-index="1" style="text-align:left;"><span style="color:darkgreen">Green: </span><span>Search event</span></p>
+	    <p class="fragment" data-fragment-index="2" style="text-align:left;"><span style="color:red">Red: </span><span>Login event or testing event</span><span class="fragment"> - Never has search location.</span></p>
+	  </section>
+	  <section>
+	    <p>Server logs analysis</p>
+	    <table style="border:10;text-align:left;font-size:25px;">
+	      <tr>
+		<th>User Id</th>
+		<th>Session Id</th>
+		<th>Current Location</th>
+		<th>Search Location</th>
+		<th>Search Location Filter</th>
+		<th>Minuimum Price Filter</th>
+		<th>Maximum Price Filter</th>
+	      </tr>
+	      <tr  style="color:darkgreen;" >
+		<td>1537</td>
+		<td>3069</td>
+		<td>L</td>
+		<td>B</td>
+		<td>B</td>
+		<td>6853.456700981886</td>
+		<td>-1.0</td>
+	      </tr>
+	      <tr  style="color:red;" >
+		<td>20</td>
+		<td>26258</td>
+		<td>J</td>
+		<td></td>
+		<td></td>
+		<td>-1.0</td>
+		<td>-1.0</td>
+	      </tr>
+	      <tr style="color:red;" >
+		<td>20</td>
+		<td>26258</td>
+		<td>J</td>
+		<td></td>
+		<td></td>
+		<td>100.56</td>
+		<td>-1.0</td>
+	      </tr>	      
+	    </table>
+	    <p> Lets retrive only search events. </p>
+	  </section>
+	  <section>
+	    <p> Parsing and using indexes is hard </p>
+	    <p class="fragment" data-fragment-index="0" style="text-align:left;">serverLogs.map(log => log.split(",")).filter(logSplits => !(logSplits(<span class="fragment highlight-blue" data-fragment-index="1">3</span>).isEmpty || logSplits(<span class="fragment highlight-blue" data-fragment-index="2">4</span>).isEmpty))</p>
+	    <p class="fragment" style="text-align:left;" data-fragment-index="1"> What is <span class="fragment highlight-blue" data-fragment-index="1">3</span>?</p>
+	    <p class="fragment" style="text-align:left;" data-fragment-index="2"> What is <span class="fragment highlight-blue" data-fragment-index="2">4</span>?</p>
+	  </section>
+	  <section style="text-align:left;">
+	    <p> In comparison to </p>
+	    <p>serverLogs.filter(aLoginEvent)</p>
+	    <p>Or sql</p> <p>select * from server_logs where searchLocation is not null;</p>
+	  </section>
+	  <section>
+	    Dataframes = RDD + Schema
+	  </section>
+	  <section>
+	    <p>How do you get test data?</p>
+	    <img src="art/how_to_get_test_data.jpg"/>
+	  </section>
+	  <section>
+	    <h3>Say hello to<br/> <a href="https://scalacheck.org/">ScalaCheck</a></h3>
+	    <p class="fragment" data-fragment-index="2">Can use it for</p>
+	    <span class="fragment" data-fragment-index="1" style="float:left;text-align:left;">Generating<br/>semi-random<br/>data</span>
+	    <span class="fragment" data-fragment-index="1" style="float:right;text-align:right;">Property<br/>Based<br/>Testing</span>
+	    <p class="fragment" data-fragment-index="3" style="top:100%;left:40%;position:absolute;">Or for both</p>
+	  </section>
+	  <section>
+	    <h2>ScalaCheck</h2>
+	    <span class="fragment" data-fragment-index="2" style="background-color:rgb(255,255,155)">Properties</span>
+	    <span class="fragment" data-fragment-index="2" style="background-color:rgb(255,155,255);">Gen</span>
+	    <span class="fragment" data-fragment-index="2" style="background-color:rgb(155,255,255)">Arbitrary</span>
+	    <div class="fragment" data-fragment-index="3">
+	      <span style="background-color:rgb(255,255,155)">Defines Tests</span>
+	      <span style="background-color:rgb(255,155,255)">Fake primitive Data</span>
+	      <span style="background-color:rgb(155,255,255)">Custom Data</span>
+	    </div>
+	    <p class="fragment" data-fragment-index="1">3 major components</p>
+	  </section>
+	  <section>
+	    <iframe width='853' height='480' src='https://coggle.it/diagram/WBixrnrEU_IRqrKY/62f02845f6e3c2e385eb564f1e9b89b4243973f56f87747b0bd194ee9f416c9d' frameborder='0' allowfullscreen></iframe>
+	  </section>
+	  <section>
+	    Acceptance testing - TODO
+	  </section>
+	  <section>
+	    Demo of Colga jenkins and sanity checks
+	  </section>
 	  
-	</section>
-	
-
-	<section id="show-a-link">
-	  <h1>Show a live link</h1>
-	  <p>Slide 2 discussed here</p>
-	  <p>See <a href="http://www.htmlcheats.com">HTMLCheats.com</a><p>
-	</section>
-
-	<section>
-	  <h1>Slide 3</h1>
-	  <p>How does one revisit an arbitrary slide in code?</p>
-	  <p>Visit internal slide<a href="#/show-a-link"> 2</a>
 	</section>
 
       </div>
     </div>
+    
     <script src="lib/js/head.min.js"></script>
     <script src="js/reveal.js"></script>
     <script src="js/jquery-3.1.1.min.js"></script>
-    <script type="text/javascript" src="js/storeInAMac.js"></script>
-    <script type="text/javascript" src="js/scaleUp.js"></script>
-    <script type="text/javascript" src="js/TangleKit/tangle.js"></script>
-    <script type="text/javascript" src="js/TangleKit/mootools.js"></script>
-    <script type="text/javascript" src="js/TangleKit/sprintf.js"></script>
-    <script type="text/javascript" src="js/TangleKit/BVTouchable.js"></script>
-    <script type="text/javascript" src="js/TangleKit/TangleKit.js"></script>
+    <script src="js/word_count_output.js"></script>
     <script>
       // Required, even if empty.
       Reveal.initialize({
-      slideNumber : true
+      controls: true,
+      progress: true,
+      history: true,
+      center: true,
+      slideNumber : true,
+      keyboard: true,
+      rollingLinks: true,
+      history:true,
+      transition: 'concave',
+
+      // More info https://github.com/hakimel/reveal.js#dependencies
+      dependencies: [
+      { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: 'plugin/zoom-js/zoom.js', async: true },
+      { src: 'plugin/notes/notes.js', async: true }
+      ]
       });
     </script>
   </body>

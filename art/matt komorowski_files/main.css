@@ -1,0 +1,273 @@
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	background: #14ac00 url(/static/img/background.png) repeat scroll 50% 19px;
+	line-height: 1.42857143;
+}
+/*container (width restriction)*/
+.container{
+	margin: 10px auto;
+}
+.container.fixed-width{
+	max-width: 736px;
+}
+.container.dynamic-width{
+	width: 95%;	
+}
+/*page header*/
+.header {
+	margin: 0 10px 2px 10px;
+	padding: 0;
+}
+.header .title {
+	font-size: 57px;
+	color: #0f3f09;
+	display: block;
+	float: left;
+	height: 80px;
+	text-decoration: none;
+}
+.header .title img{
+	border: 0;
+}
+
+.nav{
+	list-style: none;
+	float: right;
+	margin: 0;
+	padding: 5px 15px 5px 15px;
+	font-size: 28px;
+}
+
+.nav li {
+	float:left;
+	position: relative;
+	display: block;
+}
+.nav li a {
+	border-radius: 4px;
+	font-size: 28px;
+	padding: 0px 15px;
+	margin: 15px 4px 0 0;
+	background-color: rgba(179,243,171,0.8);
+	color: #0f3f09;
+	text-decoration: none;
+	position: relative;
+	display: block;
+}
+
+.nav a:hover{
+	background-color: rgba(255,255,255,0.8);
+}
+
+@media screen and (max-width: 730px) {
+	.header .title img{
+		width: 100%;
+		max-width: 500px;
+	}
+	.header .title {
+		margin: 0 10px;
+		font-size: 57px;
+		float: none;
+		height: auto;
+		text-decoration: none;
+		text-align: center;
+		line-height: 1;
+	}
+	.constrained {
+		width: 100%;
+	}
+	body {
+		margin: 8px 0px;
+	}
+	.header {
+		margin: 0;
+		padding: 0;
+	}
+	.nav {
+		clear: both;
+		float: none;
+		padding: 0px 15px;
+		background-color: rgba(179,243,171,0.8);
+		text-align: center;
+	}
+
+	.nav li {
+		float:none;
+		position: relative;
+		display: inline-block;
+	}
+	.nav li a {
+		border-radius: 0px;
+		font-size: 28px;
+		padding: 0px 15px;
+		margin: 0;
+		background-color: rgba(179,243,171,0.8);
+		color: #0f3f09;
+		text-decoration: none;
+		position: relative;	
+		display: block;
+	}
+}
+
+/*content container*/
+.content-container{
+	clear: both;
+	background-color: rgb(17,153,0); /* The Fallback */
+	background-color: rgba(13,108,0,0.4);
+	padding: 10px;	
+}
+.content{
+	background-color: rgb(231,244,229); /* The Fallback */
+	background-color: rgba(255,255,255,0.9);
+	padding: 5px 10px 10px 10px;
+}
+
+.content h2 {
+	font-size: 2.0em;
+	font-weight: normal;
+	border-bottom: 1px solid #b3f3ab;
+	margin: 0px;
+}
+
+.content .subtitle {
+	font-size: 12px;
+	padding: 4px 0;
+	color: #093304;
+}
+.content .body{
+	padding: 3px 3px;
+}
+.content .body h2{
+	margin: 0;
+	padding: 0;
+	font-size: 19px;
+	font-weight: bold;
+}
+.content h3{
+	margin: 0;
+	padding: 0;
+    color: #093304;
+}
+.content p, .content .body ul{
+	margin: 4px 16px 16px 4px;
+}
+.content .center{
+	text-align:center;
+}
+.content a{
+	color: #139c01;
+	text-decoration: none;
+}
+.content a:hover{
+	text-decoration: underline;
+}
+.content .bold{
+	font-weight: bold;
+}
+.content table.data{
+	font-size: 11px;
+	margin: 0px auto 10px auto;
+	border: 1px solid #139C01;
+	width: 99%;
+	background-color: #b3f3ab;
+}
+.content table.data th{
+	font-size: 13px;
+	text-align: left;
+	background-color: #14ac00;
+	font-weight: bold;
+}
+.content table.data .aright{
+	text-align: right;
+}
+.content .success-message{
+	margin: 8px;
+	border: 2px solid #139C01;
+	background-color: #b3f3ab;
+	padding: 8px;
+	font-weight: bold;
+}
+
+.content .note{
+	margin: 8px;
+	border: 1px solid #139C01;
+	background-color: #b3f3ab;
+	padding: 8px;
+	font-style: italic;
+}
+
+.content .failure-message{
+	margin: 8px;
+	border: 2px solid #BB0000;
+	background-color: #DD9999;
+	padding: 8px;
+	font-weight: bold;
+}
+.content .right-img{
+	border: 1px solid rgb(20, 172, 0); 
+	padding: 2px; 
+	float: right; 
+	margin-left: 7px;
+}
+
+@media screen and (max-width: 400px) {
+	.content .right-img{
+		float: none;
+		text-align: right;
+		border: none;
+	}
+}
+.content .right-img .caption{
+	font-size: 0.8em;
+	text-align: right;
+}
+
+pre {
+	border-left: 2px solid #999;
+	padding-left: 10px;
+	margin-left: 10px;
+
+	background-color: rgba(200,200,200,0.4);
+	overflow-x: auto;
+}
+/********************* story specific ********************/
+.content .entry {
+	margin: 4px 4px 40px 4px;
+	border-bottom: 1px solid #b3f3ab;
+	padding: 4px 4px 10px 4px;
+}
+.entry .entry-headline{
+	font-size: 1.6em;
+}
+.entry .entry-date{
+	float: right;
+	font-size: 0.8em;
+	margin-top: 6px;
+}
+.entry .entry-headline a{
+	color: rgb(13,108,0);
+}
+.entry .entry-snippet{
+	clear: both;
+	padding: 0 4px;
+}
+
+.entry .tout{
+	font-size: 0.9em;
+	margin-top: 6px;
+}
+
+.clear {
+	clear: both;
+}
+.footer {
+	color: rgba(255, 255, 255, 0.898);
+	text-align: center;
+}
+.footer a {
+	color: rgb(179, 243, 171);
+	text-decoration: none;
+}
+.footer a:hover {
+	text-decoration: underline;
+}

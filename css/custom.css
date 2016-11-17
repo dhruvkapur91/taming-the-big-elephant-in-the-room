@@ -11,10 +11,27 @@
     margin-left: -12%;
 }
 
+.reveal section fragment pre.nostyle {
+    background: none;
+    border: none;
+    box-shadow: none;
+    margin-left: -12%;
+}
+
 .green {
     color:green;
 }
 
-.red {
-    
+.lightHighlight {
+    color:lightgoldenrodyellow;
+    font-weight:bold !important;
+}
+
+
+.ScalaString {
+    color: blue;
+}
+
+.ScalaVal {
+    color: rgb(147,15,138)
 }

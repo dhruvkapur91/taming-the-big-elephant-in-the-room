@@ -42,7 +42,7 @@ $(function () {
 	    } else if(this.numberOfImages >= 260000){
 		var alpha = Math.min(0.4,(this.numberOfImages - 260000)/1000)
 		$(".slide-background .present").css("background-color","rgba(255,0,0,"+alpha+")");
-		this.tooMuchMessage = "Sadly limited on how much memory/disk we can have... <br/> Both physically and economically";
+		this.tooMuchMessage = "Sadly limited on how much memory/disk we can have... <br/> Both <b>physically</b> and <b>economically</b>";
 		$("#scale_up_limit svg text")[0].innerHTML = "No more. Too costly!"
 		$("#scale_up_limit .imageSize").attr("height",200);		
 		$("#scale_up_limit .imageSize").attr("width",295);		
