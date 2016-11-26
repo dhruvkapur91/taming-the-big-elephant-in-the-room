@@ -43,7 +43,23 @@
 	    </span>
 	  </section>
 	  <section>
-	    <p>Problem: <span>Count</span> how many <span class="fragment highlight-blue">blue</span> photos in a collection?<p>
+	    <p>Problem: Count how many
+	      <span class="fragment highlight-blue" data-fragment-index="1">blue</span>,
+	      <span class="fragment highlight-red" data-fragment-index="1"> red</span> and
+	      <span class="fragment highlight-green" data-fragment-index="1"> green </span>
+	      photos in a collection?
+	    </p>
+	    <p class="fragment" data-fragment-index="2">Given these set of images</p>
+	    <svg width="800" height="120" class="fragment" data-fragment-index="2">
+	      <rect x="50" y="0" width="100" height="100" fill="rgb(27,145,255)"/>
+	      <rect x="200" y="0" width="100" height="100" fill="red"/>
+	      <rect x="350" y="0" width="100" height="100" fill="red"/>
+	      <rect x="500" y="0" width="100" height="100" fill="rgb(27,145,255)"/>
+	      <rect x="650" y="0" width="100" height="100" fill="rgb(23,255,46)"/>
+	    </svg>
+	    <p class="fragment" data-fragment-index="3">
+	      We have <span style="color:rgb(27,145,255)">2 blues</span>, <span style="color:red">2 reds</span> and <span style="color:rgb(23,255,46)">2 greens</span>.
+	    </p>
 	  </section>
 	  <section>
 	    <p style="position:absolute;font-size:45%;left:46%;top:6%">My image<br/>collection</p>
@@ -60,6 +76,7 @@
 	    <p class="fragment">Loop over and count!</p>
 	    <p style="position:absolute;font-size:45%;left:46%;top:30%">My image<br/>collection</p>
 	    <div><img src="art/computerWithDataLoop.png" class="nostyle"/></div>
+	    <p class="fragment" style="position:absolute;top:40%;font-size:67%;left:67%;text-align:left;"><span style="color:red">2k red</span><br/><span style="color:rgb(27,145,255);">1k blue</span><br/><span style="color:rgb(23,255,46)">2k green</span></p>
 	  </section>
 	  <section>
 	    <p style="position:absolute;font-size:54%;left:43%;top:6%">Flicker's image<br/>collection</p>
@@ -200,6 +217,30 @@
 	      <line x1="-50" y1="-38" x2="80" y2="60" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
 	      <line x1="137" y1="-38" x2="137" y2="16" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
 	    </svg>
+	    <p class="fragment" data-fragment-index="2" style="position:absolute;top:60%;text-align:left;font-size:41%;left:35%;">
+	      <b>Input</b><br/>
+	      <span class="fragment highlight-red" data-fragment-index="5">Red<br/></span>
+	      <span class="fragment highlight-blue" data-fragment-index="6">Blue<br/></span>
+	      <span class="fragment highlight-blue" data-fragment-index="7">Blue<br/></span>
+	      <span class="fragment highlight-red" data-fragment-index="8">Red<br/></span>
+	      <span class="fragment highlight-green" data-fragment-index="9">Green<br/></span>
+	      <span class="fragment highlight-red" data-fragment-index="10">Red<br/></span>
+	      <span class="fragment highlight-green" data-fragment-index="11">Green<br/></span>
+	      ...
+	    </p>
+	    <p class="fragment" data-fragment-index="3" style="position:absolute;top:66%;font-size:38%;left:42.3%;background-color:rgba(255,255,255,0.8)">
+	      Maintains 3 variables...<br/>
+	      Red Count<br/>
+	      Green Count<br/>
+	      Blue Count<br/>
+	      <span class="fragment" data-fragment-index="4">Goes over one by one</span>
+	    </p>
+	    <p class="fragment" data-fragment-index="12" style="position:absolute;top:60%;text-align:left;font-size:41%;left:60%;">
+	      <b>Output</b><br/>
+	      Red:3<br/>
+	      Blue:2<br/>
+	      Green:2<br/>
+	    </p>	    
 	  </section>
 	  <section>
 	    <div style="opacity:0.2;">
@@ -237,8 +278,123 @@
 	    </svg>
 	    <p style="position:absolute;top:63%;left:5%;background-color:rgba(255,255,255,0.5)" class="fragment" data-fragment-index="2">Often called <b>reduce</b>.Computes sum from all mappers.</p>
 	    <p style="position:absolute;top:75%;left:16%;background-color:rgba(255,255,255,0.5)" class="fragment" data-fragment-index="3"> Food for thought: Can we parallelize this? </p>
+	  </section> 
+
+	  <section>
+	    <p style="position:absolute;text-align:left;left:28%;top:90%;background-color:rgba(255,255,255,0.5);">One reduce for each color?</p>
+	    <div style="opacity:1;">
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:6%;top:14%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:25%;top:14%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:44%;top:14%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:63%;top:14%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:82%;top:14%"/>
+	    </div>
+	    <div style="opacity:1;">
+	      <img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+	    </div>
+	    <img src="art/node.png" class="nostyle" style="width:18%;opacity:1;margin-right:10%;padding-left:10%"/>
+	    <img src="art/node.png" class="nostyle" style="width:18%;opacity:1;margin-right:10%;"/>
+	    <img src="art/node.png" class="nostyle" style="width:18%;opacity:1;margin-right:10%;"/>
+
+	    <img class="nostyle"  src="art/flickerRedDataBlock.png" style="position:absolute;left:15.5%;top:55%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerRedDataBlock.png" style="position:absolute;left:15.5%;top:62.5%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerRedDataBlock.png" style="position:absolute;left:15.5%;top:70%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerRedDataBlock.png" style="position:absolute;left:21.5%;top:55%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerRedDataBlock.png" style="position:absolute;left:21.5%;top:62.5%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerRedDataBlock.png" style="position:absolute;left:21.5%;top:70%;width:45px;opacity:0.6;"/>	    
+	    
+	    <img class="nostyle"  src="art/flickerGreenDataBlock.png" style="position:absolute;left:44.5%;top:55%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerGreenDataBlock.png" style="position:absolute;left:44.5%;top:62.5%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerGreenDataBlock.png" style="position:absolute;left:44.5%;top:70%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerGreenDataBlock.png" style="position:absolute;left:50.5%;top:55%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerGreenDataBlock.png" style="position:absolute;left:50.5%;top:62.5%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerGreenDataBlock.png" style="position:absolute;left:50.5%;top:70%;width:45px;opacity:0.6;"/>
+
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:73.5%;top:55%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:73.5%;top:62.5%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:73.5%;top:70%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:79.5%;top:55%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:79.5%;top:62.5%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:79.5%;top:70%;width:45px;opacity:0.6;"/>	    
+
+	    
+	    <svg width="1000px" height="100px" style="position:absolute;left:7%;opacity:0.3">
+	      <defs>
+		<marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth">
+		  <path d="M0,0 L0,6 L9,3 z" fill="#000" />
+		</marker>
+	      </defs>
+	      <line x1="303" y1="-38" x2="198" y2="53" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="-50" y1="-38" x2="80" y2="60" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="137" y1="-38" x2="137" y2="16" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	    </svg>
+	    <svg width="1000px" height="100px" style="position:absolute;left:36%;opacity:0.3">
+	      <defs>
+		<marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth">
+		  <path d="M0,0 L0,6 L9,3 z" fill="#000" />
+		</marker>
+	      </defs>
+	      <line x1="303" y1="-38" x2="198" y2="53" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="-50" y1="-38" x2="80" y2="60" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="137" y1="-38" x2="137" y2="16" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	    </svg>	    
+	    <svg width="1000px" height="100px" style="position:absolute;left:65%;opacity:0.3">
+	      <defs>
+		<marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth">
+		  <path d="M0,0 L0,6 L9,3 z" fill="#000" />
+		</marker>
+	      </defs>
+	      <line x1="303" y1="-38" x2="198" y2="53" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="-50" y1="-38" x2="80" y2="60" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="137" y1="-38" x2="137" y2="16" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	    </svg>
+
+	    <p class="fragment" data-fragment-index="1" style="position:absolute;top:60%;text-align:left;font-size:41%;left:8%;">
+	      <b>Input</b><br/>
+	      <span class="fragment highlight-red" data-fragment-index="2">Red<br/></span>
+	      <span class="fragment highlight-red" data-fragment-index="3">Red<br/></span>
+	      <span class="fragment highlight-red" data-fragment-index="4">Red<br/></span>
+	      ...
+	    </p>
+	    <p class="fragment" data-fragment-index="5" style="position:absolute;top:63%;text-align:left;font-size:41%;left:29%;">
+	      <b>Output</b><br/>
+	      Red:3<br/>
+	    </p>	    
+	    <p class="fragment" data-fragment-index="6" style="position:absolute;top:63%;text-align:left;font-size:41%;left:58%;">
+	      <b>Output</b><br/>
+	      Green:4<br/>
+	    </p>	    
+	    <p class="fragment" data-fragment-index="6" style="position:absolute;top:63%;text-align:left;font-size:41%;left:87%;">
+	      <b>Output</b><br/>
+	      Blue:4<br/>
+	    </p>	    
+	    
+
+	    <p class="fragment" data-fragment-index="1" style="position:absolute;top:60%;text-align:left;font-size:41%;left:37%;">
+	      <b>Input</b><br/>
+	      <span class="fragment highlight-green" data-fragment-index="2">Green<br/></span>
+	      <span class="fragment highlight-green" data-fragment-index="3">Green<br/></span>
+	      <span class="fragment highlight-green" data-fragment-index="4">Green<br/></span>
+	      <span class="fragment highlight-green" data-fragment-index="5">Green<br/></span>
+	      ...
+	    </p>
+
+	    <p class="fragment" data-fragment-index="1" style="position:absolute;top:60%;text-align:left;font-size:41%;left:66%;">
+	      <b>Input</b><br/>
+	      <span class="fragment highlight-blue" data-fragment-index="2">Blue<br/></span>
+	      <span class="fragment highlight-blue" data-fragment-index="3">Blue<br/></span>
+	      <span class="fragment highlight-blue" data-fragment-index="4">Blue<br/></span>
+	      <span class="fragment highlight-blue" data-fragment-index="5">Blue<br/></span>
+	      ...
+	    </p>	    
+	    
+	    
 	  </section>
-	  
+
 	  <section>
 	    <h2>Quiz Time</h2>
 	    <img src="art/QuizTime.jpg"/>
@@ -801,18 +957,11 @@
 
 	<section id="spark_execution_model" >
 	  <section data-background="art/spark.png">
-	    <h2 style="position:absolute;top:-78%;left:33%;">How</h2>
+	    <h2 style="position:absolute;top:-78%;left:6%;">Introducing</h2>
 	    <h1 style="position:absolute;left:33%">Spark</h1>
-	    <h2 style="position:absolute;top:350%;left:45%">Works</h2>
+	    <h2 style="position:absolute;top:350%;left:66%">API</h2>
 	  </section>
 
-	  <section>
-	    <h2>Spark is:</h2>
-	    <ul>
-	      <li class="fragment"><s>Data storage solution</s></li>
-	      <li class="fragment"><s>Cluster Manager</s></li>
-	    </ul>
-	  </section>
 	  
 	  <section>
 
@@ -853,39 +1002,29 @@
 	  </section>
 
 	  <section>
-	    <p class="fragment" data-fragment-index="1">Spark can <span class="fragment highlight-blue" data-fragment-index="6">hook up</span> to a <b>filesystem</b></p>
-	    <ul style="text-align:left;">
-	      <li class="fragment grow" data-fragment-index="2">Local<span class="fragment" data-fragment-index="3"> - <i>Likely</i> spark on your laptop </span></li>
-	      <li class="fragment grow" data-fragment-index="4">HDFS<span class="fragment" data-fragment-index="5"> - Spark on cluster </span> </li>
-	      <li>S3</li>
-	    </ul>
-	    <p style="position:absolute;top:0%;left:40%;font-size:39%" class="fragment" data-fragment-index="7">Read and Write</p>
+	    <p>Like collections, RDD supports transformations and I/O from Storage System.</p>
+	    <img src="art/rddexample.png"/>
 	  </section>
-
-	  <section>
-	    <p>Spark can run</p>
-	    <ul style="text-align:left;">
-	      <li class="fragment" data-fragment-index="2">Locally<span class="fragment" data-fragment-index="3"> - Single machine, single JVM </span></li>
-	      <li class="fragment" data-fragment-index="4">Or on a cluster</li>
-	      <ul class="fragment">
-		Through a cluster manager:
-		<li>Standalone</li>
-		<li>Mesos</li>
-		<li>YARN</li>
-	      </ul>
-	    </ul>
-	  </section>
-
-	  <section>
-	    <p>How spark runs</p>
-	    <img src="art/spark_model.jpg" style="width:65%;"/>
-	  </section>
-
-	  <section>
-	    <img src="art/spark_executor_rdd_partitions.png" style="width:68%;"/>
-	  </section>
-
 	    
+	</section>
+
+	<section>
+	  	  
+	  <section data-background="art/spark.png">
+	    <h2 style="position:absolute;top:-78%;left:33%;">How</h2>
+	    <h1 style="position:absolute;left:33%">Spark</h1>
+	    <h2 style="position:absolute;top:350%;left:45%">Works</h2>
+	  </section>
+
+	  <section>
+	    <h2>Spark is:</h2>
+	    <ul>
+	      <li class="fragment"><s>Data storage solution</s></li>
+	      <li class="fragment"><s>Cluster Manager</s></li>
+	    </ul>
+	  </section>
+	  
+
 	</section>
 
 	<section id="hands_on">
