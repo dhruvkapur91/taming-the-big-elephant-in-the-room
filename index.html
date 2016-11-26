@@ -89,6 +89,7 @@
 	    <img style="position:absolute;top:25%;left:17%;" src="art/flickerData.png" class="nostyle"/>
 	    <p style="position:absolute;font-size:54%;left:43%;top:29%">Flicker's image<br/>collection</p>	    
 	    <div><img src="art/computer.png" class="nostyle"/></div>
+	    <aside class="notes">We can fit it in external storage drive, but it won't scale. Plus streaming over it will get slower and slower.</aside>	    
 	  </section>
 	  <section>
 	    <p style="position:absolute;font-size:54%;left:43%;top:9%">Flicker's image<br/>collection</p>
@@ -242,7 +243,8 @@
 	      Green:2<br/>
 	    </p>	    
 	  </section>
-	  <section>
+
+	  <section data-transition="fade-out">
 	    <div style="opacity:0.2;">
 	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:6%;top:14%"/>
 	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:25%;top:14%"/>
@@ -257,8 +259,14 @@
 	      <img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
 	      <img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
 	    </div>
-	    <p style="position:absolute;top:15%;left:4%;background-color:rgba(255,255,255,0.5)" class="fragment" data-fragment-index="1">Often called <b>Map</b>. Computes if an image is blue or not.</p>
-	    <p style="position:absolute;top:25%;left:19%;background-color:rgba(255,255,255,0.5)" class="fragment" data-fragment-index="1">This phase can already be <b>parallelized</b>.</p>
+	    <p style="position:absolute;top:-3%;left:2.5%;background-color:rgba(255,255,255,0.5)" class="fragment" data-fragment-index="1">Called <b>Map</b>.Transforms data of an image into its color.</p>
+	    <p style="position:absolute;top:10%;left:15%;background-color:rgba(255,255,255,0.5)" class="fragment" data-fragment-index="1">This phase can already be <b>parallelized</b>.</p>
+	    <p style="position:absolute;top:22%;left:14.5%;background-color:rgba(255,255,255,0.5)" class="fragment" data-fragment-index="2">Nodes running Map are called <b>Mappers.</b></p>
+	    <aside class="notes">
+	      We have parallelized computation of wheather an image is red, blue or green.<br/>
+	      This will be useful for heavy computation.<br/>
+	      Reduce which sums up is still serial<br/>
+	    </aside>
 	    <img src="art/node.png" class="nostyle" style="width:18%;opacity:0.2;"/>
 	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:44.5%;top:55%;width:45px;opacity:0.2;"/>
 	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:44.5%;top:62.5%;width:45px;opacity:0.2;"/>
@@ -276,12 +284,103 @@
 	      <line x1="-50" y1="-38" x2="80" y2="60" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
 	      <line x1="137" y1="-38" x2="137" y2="16" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
 	    </svg>
-	    <p style="position:absolute;top:63%;left:5%;background-color:rgba(255,255,255,0.5)" class="fragment" data-fragment-index="2">Often called <b>reduce</b>.Computes sum from all mappers.</p>
-	    <p style="position:absolute;top:75%;left:16%;background-color:rgba(255,255,255,0.5)" class="fragment" data-fragment-index="3"> Food for thought: Can we parallelize this? </p>
+	    <p style="position:absolute;top:60%;left:10%;background-color:rgba(255,255,255,0.5)" class="fragment" data-fragment-index="4">Called <b>Reduce</b>.Computes sum from all mappers.</p>
+	    <p style="position:absolute;top:69%;left:8%;background-color:rgba(255,255,255,0.5);font-size:99%;" class="fragment" data-fragment-index="4"> Nodes running Reduce operation is called <b>Reducer</b>.</p>
+	    
+	    <div class="fragment" data-fragment-index="3" style="position: absolute;font-size: 52%;left: 8.5%;top: 34%;font-weight: bold;">Mapper</div>
+	    <div class="fragment" data-fragment-index="3" style="position: absolute;font-size: 52%;left: 27%;top: 34%;font-weight: bold;">Mapper</div>
+	    <div class="fragment" data-fragment-index="3" style="position: absolute;font-size: 52%;left: 46%;top: 34%;font-weight: bold;">Mapper</div>
+	    <div class="fragment" data-fragment-index="5" style="position: absolute;font-size: 52%;left: 46%;top: 80%;font-weight: bold;">Reducer</div>
+	    <div class="fragment" data-fragment-index="3" style="position: absolute;font-size: 52%;left: 65%;top: 34%;font-weight: bold;">Mapper</div>
+	    <div class="fragment" data-fragment-index="3" style="position: absolute;font-size: 52%;left: 84%;top: 34%;font-weight: bold;">Mapper</div>
+	  </section> 	  
+
+	  <section data-transition="fade-in">
+	    <div style="position: absolute;font-size: 52%;left: 8.5%;top: 34%;font-weight: bold;">Mapper</div>
+	    <div style="position: absolute;font-size: 52%;left: 27%;top: 34%;font-weight: bold;">Mapper</div>
+	    <div style="position: absolute;font-size: 52%;left: 46%;top: 34%;font-weight: bold;">Mapper</div>
+	    <div style="position: absolute;font-size: 52%;left: 46%;top: 80%;font-weight: bold;">Reducer</div>
+	    <div style="position: absolute;font-size: 52%;left: 65%;top: 34%;font-weight: bold;">Mapper</div>
+	    <div style="position: absolute;font-size: 52%;left: 84%;top: 34%;font-weight: bold;">Mapper</div>
+	    
+	    <div style="opacity:0.2;">
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:6%;top:14%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:25%;top:14%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:44%;top:14%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:63%;top:14%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:82%;top:14%"/>
+	    </div>
+	    <div style="opacity:0.3;">
+	      <img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+	    </div>
+	    <img src="art/node.png" class="nostyle" style="width:18%;opacity:0.2;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:44.5%;top:55%;width:45px;opacity:0.2;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:44.5%;top:62.5%;width:45px;opacity:0.2;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:44.5%;top:70%;width:45px;opacity:0.2;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:50.5%;top:55%;width:45px;opacity:0.2;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:50.5%;top:62.5%;width:45px;opacity:0.2;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:50.5%;top:70%;width:45px;opacity:0.2;"/>
+	    <svg width="1000px" height="100px" style="position:absolute;left:36%;opacity:0.2">
+	      <defs>
+		<marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth">
+		  <path d="M0,0 L0,6 L9,3 z" fill="#f00" />
+		</marker>
+	      </defs>
+	      <line x1="303" y1="-38" x2="198" y2="53" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="-50" y1="-38" x2="80" y2="60" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="137" y1="-38" x2="137" y2="16" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	    </svg>
 	  </section> 
 
+	  
 	  <section>
-	    <p style="position:absolute;text-align:left;left:28%;top:90%;background-color:rgba(255,255,255,0.5);">One reduce for each color?</p>
+	    <div style="position: absolute;font-size: 52%;left: 8.5%;top: 34%;font-weight: bold;">Mapper</div>
+	    <div style="position: absolute;font-size: 52%;left: 27%;top: 34%;font-weight: bold;">Mapper</div>
+	    <div style="position: absolute;font-size: 52%;left: 46%;top: 34%;font-weight: bold;">Mapper</div>
+	    <div style="position: absolute;font-size: 52%;left: 46%;top: 80%;font-weight: bold;">Reducer</div>
+	    <div style="position: absolute;font-size: 52%;left: 65%;top: 34%;font-weight: bold;">Mapper</div>
+	    <div style="position: absolute;font-size: 52%;left: 84%;top: 34%;font-weight: bold;">Mapper</div>
+	    
+	    <div style="opacity:0.2;">
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:6%;top:14%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:25%;top:14%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:44%;top:14%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:63%;top:14%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:82%;top:14%"/>
+	    </div>
+	    <div style="opacity:0.3;">
+	      <img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+	    </div>
+	    <img src="art/node.png" class="nostyle" style="width:18%;opacity:0.2;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:44.5%;top:55%;width:45px;opacity:0.2;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:44.5%;top:62.5%;width:45px;opacity:0.2;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:44.5%;top:70%;width:45px;opacity:0.2;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:50.5%;top:55%;width:45px;opacity:0.2;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:50.5%;top:62.5%;width:45px;opacity:0.2;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:50.5%;top:70%;width:45px;opacity:0.2;"/>
+	    <svg width="1000px" height="100px" style="position:absolute;left:36%;opacity:0.2">
+	      <defs>
+		<marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth">
+		  <path d="M0,0 L0,6 L9,3 z" fill="#f00" />
+		</marker>
+	      </defs>
+	      <line x1="303" y1="-38" x2="198" y2="53" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="-50" y1="-38" x2="80" y2="60" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="137" y1="-38" x2="137" y2="16" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	    </svg>
+	    <p style="position:absolute;top:65%;left:3%;background-color:rgba(255,255,255,0.5)"> Food for thought: Can we parallelize reducers as well? </p>
+	  </section> 
+
+	  <section data-transition="fade-out">
+	    <p style="position:absolute;text-align:left;left:26%;top:90%;background-color:rgba(255,255,255,0.5);">One <b>reducer</b> for each color?</p>
 	    <div style="opacity:1;">
 	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:6%;top:14%"/>
 	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:25%;top:14%"/>
@@ -395,6 +494,401 @@
 	    
 	  </section>
 
+	  <section data-transition="fade-in fade-out">
+	    <p style="position:absolute;text-align:left;left:2%;top:90%;background-color:rgba(255,255,255,0.5);">How does <b>mapper</b> know - which color to send where?</p>
+	    <div style="opacity:1;">
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:6%;top:14%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:25%;top:14%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:44%;top:14%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:63%;top:14%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:82%;top:14%"/>
+	    </div>
+	    <div style="opacity:1;">
+	      <img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+	    </div>
+	    <img src="art/node.png" class="nostyle" style="width:18%;opacity:1;margin-right:10%;padding-left:10%"/>
+	    <img src="art/node.png" class="nostyle" style="width:18%;opacity:1;margin-right:10%;"/>
+	    <img src="art/node.png" class="nostyle" style="width:18%;opacity:1;margin-right:10%;"/>
+
+	    <img class="nostyle"  src="art/flickerRedDataBlock.png" style="position:absolute;left:15.5%;top:55%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerRedDataBlock.png" style="position:absolute;left:15.5%;top:62.5%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerRedDataBlock.png" style="position:absolute;left:15.5%;top:70%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerRedDataBlock.png" style="position:absolute;left:21.5%;top:55%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerRedDataBlock.png" style="position:absolute;left:21.5%;top:62.5%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerRedDataBlock.png" style="position:absolute;left:21.5%;top:70%;width:45px;opacity:0.6;"/>	    
+	    
+	    <img class="nostyle"  src="art/flickerGreenDataBlock.png" style="position:absolute;left:44.5%;top:55%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerGreenDataBlock.png" style="position:absolute;left:44.5%;top:62.5%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerGreenDataBlock.png" style="position:absolute;left:44.5%;top:70%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerGreenDataBlock.png" style="position:absolute;left:50.5%;top:55%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerGreenDataBlock.png" style="position:absolute;left:50.5%;top:62.5%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerGreenDataBlock.png" style="position:absolute;left:50.5%;top:70%;width:45px;opacity:0.6;"/>
+
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:73.5%;top:55%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:73.5%;top:62.5%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:73.5%;top:70%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:79.5%;top:55%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:79.5%;top:62.5%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:79.5%;top:70%;width:45px;opacity:0.6;"/>	    
+
+	    
+	    <svg width="1000px" height="100px" style="position:absolute;left:7%;opacity:0.3">
+	      <defs>
+		<marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth">
+		  <path d="M0,0 L0,6 L9,3 z" fill="#000" />
+		</marker>
+	      </defs>
+	      <line x1="303" y1="-38" x2="198" y2="53" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="-50" y1="-38" x2="80" y2="60" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="137" y1="-38" x2="137" y2="16" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	    </svg>
+	    <svg width="1000px" height="100px" style="position:absolute;left:36%;opacity:0.3">
+	      <defs>
+		<marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth">
+		  <path d="M0,0 L0,6 L9,3 z" fill="#000" />
+		</marker>
+	      </defs>
+	      <line x1="303" y1="-38" x2="198" y2="53" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="-50" y1="-38" x2="80" y2="60" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="137" y1="-38" x2="137" y2="16" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	    </svg>	    
+	    <svg width="1000px" height="100px" style="position:absolute;left:65%;opacity:0.3">
+	      <defs>
+		<marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth">
+		  <path d="M0,0 L0,6 L9,3 z" fill="#000" />
+		</marker>
+	      </defs>
+	      <line x1="303" y1="-38" x2="198" y2="53" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="-50" y1="-38" x2="80" y2="60" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="137" y1="-38" x2="137" y2="16" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	    </svg>
+
+	    <p  style="position:absolute;top:60%;text-align:left;font-size:41%;left:8%;">
+	      <b>Input</b><br/>
+	      <span >Red<br/></span>
+	      <span >Red<br/></span>
+	      <span >Red<br/></span>
+	      ...
+	    </p>
+	    <p  style="position:absolute;top:63%;text-align:left;font-size:41%;left:29%;">
+	      <b>Output</b><br/>
+	      Red:3<br/>
+	    </p>	    
+	    <p  style="position:absolute;top:63%;text-align:left;font-size:41%;left:58%;">
+	      <b>Output</b><br/>
+	      Green:4<br/>
+	    </p>	    
+	    <p  style="position:absolute;top:63%;text-align:left;font-size:41%;left:87%;">
+	      <b>Output</b><br/>
+	      Blue:4<br/>
+	    </p>	    
+	    
+
+	    <p  style="position:absolute;top:60%;text-align:left;font-size:41%;left:37%;">
+	      <b>Input</b><br/>
+	      <span >Green<br/></span>
+	      <span >Green<br/></span>
+	      <span >Green<br/></span>
+	      <span >Green<br/></span>
+	      ...
+	    </p>
+
+	    <p  style="position:absolute;top:60%;text-align:left;font-size:41%;left:66%;">
+	      <b>Input</b><br/>
+	      <span >Blue<br/></span>
+	      <span >Blue<br/></span>
+	      <span >Blue<br/></span>
+	      <span >Blue<br/></span>
+	      ...
+	    </p>
+
+	    <div class="fragment" width="100%" style="position:absolute;background-color:rgba(0,0,0,1);left:0%;height:7%;top:45%;width:100%;color:white;">Partitioner</div>
+	    
+	  </section>
+
+	  <section data-transition="fade-in fade-out">
+	    <p style="position:absolute;text-align:left;left:2%;top:90%;background-color:rgba(255,255,255,0.5);">How does <b>mapper</b> know - which color to send where?</p>
+	    <div style="opacity:1;">
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:6%;top:14%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:25%;top:14%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:44%;top:14%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:63%;top:14%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:82%;top:14%"/>
+	    </div>
+	    <div style="opacity:1;">
+	      <img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+	    </div>
+	    <img src="art/node.png" class="nostyle" style="width:18%;opacity:1;margin-right:10%;padding-left:10%"/>
+	    <img src="art/node.png" class="nostyle" style="width:18%;opacity:1;margin-right:10%;"/>
+	    <img src="art/node.png" class="nostyle" style="width:18%;opacity:1;margin-right:10%;"/>
+
+	    <img class="nostyle"  src="art/flickerRedDataBlock.png" style="position:absolute;left:15.5%;top:55%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerRedDataBlock.png" style="position:absolute;left:15.5%;top:62.5%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerRedDataBlock.png" style="position:absolute;left:15.5%;top:70%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerRedDataBlock.png" style="position:absolute;left:21.5%;top:55%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerRedDataBlock.png" style="position:absolute;left:21.5%;top:62.5%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerRedDataBlock.png" style="position:absolute;left:21.5%;top:70%;width:45px;opacity:0.6;"/>	    
+	    
+	    <img class="nostyle"  src="art/flickerGreenDataBlock.png" style="position:absolute;left:44.5%;top:55%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerGreenDataBlock.png" style="position:absolute;left:44.5%;top:62.5%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerGreenDataBlock.png" style="position:absolute;left:44.5%;top:70%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerGreenDataBlock.png" style="position:absolute;left:50.5%;top:55%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerGreenDataBlock.png" style="position:absolute;left:50.5%;top:62.5%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerGreenDataBlock.png" style="position:absolute;left:50.5%;top:70%;width:45px;opacity:0.6;"/>
+
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:73.5%;top:55%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:73.5%;top:62.5%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:73.5%;top:70%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:79.5%;top:55%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:79.5%;top:62.5%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:79.5%;top:70%;width:45px;opacity:0.6;"/>	    
+
+	    
+	    <svg width="1000px" height="100px" style="position:absolute;left:7%;opacity:0.3">
+	      <defs>
+		<marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth">
+		  <path d="M0,0 L0,6 L9,3 z" fill="#000" />
+		</marker>
+	      </defs>
+	      <line x1="303" y1="-38" x2="198" y2="53" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="-50" y1="-38" x2="80" y2="60" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="137" y1="-38" x2="137" y2="16" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	    </svg>
+	    <svg width="1000px" height="100px" style="position:absolute;left:36%;opacity:0.3">
+	      <defs>
+		<marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth">
+		  <path d="M0,0 L0,6 L9,3 z" fill="#000" />
+		</marker>
+	      </defs>
+	      <line x1="303" y1="-38" x2="198" y2="53" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="-50" y1="-38" x2="80" y2="60" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="137" y1="-38" x2="137" y2="16" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	    </svg>	    
+	    <svg width="1000px" height="100px" style="position:absolute;left:65%;opacity:0.3">
+	      <defs>
+		<marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth">
+		  <path d="M0,0 L0,6 L9,3 z" fill="#000" />
+		</marker>
+	      </defs>
+	      <line x1="303" y1="-38" x2="198" y2="53" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="-50" y1="-38" x2="80" y2="60" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="137" y1="-38" x2="137" y2="16" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	    </svg>
+
+	    <p  style="position:absolute;top:60%;text-align:left;font-size:41%;left:8%;">
+	      <b>Input</b><br/>
+	      <span >Red<br/></span>
+	      <span >Red<br/></span>
+	      <span >Red<br/></span>
+	      ...
+	    </p>
+	    <p  style="position:absolute;top:63%;text-align:left;font-size:41%;left:29%;">
+	      <b>Output</b><br/>
+	      Red:3<br/>
+	    </p>	    
+	    <p  style="position:absolute;top:63%;text-align:left;font-size:41%;left:58%;">
+	      <b>Output</b><br/>
+	      Green:4<br/>
+	    </p>	    
+	    <p  style="position:absolute;top:63%;text-align:left;font-size:41%;left:87%;">
+	      <b>Output</b><br/>
+	      Blue:4<br/>
+	    </p>	    
+	    
+
+	    <p  style="position:absolute;top:60%;text-align:left;font-size:41%;left:37%;">
+	      <b>Input</b><br/>
+	      <span >Green<br/></span>
+	      <span >Green<br/></span>
+	      <span >Green<br/></span>
+	      <span >Green<br/></span>
+	      ...
+	    </p>
+
+	    <p  style="position:absolute;top:60%;text-align:left;font-size:41%;left:66%;">
+	      <b>Input</b><br/>
+	      <span >Blue<br/></span>
+	      <span >Blue<br/></span>
+	      <span >Blue<br/></span>
+	      <span >Blue<br/></span>
+	      ...
+	    </p>
+
+	    <div width="100%" style="position:absolute;background-color:rgba(0,0,0,1);left:0%;height:7%;top:45%;width:100%;color:white;">
+	      Partitioner:
+	      <span class="fragment" data-fragment-index="1" style="color:red">Red to 1</span>
+	      <span class="fragment" data-fragment-index="2" style="color:rgb(23,255,46)">, Green to 2</span>
+	      <span class="fragment" data-fragment-index="3" style="color:rgb(27,145,255)">, Blue to 3</span>
+	    </div>
+	    <div width="100%" class="fragment" data-fragment-index="1" style="position:absolute;background-color:rgba(0,0,0,1);left:14.5%;height:4%;top:80%;width:13%;color:red;font-size:56%;">1</div>
+	    <div width="100%" class="fragment" data-fragment-index="2" style="position:absolute;background-color:rgba(0,0,0,1);left:43.5%;height:4%;top:80%;width:13%;color:rgb(23,255,46);font-size:56%;">2</div>
+	    <div width="100%" class="fragment" data-fragment-index="3" style="position:absolute;background-color:rgba(0,0,0,1);left:72.5%;height:4%;top:80%;width:13%;color:rgb(27,145,255);font-size:56%;">3</div>
+	    
+	  </section>
+
+
+	  <section data-transition="fade-in">
+	    <div style="opacity:1;">
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:6%;top:14%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:25%;top:14%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:44%;top:14%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:63%;top:14%"/>
+	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:82%;top:14%"/>
+	    </div>
+	    <div style="opacity:1;">
+	      <img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+	    </div>
+	    <img src="art/node.png" class="nostyle" style="width:18%;opacity:1;margin-right:10%;padding-left:10%"/>
+	    <img src="art/node.png" class="nostyle" style="width:18%;opacity:1;margin-right:10%;"/>
+	    <img src="art/node.png" class="nostyle" style="width:18%;opacity:1;margin-right:10%;"/>
+
+	    <img class="nostyle"  src="art/flickerRedDataBlock.png" style="position:absolute;left:15.5%;top:55%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerRedDataBlock.png" style="position:absolute;left:15.5%;top:62.5%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerRedDataBlock.png" style="position:absolute;left:15.5%;top:70%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerRedDataBlock.png" style="position:absolute;left:21.5%;top:55%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerRedDataBlock.png" style="position:absolute;left:21.5%;top:62.5%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerRedDataBlock.png" style="position:absolute;left:21.5%;top:70%;width:45px;opacity:0.6;"/>	    
+	    
+	    <img class="nostyle"  src="art/flickerGreenDataBlock.png" style="position:absolute;left:44.5%;top:55%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerGreenDataBlock.png" style="position:absolute;left:44.5%;top:62.5%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerGreenDataBlock.png" style="position:absolute;left:44.5%;top:70%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerGreenDataBlock.png" style="position:absolute;left:50.5%;top:55%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerGreenDataBlock.png" style="position:absolute;left:50.5%;top:62.5%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerGreenDataBlock.png" style="position:absolute;left:50.5%;top:70%;width:45px;opacity:0.6;"/>
+
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:73.5%;top:55%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:73.5%;top:62.5%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:73.5%;top:70%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:79.5%;top:55%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:79.5%;top:62.5%;width:45px;opacity:0.6;"/>
+	    <img class="nostyle"  src="art/flickerDataBlock.png" style="position:absolute;left:79.5%;top:70%;width:45px;opacity:0.6;"/>	    
+
+	    
+	    <svg width="1000px" height="100px" style="position:absolute;left:7%;opacity:0.3">
+	      <defs>
+		<marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth">
+		  <path d="M0,0 L0,6 L9,3 z" fill="#000" />
+		</marker>
+	      </defs>
+	      <line x1="303" y1="-38" x2="198" y2="53" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="-50" y1="-38" x2="80" y2="60" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="137" y1="-38" x2="137" y2="16" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	    </svg>
+	    <svg width="1000px" height="100px" style="position:absolute;left:36%;opacity:0.3">
+	      <defs>
+		<marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth">
+		  <path d="M0,0 L0,6 L9,3 z" fill="#000" />
+		</marker>
+	      </defs>
+	      <line x1="303" y1="-38" x2="198" y2="53" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="-50" y1="-38" x2="80" y2="60" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="137" y1="-38" x2="137" y2="16" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	    </svg>	    
+	    <svg width="1000px" height="100px" style="position:absolute;left:65%;opacity:0.3">
+	      <defs>
+		<marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth">
+		  <path d="M0,0 L0,6 L9,3 z" fill="#000" />
+		</marker>
+	      </defs>
+	      <line x1="303" y1="-38" x2="198" y2="53" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="-50" y1="-38" x2="80" y2="60" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line x1="137" y1="-38" x2="137" y2="16" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	    </svg>
+
+	    <p  style="position:absolute;top:60%;text-align:left;font-size:41%;left:8%;">
+	      <b>Input</b><br/>
+	      <span >Red<br/></span>
+	      <span >Red<br/></span>
+	      <span >Red<br/></span>
+	      ...
+	    </p>
+	    <p  style="position:absolute;top:63%;text-align:left;font-size:41%;left:29%;">
+	      <b>Output</b><br/>
+	      Red:3<br/>
+	    </p>	    
+	    <p  style="position:absolute;top:63%;text-align:left;font-size:41%;left:58%;">
+	      <b>Output</b><br/>
+	      Green:4<br/>
+	    </p>	    
+	    <p  style="position:absolute;top:63%;text-align:left;font-size:41%;left:87%;">
+	      <b>Output</b><br/>
+	      Blue:4<br/>
+	    </p>	    
+	    
+
+	    <p  style="position:absolute;top:60%;text-align:left;font-size:41%;left:37%;">
+	      <b>Input</b><br/>
+	      <span >Green<br/></span>
+	      <span >Green<br/></span>
+	      <span >Green<br/></span>
+	      <span >Green<br/></span>
+	      ...
+	    </p>
+
+	    <p  style="position:absolute;top:60%;text-align:left;font-size:41%;left:66%;">
+	      <b>Input</b><br/>
+	      <span >Blue<br/></span>
+	      <span >Blue<br/></span>
+	      <span >Blue<br/></span>
+	      <span >Blue<br/></span>
+	      ...
+	    </p>
+
+	    <div width="100%" style="position:absolute;background-color:rgba(0,0,0,1);left:6.3%;height:6%;top:27.5%;width:11.6%;font-size:43%;color:wheat;">
+	      Partitioner<br/>
+	      <span style="color:red">1</span>
+	      <span style="color:rgb(23,255,46)">2</span>
+	      <span style="color:rgb(27,145,255)">3</span>
+	    </div>
+
+	    <div width="100%" style="position:absolute;background-color:rgba(0,0,0,1);left:25.3%;height:6%;top:27.5%;width:11.6%;color:wheat;font-size:43%">
+	      Partitioner<br/>
+	      <span style="color:red">1</span>
+	      <span style="color:rgb(23,255,46)">2</span>
+	      <span style="color:rgb(27,145,255)">3</span>
+	    </div>
+
+	    <div width="100%" style="position:absolute;background-color:rgba(0,0,0,1);left:44.3%;height:6%;top:27.5%;width:11.6%;color:wheat;font-size:43%">
+	      Partitioner<br/>
+	      <span style="color:red">1</span>
+	      <span style="color:rgb(23,255,46)">2</span>
+	      <span style="color:rgb(27,145,255)">3</span>
+	    </div>
+
+	    <div width="100%" style="position:absolute;background-color:rgba(0,0,0,1);left:63.3%;height:6%;top:27.5%;width:11.6%;color:wheat;font-size:43%">
+	      Partitioner<br/>
+	      <span style="color:red">1</span>
+	      <span style="color:rgb(23,255,46)">2</span>
+	      <span style="color:rgb(27,145,255)">3</span>
+	    </div>
+
+	    <div width="100%" style="position:absolute;background-color:rgba(0,0,0,1);left:82.3%;height:6%;top:27.5%;width:11.6%;color:wheat;font-size:43%">
+	      Partitioner<br/>
+	      <span style="color:red">1</span>
+	      <span style="color:rgb(23,255,46)">2</span>
+	      <span style="color:rgb(27,145,255)">3</span>
+	    </div>
+	    
+	    
+	    <div width="100%"  style="position:absolute;background-color:rgba(0,0,0,1);left:14.5%;height:4%;top:80%;width:13%;color:red;font-size:56%;">1</div>
+	    <div width="100%"  style="position:absolute;background-color:rgba(0,0,0,1);left:43.5%;height:4%;top:80%;width:13%;color:rgb(23,255,46);font-size:56%;">2</div>
+	    <div width="100%"  style="position:absolute;background-color:rgba(0,0,0,1);left:72.5%;height:4%;top:80%;width:13%;color:rgb(27,145,255);font-size:56%;">3</div>
+	    
+	  </section>	  
+	  
+	  
 	  <section>
 	    <h2>Quiz Time</h2>
 	    <img src="art/QuizTime.jpg"/>
