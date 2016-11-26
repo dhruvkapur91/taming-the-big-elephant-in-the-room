@@ -71,6 +71,7 @@
 	    <p class="fragment">Fits in my computer!</p>
 	    <p style="position:absolute;font-size:45%;left:46%;top:30%">My image<br/>collection</p>
 	    <div><img src="art/computerWithData.png" class="nostyle"/></div>
+	    <p class="fragment" style="position:absolute;left:35%;top:12%;font-size:75%;">Bring data to compute</p>
 	  </section>
 	  <section>
 	    <p class="fragment">Loop over and count!</p>
@@ -735,7 +736,7 @@
 	  </section>
 
 
-	  <section data-transition="fade-in">
+	  <section data-transition="fade-in slide-out">
 	    <div style="opacity:1;">
 	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:6%;top:14%"/>
 	      <img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:25%;top:14%"/>
@@ -885,8 +886,259 @@
 	    <div width="100%"  style="position:absolute;background-color:rgba(0,0,0,1);left:14.5%;height:4%;top:80%;width:13%;color:red;font-size:56%;">1</div>
 	    <div width="100%"  style="position:absolute;background-color:rgba(0,0,0,1);left:43.5%;height:4%;top:80%;width:13%;color:rgb(23,255,46);font-size:56%;">2</div>
 	    <div width="100%"  style="position:absolute;background-color:rgba(0,0,0,1);left:72.5%;height:4%;top:80%;width:13%;color:rgb(27,145,255);font-size:56%;">3</div>
+
+	    <p class="fragment" style="position:absolute;text-align:left;left:18%;top:40%;background-color:rgba(255,255,255,0.5);">This is sort of <b> Group by </b> operation.</p>
+	    <p class="fragment" style="position:absolute;text-align:left;left:7%;top:90%;background-color:rgba(255,255,255,0.5);">Each Reducer recieves data belonging to its group.</p>
 	    
-	  </section>	  
+	  </section>
+
+	  <section data-transition="fade-out" id="groupByNeedsKey">
+	    <p>Group by is usually done by a <b>key</b>.</p>
+	    <p class="fragment">Mappers should emit <b>Key Value pairs.</b><span class="fragment"> So instead of...</span></p>
+	    <div class="fragment">
+	      <div>
+		<img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:6%;top:40%"/>
+		<img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:25%;top:40%"/>
+		<img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:44%;top:40%"/>
+		<img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:63%;top:40%"/>
+		<img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:82%;top:40%"/>
+ 		<span style="position:absolute;font-size:80%;top:46%;left:8%">Block<br/>1</span>
+		<span style="position:absolute;font-size:80%;top:46%;left:27%">Block<br/>2</span>
+		<span style="position:absolute;font-size:80%;top:46%;left:46%">Block<br/>3</span>
+		<span style="position:absolute;font-size:80%;top:46%;left:65%">Block<br/>4</span>
+		<span style="position:absolute;font-size:80%;top:46%;left:84%">Block<br/>5</span>
+	      </div>
+	      <div>
+		<img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+		<img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+		<img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+		<img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+		<img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+	      </div>
+	      <p style="position:absolute;top:85%;font-size:50%;left:7%;">Image1:<font style="color:red;">Red</font></p>
+	      <p style="position:absolute;top:91%;font-size:50%;left:7%;">Image2:<font style="color:blue;">Blue</font></p>
+	      <p style="position:absolute;top:97%;font-size:50%;left:7%;">Image3:<font style="color:green;">Green</font></p>
+	      <p style="position:absolute;top:103%;font-size:50%;left:7%;">Image4:<font style="color:green;">Green</font></p>
+	      <p style="position:absolute;top:109%;font-size:50%;left:7%;">...</p>
+
+	      <p style="position:absolute;top:85%;font-size:50%;left:25%;">Image1:<font style="color:blue;">Blue</font></p>
+	      <p style="position:absolute;top:91%;font-size:50%;left:25%;">Image2:<font style="color:blue;">Blue</font></p>
+	      <p style="position:absolute;top:97%;font-size:50%;left:25%;">Image3:<font style="color:green;">Green</font></p>
+	      <p style="position:absolute;top:103%;font-size:50%;left:25%;">...</p>
+
+	      <p style="position:absolute;top:85%;font-size:50%;left:44%;">Image1:<font style="color:red;">Red</font></p>
+	      <p style="position:absolute;top:91%;font-size:50%;left:44%;">Image2:<font style="color:red;">Red</font></p>
+	      <p style="position:absolute;top:97%;font-size:50%;left:44%;">Image3:<font style="color:green;">Green</font></p>
+	      <p style="position:absolute;top:103%;font-size:50%;left:44%;">Image4:<font style="color:red;">Red</font></p>
+	      <p style="position:absolute;top:109%;font-size:50%;left:44%;">...</p>
+
+	      <p style="position:absolute;top:85%;font-size:50%;left:63%;">Image1:<font style="color:blue;">Blue</font></p>
+	      <p style="position:absolute;top:91%;font-size:50%;left:63%;">Image2:<font style="color:blue;">Blue</font></p>
+	      <p style="position:absolute;top:97%;font-size:50%;left:63%;">Image3:<font style="color:green;">Green</font></p>
+	      <p style="position:absolute;top:103%;font-size:50%;left:63%;">Image4:<font style="color:red;">Red</font></p>
+	      <p style="position:absolute;top:109%;font-size:50%;left:63%;">...</p>
+
+	      <p style="position:absolute;top:85%;font-size:50%;left:82%;">Image1:<font style="color:blue;">Blue</font></p>
+	      <p style="position:absolute;top:91%;font-size:50%;left:82%;">Image2:<font style="color:green;">Green</font></p>
+	      <p style="position:absolute;top:97%;font-size:50%;left:82%;">Image3:<font style="color:green;">Green</font></p>
+	      <p style="position:absolute;top:103%;font-size:50%;left:82%;">Image4:<font style="color:red;">Red</font></p>
+	      <p style="position:absolute;top:109%;font-size:50%;left:82%;">Image5:<font style="color:red;">Red</font></p>
+	      <p style="position:absolute;top:115%;font-size:50%;left:82%;">...</p>
+	      
+	    </div>
+	  </section>
+
+	  <section data-transition="fade-in" id="mappersToEmitKeyValuePairs">
+	    <p>Group by is usually done by a <b>key</b>.</p>
+	    <p>Mappers should emit <b>[Key,Value] pairs.</b> Should emit:</p>
+	    <div>
+	      <div>
+		<img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:6%;top:40%"/>
+		<img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:25%;top:40%"/>
+		<img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:44%;top:40%"/>
+		<img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:63%;top:40%"/>
+		<img src="art/flickerDataBlock.png" class="nostyle" style="position:absolute;left:82%;top:40%"/>
+ 		<span style="position:absolute;font-size:80%;top:46%;left:8%">Block<br/>1</span>
+		<span style="position:absolute;font-size:80%;top:46%;left:27%">Block<br/>2</span>
+		<span style="position:absolute;font-size:80%;top:46%;left:46%">Block<br/>3</span>
+		<span style="position:absolute;font-size:80%;top:46%;left:65%">Block<br/>4</span>
+		<span style="position:absolute;font-size:80%;top:46%;left:84%">Block<br/>5</span>
+	      </div>
+	      <div>
+		<img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+		<img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+		<img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+		<img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+		<img src="art/nodeWithLoop.png" class="nostyle" style="width:18%;"/>
+	      </div>
+	      <p style="position:absolute;top:85%;font-size:50%;left:7%;"><font style="color:red;"> [Red,1] </font></p>
+	      <p style="position:absolute;top:91%;font-size:50%;left:7%;"><font style="color:blue;"> [Blue,1] </font></p>
+	      <p style="position:absolute;top:97%;font-size:50%;left:7%;"><font style="color:green;"> [Green,1] </font></p>
+	      <p style="position:absolute;top:103%;font-size:50%;left:7%;"><font style="color:green;"> [Green,1] </font></p>
+	      <p style="position:absolute;top:109%;font-size:50%;left:7%;">...</p>
+
+	      <p style="position:absolute;top:85%;font-size:50%;left:25%;"><font style="color:blue;"> [Blue,1] </font></p>
+	      <p style="position:absolute;top:91%;font-size:50%;left:25%;"><font style="color:blue;"> [Blue,1] </font></p>
+	      <p style="position:absolute;top:97%;font-size:50%;left:25%;"><font style="color:green;"> [Green,1] </font></p>
+	      <p style="position:absolute;top:103%;font-size:50%;left:25%;">...</p>
+
+	      <p style="position:absolute;top:85%;font-size:50%;left:44%;"><font style="color:red;"> [Red,1] </font></p>
+	      <p style="position:absolute;top:91%;font-size:50%;left:44%;"><font style="color:red;"> [Red,1] </font></p>
+	      <p style="position:absolute;top:97%;font-size:50%;left:44%;"><font style="color:green;"> [Green,1] </font></p>
+	      <p style="position:absolute;top:103%;font-size:50%;left:44%;"><font style="color:red;"> [Red,1] </font></p>
+	      <p style="position:absolute;top:109%;font-size:50%;left:44%;">...</p>
+
+	      <p style="position:absolute;top:85%;font-size:50%;left:63%;"><font style="color:blue;"> [Blue,1] </font></p>
+	      <p style="position:absolute;top:91%;font-size:50%;left:63%;"><font style="color:blue;"> [Blue,1] </font></p>
+	      <p style="position:absolute;top:97%;font-size:50%;left:63%;"><font style="color:green;"> [Green,1] </font></p>
+	      <p style="position:absolute;top:103%;font-size:50%;left:63%;"><font style="color:red;"> [Red,1] </font></p>
+	      <p style="position:absolute;top:109%;font-size:50%;left:63%;">...</p>
+
+	      <p style="position:absolute;top:85%;font-size:50%;left:82%;"><font style="color:blue;"> [Blue,1] </font></p>
+	      <p style="position:absolute;top:91%;font-size:50%;left:82%;"><font style="color:green;"> [Green,1] </font></p>
+	      <p style="position:absolute;top:97%;font-size:50%;left:82%;"><font style="color:green;"> [Green,1] </font></p>
+	      <p style="position:absolute;top:103%;font-size:50%;left:82%;"><font style="color:red;"> [Red,1] </font></p>
+	      <p style="position:absolute;top:109%;font-size:50%;left:82%;"><font style="color:red;"> [Red,1] </font></p>
+	      <p style="position:absolute;top:115%;font-size:50%;left:82%;">...</p>
+	    </div>
+	  </section>
+
+	  <section>
+
+	    <div class="fragment" data-fragment-index="2">
+	    <div style="position: absolute;font-size: 52%;left: 8.5%;top: 34%;font-weight: bold;">Mapper</div>
+	    <div style="position: absolute;font-size: 52%;left: 27%;top: 34%;font-weight: bold;">Mapper</div>
+	    <div style="position: absolute;font-size: 52%;left: 46%;top: 34%;font-weight: bold;">Mapper</div>
+	    <div style="position: absolute;font-size: 52%;left: 65%;top: 34%;font-weight: bold;">Mapper</div>
+	    <div style="position: absolute;font-size: 52%;left: 84%;top: 34%;font-weight: bold;">Mapper</div>
+	    </div>
+
+	    <div class="fragment" data-fragment-index="6">
+	    <div style="position: absolute;font-size: 52%;left: 17%;top: 80%;font-weight: bold;">Reducer</div>
+	    <div style="position: absolute;font-size: 52%;left: 46%;top: 80%;font-weight: bold;">Reducer</div>
+	    <div style="position: absolute;font-size: 52%;left: 75%;top: 80%;font-weight: bold;">Reducer</div>
+	    </div>
+	    
+	    <div class="fragment" data-fragment-index="3">
+ 	      <span style="position:absolute;font-size:80%;top:8%;left:6%;width:12%;background-color:rgb(100,200,255)">Block<br/>1</span>
+	      <span style="position:absolute;font-size:80%;top:8%;left:25%;width:12%;background-color:rgb(100,200,255)">Block<br/>2</span>
+	      <span style="position:absolute;font-size:80%;top:8%;left:44%;width:12%;background-color:rgb(100,200,255)">Block<br/>3</span>
+	      <span style="position:absolute;font-size:80%;top:8%;left:63%;width:12%;background-color:rgb(100,200,255)">Block<br/>4</span>
+	      <span style="position:absolute;font-size:80%;top:8%;left:82%;width:12%;background-color:rgb(100,200,255)">Block<br/>5</span>
+	    </div>
+	    <div class="fragment" data-fragment-index="1">
+	      <img src="art/node.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/node.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/node.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/node.png" class="nostyle" style="width:18%;"/>
+	      <img src="art/node.png" class="nostyle" style="width:18%;"/>
+	    </div>
+	    <div class="fragment" data-fragment-index="4">
+	    <p style="position:absolute;top:17%;font-size:50%;left:5%;"><font style="color:red;"> [Red,1] </font></p>
+	    <p style="position:absolute;top:17%;font-size:50%;left:12%;"><font style="color:blue;"> [Blue,1] </font></p>
+	    
+	    <p style="position:absolute;top:17%;font-size:50%;left:24%;"><font style="color:blue;"> [Blue,1] </font></p>
+	    <p style="position:absolute;top:17%;font-size:50%;left:31.5%;"><font style="color:blue;"> [Blue,1] </font></p>
+	    
+	    <p style="position:absolute;top:17%;font-size:50%;left:43%;"><font style="color:red;"> [Red,1] </font></p>
+	    <p style="position:absolute;top:17%;font-size:50%;left:51%;"><font style="color:red;"> [Red,1] </font></p>
+	    
+	    <p style="position:absolute;top:17%;font-size:50%;left:65.5%;"><font style="color:blue;"> [Blue,1] </font></p>
+	    
+	    <p style="position:absolute;top:17%;font-size:50%;left:80.5%;"><font style="color:blue;"> [Blue,1] </font></p>
+	    <p style="position:absolute;top:17%;font-size:50%;left:87.5%;"><font style="color:green;"> [Green,1] </font></p>
+	    </div>
+
+	    <div class="fragment" data-fragment-index="5">
+	    <div width="100%" style="position:absolute;background-color:rgba(0,0,0,1);left:6.3%;height:9%;top:24.5%;width:11.6%;font-size:43%;color:wheat;">
+	      Partitioner<br/>
+	      <span style="color:red">1</span>
+	      <span style="color:rgb(23,255,46)">2</span>
+	      <span style="color:rgb(27,145,255)">3</span>
+	    </div>
+
+	    <div width="100%" style="position:absolute;background-color:rgba(0,0,0,1);left:25.3%;height:9%;top:24.5%;width:11.6%;color:wheat;font-size:43%">
+	      Partitioner<br/>
+	      <span style="color:red">1</span>
+	      <span style="color:rgb(23,255,46)">2</span>
+	      <span style="color:rgb(27,145,255)">3</span>
+	    </div>
+
+	    <div width="100%" style="position:absolute;background-color:rgba(0,0,0,1);left:44.3%;height:9%;top:24.5%;width:11.6%;color:wheat;font-size:43%">
+	      Partitioner<br/>
+	      <span style="color:red">1</span>
+	      <span style="color:rgb(23,255,46)">2</span>
+	      <span style="color:rgb(27,145,255)">3</span>
+	    </div>
+
+	    <div width="100%" style="position:absolute;background-color:rgba(0,0,0,1);left:63.3%;height:9%;top:24.5%;width:11.6%;color:wheat;font-size:43%">
+	      Partitioner<br/>
+	      <span style="color:red">1</span>
+	      <span style="color:rgb(23,255,46)">2</span>
+	      <span style="color:rgb(27,145,255)">3</span>
+	    </div>
+
+	    <div width="100%" style="position:absolute;background-color:rgba(0,0,0,1);left:82.3%;height:9%;top:24.5%;width:11.6%;color:wheat;font-size:43%">
+	      Partitioner<br/>
+	      <span style="color:red">1</span>
+	      <span style="color:rgb(23,255,46)">2</span>
+	      <span style="color:rgb(27,145,255)">3</span>
+	    </div>
+	    </div>
+
+	    <div class="fragment" data-fragment-index="6">
+	    <img src="art/node.png" class="nostyle" style="width:18%;opacity:1;margin-right:10%;padding-left:10%"/>
+	    <img src="art/node.png" class="nostyle" style="width:18%;opacity:1;margin-right:10%;"/>
+	    <img src="art/node.png" class="nostyle" style="width:18%;opacity:1;margin-right:10%;"/>
+	    </div>
+
+	    <svg width="1000px" height="100px" style="position:absolute;left:12%;opacity:0.3;top:44%" class="fragment" data-fragment-index="8">
+	      <defs>
+		<marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth">
+		  <path d="M0,0 L0,6 L9,3 z" fill="#000" />
+		</marker>
+	      </defs>
+	      <line class="fragment" data-fragment-index="8" x1="-50" y1="-38" x2="40" y2="60" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      <line class="fragment" data-fragment-index="8" x1="-400" y1="-38" x2="600" y2="60" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+
+	      <line class="fragment" data-fragment-index="9" x1="0" y1="-38" x2="600" y2="60" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+
+	      <line class="fragment" data-fragment-index="9" x1="500" y1="-38" x2="150" y2="80" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+
+	      <line class="fragment" data-fragment-index="9" x1="500" y1="-38" x2="650" y2="40" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+
+	      <line class="fragment" data-fragment-index="8" x1="900" y1="-38" x2="400" y2="70" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+	      
+	    </svg>
+
+	    <p class="fragment" data-fragment-index="7" style="position:absolute;text-align:left;left:35%;top:42%;background-color:rgba(255,255,255,0.5);">Shuffle & Group By</p>
+
+	    <div class="fragment" data-fragment-index="10">
+	    <p style="position:absolute;top:60%;font-size:50%;left:18%;"><font style="color:red;"> [Red,1] </font></p>
+	    <p style="position:absolute;top:56%;font-size:50%;left:47%;"><font style="color:blue;"> [Blue,1] </font></p>
+	    
+	    <p style="position:absolute;top:60%;font-size:50%;left:47%;"><font style="color:blue;"> [Blue,1] </font></p>
+	    <p style="position:absolute;top:64%;font-size:50%;left:47%;"><font style="color:blue;"> [Blue,1] </font></p>
+	    
+	    <p style="position:absolute;top:64%;font-size:50%;left:18%;"><font style="color:red;"> [Red,1] </font></p>
+	    <p style="position:absolute;top:68%;font-size:50%;left:18%;"><font style="color:red;"> [Red,1] </font></p>
+	    
+	    <p style="position:absolute;top:68%;font-size:50%;left:47%;"><font style="color:blue;"> [Blue,1] </font></p>
+	  
+	    <p style="position:absolute;top:72%;font-size:50%;left:47%;"><font style="color:blue;"> [Blue,1] </font></p>
+	    <p style="position:absolute;top:62%;font-size:50%;left:75.5%;"><font style="color:green;"> [Green,1] </font></p>
+
+	    </div>
+
+	    <div class="fragment" data-fragment-index="11">
+	    <p style="position:absolute;top:89%;font-size:50%;left:75.5%;"><font style="color:green;"> Green:1 </font></p>
+	    <p style="position:absolute;top:89%;font-size:50%;left:18%;"><font style="color:red;"> Red:3 </font></p>	    
+	    <p style="position:absolute;top:89%;font-size:50%;left:47%;"><font style="color:blue;"> Blue:5 </font></p>
+	    </div>
+
+	    
+	  </section>
+
 	  
 	  
 	  <section>
