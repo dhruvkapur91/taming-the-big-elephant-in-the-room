@@ -1404,7 +1404,7 @@
 	  </section>
 
 	  <section>
-	    How to read from <b>HDFS?</b>
+	    How to <b>read</b> from HDFS?
 	  </section>
 
 	  <section data-transition="fade-out">
@@ -1436,7 +1436,7 @@
 	  </section>
 
 	  <section>
-	    How to write to <b>HDFS</b>
+	    How to <b>write</b> to HDFS?
 	  </section>
 	  <section data-transition="fade-out">
 	    <img src="art/hdfs/write/write1.png" class="nostyle" style="width:110%" >	    
@@ -1482,6 +1482,60 @@
 	  </section>
 	    
 
+	  <section>
+	    How HDFS achieves <b>fault tolerance</b>?
+	  </section>
+	  <section data-transition="fade-in fade-out">
+	    <p style="position: absolute;top:85%;text-align: left;">So we have a <b>cluster</b>...</p>
+	    <img src="art/hdfs/fault_tolerance/nodes.png" class="nostyle" style="width:110%" >	    
+	  </section>
+	  <section data-transition="fade-in slide-out">
+	    <p style="position: absolute;top:85%;text-align: left;">And everyone shares love via <b>heartbeats</b>...</p>
+	    <img src="art/hdfs/fault_tolerance/love2.png" class="nostyle" style="width:110%" >	    
+	  </section>
+	  <section data-transition="slide-in fade-out">
+	    <p style="position: absolute;top:85%;text-align: left;">But one day DN4 suddenly <b>stops</b> sending its heartbeat...</p>	    
+	    <img src="art/hdfs/fault_tolerance/missing3.png" class="nostyle" style="width:110%" >	    
+	  </section>
+	  <section data-transition="fade-in slide-out">
+	    <p style="position: absolute;top:85%;text-align: left;font-size:90%;">Maybe its lost. Who knows :( . NN <b>marks</b> those replica's gone.</p>	    	    
+	    <img src="art/hdfs/fault_tolerance/missing4.png" class="nostyle" style="width:110%" >	    
+	  </section>
+	  <section data-transition="slide-in fade-out">
+	    <p style="position: absolute;top:85%;text-align: left;">Another day, DN5 also <b>stops</b> sending its heartbeat...</p>	    	    
+	    <img src="art/hdfs/fault_tolerance/missing5.png" class="nostyle" style="width:110%" >	    
+	  </section>
+	  <section data-transition="fade-in fade-out">
+	    <p style="position: absolute;top:85%;text-align: left;font-size:90%;">Maybe its gone too. Who knows.. But wait....</p>	    	    	    
+	    <img src="art/hdfs/fault_tolerance/missing6.png" class="nostyle" style="width:110%" >	    
+	  </section>
+	  <section data-transition="fade-in fade-out">
+	    <p style="position: absolute;top:85%;text-align: left;font-size:90%;">What happens to block 5? Did we lose it?</p>	    	    	    	    
+	    <img src="art/hdfs/fault_tolerance/lostblock7.png" class="nostyle" style="width:110%" >	    
+	  </section>
+	  <section>
+	    <p>If so all that fault-tolerance <b>goes for a toss!</b></p>
+	  </section>
+	  <section>
+	    <p>Thanksfully that doesn't happen.</p>
+	  </section>
+	  <section data-transition="fade-in fade-out">
+	    <p style="position: absolute;top:85%;text-align: left;font-size:90%;">Our cluster as normal, sharing love!</p>	    	    	    	    	    
+	    <img src="art/hdfs/fault_tolerance/noteverything8.png" class="nostyle" style="width:110%" >	    
+	  </section>
+	  <section data-transition="fade-in fade-out">
+	    <p style="position: absolute;top:85%;text-align: left;font-size:90%;">But meanwhile, NN <b>marks</b> blocks as <span style="color:green"><b>balanced</b></span>, <span style="color:yellow;"><b>under-replicated</b></span> or <b>over-replicated</b>...</p>	    	    	    	    	    	    
+	    <img src="art/hdfs/fault_tolerance/marker9.png" class="nostyle" style="width:110%" >	    
+	  </section>
+	  <section data-transition="fade-in fade-out">
+	    <p style="position: absolute;top:85%;text-align: left;font-size:90%;">And keeps <b>replicating</b> under-replicated blocks...</p>	    	    	    	    	    
+	    <img src="art/hdfs/fault_tolerance/replication10.png" class="nostyle" style="width:110%" >	    
+	  </section>
+	  <section data-transition="fade-in fade-out">
+	    <p style="position: absolute;top:85%;text-align: left;font-size:90%;">And we end up with happy world. :)</p>	    	    	    	    	    	    
+	    <img src="art/hdfs/fault_tolerance/allgood11.png" class="nostyle" style="width:110%" >	    
+	  </section>
+	  
 
 	  
 	</section>
