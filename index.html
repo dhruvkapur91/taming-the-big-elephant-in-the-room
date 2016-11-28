@@ -1877,6 +1877,14 @@
 	    <h2 style="position:absolute;top:350%;left:66%">API</h2>
 	  </section>
 
+	  <section>
+	    <h2>Spark is:</h2>
+	    <ul>
+	      <li class="fragment"><s>Data storage solution</s></li>
+	      <li class="fragment"><s>Cluster Manager</s></li>
+	    </ul>
+	  </section>
+
 	  
 	  <section>
 
@@ -1932,16 +1940,62 @@
 	  </section>
 
 	  <section>
-	    <h2>Spark is:</h2>
-	    <ul>
-	      <li class="fragment"><s>Data storage solution</s></li>
-	      <li class="fragment"><s>Cluster Manager</s></li>
-	    </ul>
+	    <p>To hello to spark, is to hello to <b>SparkContext</b></p>
+	    <p class="fragment" style="position: absolute;top: 53%;width: 40%;left: 57%;font-size: 90%;color:rgb(27,145,255);text-align:right;">Represents connection with <b>Spark Cluster</b></p>
+	    <p class="fragment" style="position: absolute;top: -55%;width: 55%;left: 42%;font-size: 90%;color: rgb(27,145,255);text-align: right;">Initialize with <b>SparkConf</b><br/>(Encapsulates all configurations)</p>
 	  </section>
 
 	  <section>
-	    <h2></h2>
+	    <h3 style="background-color:white;">Anatomy of Spark Application</h3>
+	    <div style="background-color: rgb(20, 98, 135); width: 100%; height: 1600%; position: absolute; top: -400%; left: -45%; z-index: -1;"></div>
+	    <div style="width:44%; float:right; text-align:left">
+	      <p class="" style="font-size:75%;">
+		<span class="ScalaVal">val</span> conf = new SparkConf()<br/>
+		<span class="">&emsp;.setMaster(
+		  <span class="ScalaString">"local[*]"</span>)
+		</span><br/>
+		<span class="">
+		  &emsp;.setAppName(
+		  <span class="ScalaString">"First App"</span>)
+		</span>
+	      </p>
+
+
+	      <svg style="left: 55%;top: 25%;background-color: rgba(112,173,71,0.5);position: absolute;z-index: -1;width: 50%;">
+	      </svg>
+	      
+	      
+	      <img style="position: absolute;left: 0%;max-width: 200%;max-height: 165%;" src="art/spark/driver1.png" class="nostyle"/>
+
+	      <p class="" style="font-size:75%;"><br/>
+		<span class="ScalaVal">val</span> sc = new SparkContext(conf)<br/>
+	      </p> 
+
+	      <!-- <p class="" style="font-size:70%;"> -->
+	      <!-- 	<span class="ScalaVal">val</span> words = sc.textFile(<span class="ScalaString">"SomeFile"</span>)<br/> -->
+	      <!-- </p>  -->
+
+	      <!-- <p class="" style="font-size:65%;"> -->
+	      <!-- 	<i>println</i>(<span class="ScalaString">s"Overall words:</span> ${words.count}") -->
+	      <!-- </p>  -->
+	      
+	      
+	      
+	    </div>
+
+	    <div class=""  style="color:white;position:absolute;float:left;width:54%;text-align:right;top:27%;"><b>Local</b> mode, <b>*</b> means use as many cores as on machine.</div>
+
+	    <div class=""  style="color:white;position:absolute;float:left;width:54%;text-align:right;top:60%;">Represents the <b>connection</b> to <b>spark cluster</b>. <span>Marks beginning of <b>Spark Application.</b></span></div>
+	      
+	    <!--   <p class="fragment" data-fragment-index="2" style="font-size:75%;"><span class="ScalaVal">val</span> sentenceTwo = <span class="ScalaString">"This is another sentence"</span></p>	       -->
+	    <!--   <p class="fragment" data-fragment-index="7" style="font-size:75%;"><span class="ScalaVal">val</span> sentences = Seq( sentenceOne, sentenceTwo )</p>	       -->
+	    <!-- </div> -->
+
+	    <!-- <div class="fragment" data-fragment-index="4" style="color:white;position:absolute;float:left;width:54%;text-align:right;top:60%;left:-45%">Scala is type</div>	     -->
+	    <!-- <div class="fragment" data-fragment-index="5" style="color:white;position:absolute;float:left;width:54%;text-align:right;top:60%;left:-28%"><b>-inferred</b></div> -->
+	    <!-- <div class="fragment" data-fragment-index="6" style="color:white;position:absolute;float:left;width:54%;text-align:right;top:78%;">No semicolons <em>;</em>)</div>	    	     -->
 	  </section>
+	  <section>
 	  
 
 	</section>
