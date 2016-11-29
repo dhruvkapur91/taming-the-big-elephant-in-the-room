@@ -58,14 +58,18 @@
 	      <rect x="650" y="0" width="100" height="100" fill="rgb(23,255,46)"/>
 	    </svg>
 	    <p class="fragment" data-fragment-index="3">
-	      We have <span style="color:rgb(27,145,255)">2 blues</span>, <span style="color:red">2 reds</span> and <span style="color:rgb(23,255,46)">2 greens</span>.
+	      We have <span style="color:rgb(27,145,255)">2 blues</span>, <span style="color:red">2 reds</span> and <span style="color:rgb(23,255,46)">1 green</span>.
 	    </p>
+	    <aside class="notes">
+	      So given we have an algorithm that tells us color of each image, is this an easy problem?
+	    </aside>
 	  </section>
 	  <section>
 	    <p style="position:absolute;font-size:45%;left:46%;top:6%">My image<br/>collection</p>
 	    <p style="position:absolute;font-size:40%;top:16%;left:46%">5k Photos</p>
 	    <div><img src="art/data.png" class="nostyle"/></div>
 	    <div><img src="art/computer.png" class="nostyle"/></div>
+	    <aside class="notes">Now these images could be in my mobile... or computer or someplace like that...</aside>	    
 	  </section>
 	  <section>
 	    <p class="fragment">Fits in my computer!</p>
@@ -84,13 +88,16 @@
 	    <p style="position:absolute;font-size:88%;top:20%;left:36%">80 trillion+ photos</p>
 	    <div><img src="art/flickerData.png" class="nostyle"/></div>
 	    <div><img src="art/computer.png" class="nostyle"/></div>
+	    <aside class="notes">
+	      Knowing a predominant color in this case will help, for instance in compression.
+	    </aside>
 	  </section>
 	  <section>
 	    <p style="position:absolute;left:27%;top:-4%">Doesnt't fit in computer...</p>
 	    <img style="position:absolute;top:25%;left:17%;" src="art/flickerData.png" class="nostyle"/>
 	    <p style="position:absolute;font-size:54%;left:43%;top:29%">Flicker's image<br/>collection</p>	    
 	    <div><img src="art/computer.png" class="nostyle"/></div>
-	    <aside class="notes">We can fit it in external storage drive, but it won't scale. Plus streaming over it will get slower and slower.</aside>	    
+	    <aside class="notes">We can fit it in external storage drive, but it won't scale. Plus streaming over it will get slower and slower. Talk about scale up...</aside>	    
 	  </section>
 	  <section>
 	    <p style="position:absolute;font-size:54%;left:43%;top:9%">Flicker's image<br/>collection</p>
@@ -242,7 +249,12 @@
 	      Red:3<br/>
 	      Blue:2<br/>
 	      Green:2<br/>
-	    </p>	    
+	    </p>
+	    <aside class="notes">
+	      The single thing is needed because its sync up step... Emphasize the data will need to be streamed over the network... <br/>
+	      Also, we brought compute to data...
+	    </aside>
+	    
 	  </section>
 
 	  <section data-transition="fade-out">
@@ -1167,7 +1179,12 @@
 	    <p style="position:absolute;top:89%;font-size:50%;left:47%;"><font style="color:blue;"> Blue:5 </font></p>
 	    </div>
 
-	    
+	    <aside class="notes">
+	      Spend some time here... Anything happening in parallel will need a sync up step. This one it <br/>
+	      Also what can be done better - combiner <br/>
+	      Also do you see any challenge with this - machine can fail...
+	    </aside>
+
 	  </section>
 
 	  
@@ -1195,6 +1212,9 @@
 	  <section>
 	    <p class="fragment grow">Pretty decent.</p>
 	    <blockquote class="fragment">"At scale, everything rare happens frequently."</blockquote>
+	    <aside class="notes">
+	      Talka bout a disk/machine failing every minute...
+	    </aside>
 	  </section>
 	  <section>
 	    <p>Any of these machines can fail!<span class="fragment"> Anytime!</span></p>
@@ -1342,9 +1362,12 @@
 	    And then how does computation happen? 
 	  </section>
 	  <section>
-	    <p class="fragment" style="text-align:left;">To address all these concerns with Distributed computing, we need...</p>
-	    <p class="fragment" style="text-align:right;">A distributed computing framework</p>
-	    <p class="fragment"><b>Hadoop</b></p>
+	    <p class="fragment">To address all these concerns, we need...</p>
+	    <p>
+	      <span class="fragment" style="text-align:left;color:rgb(27,145,255);">A distributed storage</span> <span class="fragment"> & </span>
+	      <span class="fragment" style="text-align:right;color:rgb(255,0,0);">A distributed computing framework</span>
+	    </p>
+	    <p class="fragment">Welcome to <b>Hadoop</b></p>
 	  </section>
 	</section>
 
@@ -1394,6 +1417,12 @@
 	    <p style="position:absolute;width:30%;text-align:left;">And then there's Name Node. Knowing all the Data Nodes.</p>
 	    <p style="position:absolute;width:30%;left:70%;text-align:right;">And has the <b>global view of files, blocks, locations...</b></p>
 	    <img src="art/hdfs/view.png" class="nostyle" style="width:110%" >
+	    <svg style="position: absolute;left: 55.3%;top: 22.1%;background-color: rgb(94,156,211);width: 9%;height: 22%;"></svg>
+	  </section>	  
+	  <section data-transition="fade-in fade-out">
+	    <p style="position:absolute;width:30%;text-align:left;">And then there's Name Node. Knowing all the Data Nodes.</p>
+	    <p style="position:absolute;width:30%;left:70%;text-align:right;">And has the <b>global view of files, blocks, locations...</b></p>
+	    <img src="art/hdfs/view.png" class="nostyle" style="width:110%" >
 	  </section>
 	  <section data-transition="fade-in fade-out"> 
 	    <p style="position:absolute;width:30%;text-align:left;opacity:0.3;">And then there's Name Node. Knowing all the Data Nodes.</p>
@@ -1429,7 +1458,10 @@
 	    <img src="art/hdfs/read/readblocks7.png" class="nostyle" style="width:110%" >	    
 	  </section>
 	  <section data-transition="fade-in fade-out">
-	    <img src="art/hdfs/read/closestream8.png" class="nostyle" style="width:110%" >	    
+	    <img src="art/hdfs/read/closestream8.png" class="nostyle" style="width:110%" >
+	    <aside class="notes">
+	      Why can't NN just give me what I want?
+	    </aside>	    
 	  </section>
 	  <section data-transition="fade-in">
 	    <img src="art/hdfs/read/allseq9.png" class="nostyle" style="width:110%" >	    
@@ -1865,8 +1897,11 @@
 	  </section>
 	  <section>
 	    <p>Map-Reduce</p>
-	    <p>Now that we have data in HDFS we can run arbitrary map-reduce programs on it</p>
-	    <p>Its plain code and testable as well</p>
+	    <p>Bare metal computation engine of Hadoop.</p>
+	    <p>Knows how to read and write from HDFS.</p>
+	  </section>
+	  <section>
+	    <p>Map-Reduce demo</p>
 	  </section>
 	</section>
 
@@ -1924,11 +1959,14 @@
 	    </p>
 	  </section>
 
-	  <section>
-	    <p>Like collections, RDD supports transformations and I/O from Storage System.</p>
-	    <img src="art/rddexample.png"/>
-	  </section>
-	    
+	  <section data-transition="fade-in fade-out">
+	    <h3 style="background-color:white;">RDD supports 2 kind of operations</h3>
+	    <div style="text-align:left;display:inline-block;width:45%;position:absolute;left:0%;">
+	      <b>Transformations</b>
+	    </div>
+	    <div style="text-align:right;display:inline-block;width:45%;position:absolute;left:55%;"><b>Actions</b></div>
+	  </section>	  
+	  
 	</section>
 
 	<section>
@@ -1945,11 +1983,14 @@
 	    <p class="fragment" style="position: absolute;top: -55%;width: 55%;left: 42%;font-size: 90%;color: rgb(27,145,255);text-align: right;">Initialize with <b>SparkConf</b><br/>(Encapsulates all configurations)</p>
 	  </section>
 
-	  <section>
+
+	  <section data-transition="fade-out">
 	    <h3 style="background-color:white;">Anatomy of Spark Application</h3>
 	    <div style="background-color: rgb(20, 98, 135); width: 100%; height: 1600%; position: absolute; top: -400%; left: -45%; z-index: -1;"></div>
+
 	    <div style="width:44%; float:right; text-align:left">
-	      <p class="" style="font-size:75%;">
+
+	      <p class="fragment" style="font-size:75%;" data-fragment-index="3">
 		<span class="ScalaVal">val</span> conf = new SparkConf()<br/>
 		<span class="">&emsp;.setMaster(
 		  <span class="ScalaString">"local[*]"</span>)
@@ -1959,45 +2000,113 @@
 		  <span class="ScalaString">"First App"</span>)
 		</span>
 	      </p>
-
-
-	      <svg style="left: 55%;top: 25%;background-color: rgba(112,173,71,0.5);position: absolute;z-index: -1;width: 50%;">
-	      </svg>
 	      
-	      
-	      <img style="position: absolute;left: 0%;max-width: 200%;max-height: 165%;" src="art/spark/driver1.png" class="nostyle"/>
 
-	      <p class="" style="font-size:75%;"><br/>
+	      <p class="fragment" data-fragment-index="1" style="font-size:75%;"><br/>
 		<span class="ScalaVal">val</span> sc = new SparkContext(conf)<br/>
-	      </p> 
+	      </p>
 
-	      <!-- <p class="" style="font-size:70%;"> -->
-	      <!-- 	<span class="ScalaVal">val</span> words = sc.textFile(<span class="ScalaString">"SomeFile"</span>)<br/> -->
-	      <!-- </p>  -->
+	      <svg class="fragment" data-fragment-index="5" style="left: 55%;top: 25%;background-color: rgba(112,173,71,0.5);position: absolute;z-index: -1;width: 50%;height:75%;">
+	      </svg>
 
-	      <!-- <p class="" style="font-size:65%;"> -->
-	      <!-- 	<i>println</i>(<span class="ScalaString">s"Overall words:</span> ${words.count}") -->
-	      <!-- </p>  -->
-	      
-	      
-	      
+	      <img style="position: absolute;left: 0%;max-width: 200%;max-height: 165%;top:65%;" src="art/spark/driver1.png" class="nostyle fragment" data-fragment-index="5"/>
 	    </div>
 
-	    <div class=""  style="color:white;position:absolute;float:left;width:54%;text-align:right;top:27%;"><b>Local</b> mode, <b>*</b> means use as many cores as on machine.</div>
+	    <div class="fragment" data-fragment-index="4"  style="color:white;position:absolute;float:left;width:54%;text-align:right;top:33%;"><b>Local</b> mode, <b>*</b> means use as many cores as on machine.</div>	      
+	    
 
-	    <div class=""  style="color:white;position:absolute;float:left;width:54%;text-align:right;top:60%;">Represents the <b>connection</b> to <b>spark cluster</b>. <span>Marks beginning of <b>Spark Application.</b></span></div>
-	      
-	    <!--   <p class="fragment" data-fragment-index="2" style="font-size:75%;"><span class="ScalaVal">val</span> sentenceTwo = <span class="ScalaString">"This is another sentence"</span></p>	       -->
-	    <!--   <p class="fragment" data-fragment-index="7" style="font-size:75%;"><span class="ScalaVal">val</span> sentences = Seq( sentenceOne, sentenceTwo )</p>	       -->
-	    <!-- </div> -->
+	    <div class="fragment" data-fragment-index="2"  style="color:white;position:absolute;float:left;width:54%;text-align:right;top:60%;">Represents the <b>connection</b> to <b>spark cluster</b>. <span>Marks beginning of <b>Spark Application.</b></span></div>
 
-	    <!-- <div class="fragment" data-fragment-index="4" style="color:white;position:absolute;float:left;width:54%;text-align:right;top:60%;left:-45%">Scala is type</div>	     -->
-	    <!-- <div class="fragment" data-fragment-index="5" style="color:white;position:absolute;float:left;width:54%;text-align:right;top:60%;left:-28%"><b>-inferred</b></div> -->
-	    <!-- <div class="fragment" data-fragment-index="6" style="color:white;position:absolute;float:left;width:54%;text-align:right;top:78%;">No semicolons <em>;</em>)</div>	    	     -->
+	    <p class="fragment" data-fragment-index="5" style="position:absolute;text-align:left;left:18%;top:144%;background-color:rgba(255,255,255,0.5);">All the code runs in a process called <b>Driver</b>.</p>
+	    
+	    <aside class="notes">
+	      How does one make it run specifically on 2 cores?
+	    </aside>	    
+	    
 	  </section>
-	  <section>
-	  
 
+	  <section data-transition="fade-in fade-out">
+	    <h3 style="background-color:white;">Anatomy of Spark Application</h3>
+	    <div style="background-color: rgb(20, 98, 135); width: 100%; height: 1600%; position: absolute; top: -400%; left: -45%; z-index: -1;"></div>
+
+	    <div style="width:44%; float:right; text-align:left">
+
+	      <p style="font-size:75%;">
+		<span class="ScalaVal">val</span> conf = new SparkConf()<br/>
+		<span class="">&emsp;.setMaster(
+		  <span class="ScalaString">"local[*]"</span>)
+		</span><br/>
+		<span class="">
+		  &emsp;.setAppName(
+		  <span class="ScalaString">"First App"</span>)
+		</span>
+	      </p>
+	      
+
+	      <p style="font-size:75%;"><br/>
+		<span class="ScalaVal">val</span> sc = new SparkContext(conf)<br/>
+	      </p>
+
+	      <svg style="left: 55%;top: 25%;background-color: rgba(112,173,71,0.5);position: absolute;z-index: -1;width: 50%;height:75%;">
+	      </svg>
+
+	      <img style="position: absolute;left: 0%;max-width: 200%;max-height: 165%;top:65%;" src="art/spark/driverHasSparkContext2.png" class="nostyle"/>
+	    </div>
+
+	    <div style="color:white;position:absolute;float:left;width:54%;text-align:right;top:33%;"><b>Local</b> mode, <b>*</b> means use as many cores as on machine.</div>	      
+
+	    <div style="color:white;position:absolute;float:left;width:54%;text-align:right;top:60%;">Represents the <b>connection</b> to <b>spark cluster</b>. <span>Marks beginning of <b>Spark Application.</b></span></div>
+
+	    <p style="position:absolute;text-align:left;left:24%;top:144%;background-color:rgba(255,255,255,0.5);">Driver has access to <b>SparkContext</b>.</p>
+	  </section>
+
+
+	  <section data-transition="fade-in fade-out">
+	    <h3 style="background-color:white;">Anatomy of Spark Application</h3>
+	    <img style="position: absolute;left:-2%;max-width: 200%;max-height: 308%;top:65%;" src="art/spark/sparkContextKnowsClusterManager3.png" class="nostyle"/>
+	    <p>SparkContext talks with <b>Cluster Manager</b></p>	    
+	  </section>
+
+	  <section data-transition="fade-in fade-out">
+	    <h3 style="background-color:white;">Anatomy of Spark Application</h3>
+	    <img style="position: absolute;left:-2%;max-width: 200%;max-height: 308%;top:65%;" src="art/spark/clusterManagerKnowsEveryone4.png" class="nostyle"/>
+	    <p>And it ofcourse talks to <b>all nodes</b></p>	    
+	  </section>
+
+	  <section data-transition="fade-in fade-out">
+	    <h3 style="background-color:white;">Anatomy of Spark Application</h3>
+	    <img style="position: absolute;left:-2%;max-width: 200%;max-height: 308%;top:65%;" src="art/spark/workerNode5.png" class="nostyle"/>
+	    <p>B/w these nodes are called <b>Worker nodes</b></p>	    
+	  </section>
+
+	  <section data-transition="fade-in fade-out">
+	    <h3 style="background-color:white;">Anatomy of Spark Application</h3>
+	    <img style="position: absolute;left:-2%;max-width: 200%;max-height: 308%;top:65%;" src="art/spark/executors6.png" class="nostyle"/>
+	    <p>And SparkContext talks with <b>Executor processes</b></p>
+	  </section>
+
+	  <section data-transition="fade-in fade-out">
+	    <h3 style="background-color:white;">Anatomy of Spark Application</h3>
+	    <img style="position: absolute;left:-2%;max-width: 200%;max-height: 308%;top:65%;" src="art/spark/multipleExecutors7.png" class="nostyle"/>
+	    <p>And there can be multiple executors per machine...</p>
+	  </section>
+
+	  
+	  <section data-transition="fade-in fade-out">
+	    <h3 style="background-color:white;">Anatomy of Spark Application</h3>
+	    <p>
+	      Spark Application = <span class="fragment highlight-blue" data-fragment-index="1">Driver program</span> + <span class="fragment highlight-red" data-fragment-index="2">Series of executors</span>
+	    </p>
+	    <p class="fragment" style="position:absolute;left:40%;top:70%;color:rgb(27,145,255)" data-fragment-index="1">
+	      (Main logic)
+	    </p>
+	    <p class="fragment" style="position:absolute;left:58%;top:70%;color:red;width:50%;" data-fragment-index="2">
+	      (For distributed parts)
+	    </p>
+	    
+	  </section>	  
+	  
+	  
 	</section>
 
 	<section id="hands_on">
