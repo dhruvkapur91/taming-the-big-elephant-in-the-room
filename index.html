@@ -1961,11 +1961,83 @@
 
 	  <section data-transition="fade-in fade-out">
 	    <h3 style="background-color:white;">RDD supports 2 kind of operations</h3>
-	    <div style="text-align:left;display:inline-block;width:45%;position:absolute;left:0%;">
-	      <b>Transformations</b>
+	    <div style="text-align:left;display:inline-block;width:45%;position:absolute;left:0%;font-size:70%;" class="fragment" data-fragment-index="1">
+	      <b>Transformations</b><br/>
+	      <p class="fragment" data-fragment-index="2">+ <b>Transforms</b> one RDD into another RDD <span> and is <b>lazily</b> evaluated.</span></p>
+	      <ul class="fragment" data-fragment-index="3">
+		+ Like
+		<li>Map</li>
+		<li>Filter</li>
+		<li>Flatmap</li>
+		<li>ReduceByKey</li>
+		<li>GroupByKey</li>
+		<li>GroupBy</li>
+		<li>etc</li>
+	      </ul>
 	    </div>
-	    <div style="text-align:right;display:inline-block;width:45%;position:absolute;left:55%;"><b>Actions</b></div>
-	  </section>	  
+
+	    <div style="text-align:right;display:inline-block;width:45%;position:absolute;left:55%;font-size:70%;" class="fragment" data-fragment-index="4">
+	      <b>Actions</b>
+	      <p class="fragment" data-fragment-index="5"><b>Materializes</b> an RDD into something that is not RDD, <b>bringing data into non-spark system.</b></p>
+	      <ul style="position:absolute;left:-4%;" class="fragment" data-fragment-index="6">
+		+ Like
+		<li>count</li>
+		<li>collect</li>
+		<li>take</li>
+		<li>sample</li>
+		<li>collectAsMap</li>
+		<li>collectAsMap</li>
+		<li>reduce</li>
+		<li>saveAsTextFile</li>
+		<li>saveAsObjectFile</li>
+		<li>forEach</li>
+		<li>etc</li>
+	      </ul>
+	    </div>
+	    <div class="fragment" data-fragment-index="7">
+	    <svg style="position:absolute;top:194%;left:52%;" height="116%">
+	      <line x1="0" y1="0" x2="0" y2="100%" style="stroke:rgb(255,0,0);stroke-width:20" />
+	      <line x1="0" y1="0" x2="10%" y2="0%" style="stroke:rgb(255,0,0);stroke-width:20" />
+	      <line x1="0" y1="100%" x2="10%" y2="100%" style="stroke:rgb(255,0,0);stroke-width:20" />
+	    </svg>
+	    <p style="position:absolute;left:34%;top:218%;text-align:right;">Data back<br/> to driver<p>
+	    </div>
+
+	    <div class="fragment" data-fragment-index="8">
+	    <svg style="position:absolute;top:310%;left:77%;" height="33%" >
+	      <line x1="10%" y1="0" x2="10%" y2="100%" style="stroke:rgb(255,0,255);stroke-width:10" />
+	      <line x1="0" y1="0" x2="10%" y2="0%" style="stroke:rgb(255,0,255);stroke-width:20" />
+	      <line x1="0" y1="100%" x2="10%" y2="100%" style="stroke:rgb(255,0,255);stroke-width:20" />
+	    </svg>
+	    <p style="position:absolute;left:82%;top:283%;text-align:left;font-size:80%;">To an<br/>external storage</p>
+	    </div>
+	    
+	    <div class="fragment" data-fragment-index="9">
+	    <svg style="position:absolute;top:343%;left:52%;" height="17%" class="fragment" data-fragment-index="2">
+	      <line x1="0" y1="0" x2="0" y2="100%" style="stroke:rgb(255,255,0);stroke-width:20" />
+	      <line x1="0" y1="0" x2="10%" y2="0%" style="stroke:rgb(255,255,0);stroke-width:20" />
+	      <line x1="0" y1="100%" x2="10%" y2="100%" style="stroke:rgb(255,255,0);stroke-width:20" />
+	    </svg>
+	    <p style="position:absolute;left:36%;top:330%;text-align:right;font-size:80%;">Side-effect</p>
+	    </div>
+
+	    
+	  </section>
+
+	  <section>
+	    <p>Analogy</p>
+	    <p>
+	      <span class="fragment">I kept telling Metei all kind of things I want.</span>
+	      <span class="fragment">And all that needs to be done to get them from the ingredients Metei had.</span>
+	      <span class="fragment" style="font-size:80%;">Like I told he needs to boil the water, add some magic sause and special salt!</span>
+	      <span class="fragment">And yet Matei never moved his lazy ass! Just kept thinking, thinking and thinking.</span>
+	      <span class="fragment" style="font-size:80%;">But when I asked him to finally give it to me.</span>
+	      <span class="fragment">There it was, the best potion ever!</span>
+	    </p>
+	    <p class="fragment" style="text-align:left">Metei = Lazy cook = Spark</p>
+	    <p class="fragment" style="text-align:left">Recipe = Transformations</p>
+	    <p class="fragment" style="text-align:left">Asking for a dish = Action</p>
+	  </section>
 	  
 	</section>
 
@@ -2085,14 +2157,14 @@
 	    <p>And SparkContext talks with <b>Executor processes</b></p>
 	  </section>
 
-	  <section data-transition="fade-in fade-out">
+	  <section data-transition="fade-in">
 	    <h3 style="background-color:white;">Anatomy of Spark Application</h3>
 	    <img style="position: absolute;left:-2%;max-width: 200%;max-height: 308%;top:65%;" src="art/spark/multipleExecutors7.png" class="nostyle"/>
 	    <p>And there can be multiple executors per machine...</p>
 	  </section>
 
 	  
-	  <section data-transition="fade-in fade-out">
+	  <section data-transition="fade-out">
 	    <h3 style="background-color:white;">Anatomy of Spark Application</h3>
 	    <p>
 	      Spark Application = <span class="fragment highlight-blue" data-fragment-index="1">Driver program</span> + <span class="fragment highlight-red" data-fragment-index="2">Series of executors</span>
@@ -2104,7 +2176,83 @@
 	      (For distributed parts)
 	    </p>
 	    
+	  </section>
+
+	  <section>
+	    <h3 style="background-color:white;">Anatomy of Spark Application</h3>
+	    <div style="background-color: rgb(20, 98, 135); width: 100%; height: 1600%; position: absolute; top: -400%; left: -45%; z-index: -1;"></div>
+
+	    <div style="width:44%; float:right; text-align:left">
+
+	      <p style="font-size:75%;">
+		<span class="ScalaVal">val</span> conf = new SparkConf()<br/>
+		<span class="">&emsp;.setMaster(
+		  <span class="ScalaString">"local[*]"</span>)
+		</span>
+		<span class="">
+		  &emsp;.setAppName(
+		  <span class="ScalaString">"First App"</span>)
+		</span>
+	      </p>
+	      
+
+	      <p style="font-size:75%;">
+		<span class="ScalaVal">val</span> sc = new SparkContext(conf)<br/>
+	      </p>
+
+	      <p style="font-size:75%;" class="fragment" data-fragment-index="1">
+		<span class="ScalaVal">val</span> inputRDD = sc.textFile(<span class="ScalaString">"~/temp/"</span>)<br/>
+	      </p>	      
+	     
+
+	      <svg style="left: 55%;top: 25%;background-color: rgba(112,173,71,0.5);position: absolute;z-index: -1;width: 50%;height:75%;">
+	      </svg>
+
+	      <img style="position: absolute;left: -8.5%;max-width: 200%;max-height: 165%;top:56%;" src="art/spark/multipleExecutors7.png" class="nostyle"/>
+	      
+	      
+	    </div>
+
+	    <div style="color:white;position:absolute;float:left;width:54%;text-align:right;top:71%;" class="fragment" data-fragment-index="2">Creating RDD, starting<br/> point of the 'recipe'</div>	      	      	    
+	    <div style="color:white;position:absolute;float:left;width:100%;top:100%;background-color:rgba(0,0,0,0.5);left:5%;" class="fragment" data-fragment-index="3">No execution has happened till now.</div>	      	      	    
+
+	  </section>
+
+	  <section>
+	    <h3 style="background-color:white;">Anatomy of Spark Application</h3>
+	    <div style="background-color: rgb(20, 98, 135); width: 100%; height: 1600%; position: absolute; top: -400%; left: -45%; z-index: -1;"></div>
+
+	    <div style="width:44%; float:right; text-align:left">
+
+	      <p style="font-size:75%;">
+		<span class="ScalaVal">val</span> sc = new SparkContext(conf)<br/>
+	      </p>
+
+	      <p style="font-size:75%;" >
+		<span class="ScalaVal">val</span> inputRDD = sc.textFile(<span class="ScalaString">"~/temp/"</span>)<br/>
+	      </p>
+	      <br/>
+	      <p style="font-size:75%;" >
+		<span class="ScalaVal">val</span> numberOfLines = inputRDD.count
+	      </p>
+
+	      
+	     
+
+	      <svg style="left: 55%;top: 25%;background-color: rgba(112,173,71,0.5);position: absolute;z-index: -1;width: 50%;height:75%;">
+	      </svg>
+
+	      <!-- <img style="position: absolute;left: -8.5%;max-width: 200%;max-height: 165%;top:56%;" src="art/spark/multipleExecutors7.png" class="nostyle"/> -->
+	      
+	      
+	    </div>
+
+	    <div style="color:white;position:absolute;float:left;width:54%;text-align:right;top:37%;">Creating RDD, starting<br/> point of the 'recipe'</div>	      	      	    
+	    <div style="color:white;position:absolute;float:left;width:30%;text-align:right;top:73%;left:24%;">Starts a <b>Job</b> in this application</div>	      	      	    
+	    <div style="color:white;position:absolute;float:left;width:100%;top:60%;background-color:rgba(0,0,0,0.5);left:5%;">No execution has happened till now.</div>	      	      	    
+
 	  </section>	  
+	  
 	  
 	  
 	</section>
