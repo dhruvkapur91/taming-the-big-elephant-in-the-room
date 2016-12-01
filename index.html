@@ -1567,6 +1567,16 @@
 	    <p style="position: absolute;top:85%;text-align: left;font-size:90%;">And we end up with happy world. :)</p>	    	    	    	    	    	    
 	    <img src="art/hdfs/fault_tolerance/allgood11.png" class="nostyle" style="width:110%" >	    
 	  </section>
+	  <section>
+	    <ul>
+	      HDFS Demo
+	      <li>List directory: hdfs dfs -ls</li>
+	      <li>Put a file: hdfs dfs -put <i>localSource</i> <i>destination</i></li>
+	      <li>Get a file: hdfs dfs -get <i>source</i> <i>localLocation</i> </li>
+	      <li>Get status: hdfs dfsamind -report</li>
+	      <li>Block level stats: hdfs fsck / -files -blocks -locations</li>
+	    </ul>
+	  </section>
 	  
 
 	  
@@ -1874,16 +1884,6 @@
 	    <h2>of big data</h2>
 	  </section>
 	  <section>
-	    <p>Will need:</p>
-	    <ul>
-	      <li>Distrubuted storage</li>
-	      <li>Cluster Manager</li>
-	      <li>Computation mechanism</li>
-	      <li>Security</li>
-	      <li>Workflow management</li>
-	    </ul>
-	  </section>
-	  <section>
 	    <p class="fragment">Sqoop</p>
 	    <img src="art/sqoopLogo.png"/ class="nostyle">
 	    <p class="fragment"><b>Transferring</b> bulk data</p>
@@ -1894,6 +1894,17 @@
 	  </section>
 	  <section>
 	    Sqoop query and demo.
+	    <pre>
+sqoop import-all-tables \
+    -m 1 \
+    --connect jdbc:mysql://quickstart:3306/retail_db \
+    --username=retail_dba \
+    --password=cloudera \
+    --compression-codec=snappy \
+    --as-parquetfile \
+    --warehouse-dir=/user/hive/warehouse \
+    --hive-import
+	    </pre>
 	  </section>
 	  <section>
 	    <p>Map-Reduce</p>
@@ -2024,6 +2035,33 @@
 	    
 	  </section>
 
+
+	  <section data-transition="fade-out">
+	    <p>Typical workflow with RDD</p>
+	    <img src="art/spark/transformAndAction/sparkRDD1.png"/ class="nostyle">
+	  </section>
+
+	  <section data-transition="fade-in fade-out">
+	    <p>Typical workflow with RDD</p>	    
+	    <img src="art/spark/transformAndAction/transform2.png"/ class="nostyle">
+	  </section>
+
+	  <section data-transition="fade-in fade-out">
+	    <p>Typical workflow with RDD</p>	    
+	    <img src="art/spark/transformAndAction/transform3.png"/ class="nostyle">
+	  </section>
+
+	  <section data-transition="fade-in fade-out">
+	    <p>Typical workflow with RDD</p>	    
+	    <img src="art/spark/transformAndAction/transform4.png"/ class="nostyle">
+	  </section>
+
+	  <section data-transition="fade-in fade-out">
+	    <p>Typical workflow with RDD</p>	    
+	    <img src="art/spark/transformAndAction/action5.png"/ class="nostyle">
+	  </section>
+
+
 	  <section>
 	    <p>Analogy</p>
 	    <p>
@@ -2034,6 +2072,7 @@
 	      <span class="fragment" style="font-size:80%;">But when I asked him to finally give it to me.</span>
 	      <span class="fragment">There it was, the best potion ever!</span>
 	    </p>
+	    <p class="fragment"><b>Whose who?</b></p>
 	    <p class="fragment" style="text-align:left">Metei = Lazy cook = Spark</p>
 	    <p class="fragment" style="text-align:left">Recipe = Transformations</p>
 	    <p class="fragment" style="text-align:left">Asking for a dish = Action</p>
@@ -2049,6 +2088,51 @@
 	    <h2 style="position:absolute;top:350%;left:45%">Works</h2>
 	  </section>
 
+	  <section>
+	    <ol>
+	      2 parts:
+	      <li class="fragment">How does it work in <b>conjuction with cluster?</b></li>
+	      <li class="fragment">How does it work <b>internally?</b></li>
+	    </ol>
+	  </section>
+
+	  <section data-transition="fade-out">
+	    <p>Its almost like a jigsaw peice...</p>
+	    <img src="art/spark/howsparkworks/sparkAsAPiece.png"/>
+	  </section>
+
+	  <section data-transition="fade-in fade-out">
+	    <p>Needing <b>couple of things</b> to complete the picture...</p>
+	    <img src="art/spark/howsparkworks/sparkNeeds.png"/>
+	  </section>
+
+	  <section data-transition="fade-in fade-out">
+	    <p>Needing couple of things to complete the picture, <b>like</b>...</p>
+	    <img src="art/spark/howsparkworks/sparkneedslike.png"/>
+	  </section>	  	  
+
+	  <section data-transition="fade-in fade-out">
+	    <p>There by <b>running in a single machine...</b></p>
+	    <img src="art/spark/howsparkworks/andsocanrunlike.png"/>
+	  </section>
+
+	  <section data-transition="fade-in fade-out">
+	    <p>Or in <b>standalone setup</b>...</p>
+	    <p class="fragment" style="position: absolute;background-color: rgba(255,255,255,0.7);top: 75%;width: 96%;left: 2%;">This needs a <b>separate installation</b> of Spark on each node.</p>
+	    <img src="art/spark/howsparkworks/orasstandalone.png"/>
+	  </section>	  	  
+
+	  <section data-transition="fade-in fade-out">
+	    <p>Or on top of <b>YARN</b>...</p>
+	    <img src="art/spark/howsparkworks/oronyarn.png"/>
+	    <p class="fragment" style="position: absolute;background-color: rgba(255,255,255,0.7);top: 75%;width: 96%;left: 2%;">Where in spark runs like a <b>native application</b>.</p>	    
+	  </section>
+
+	  <section>
+	    Now onto how it works <b>internally</b>
+	  </section>
+	  
+	  
 	  <section>
 	    <p>To hello to spark, is to hello to <b>SparkContext</b></p>
 	    <p class="fragment" style="position: absolute;top: 53%;width: 40%;left: 57%;font-size: 90%;color:rgb(27,145,255);text-align:right;">Represents connection with <b>Spark Cluster</b></p>
@@ -2136,33 +2220,48 @@
 	  <section data-transition="fade-in fade-out">
 	    <h3 style="background-color:white;">Anatomy of Spark Application</h3>
 	    <img style="position: absolute;left:-2%;max-width: 200%;max-height: 308%;top:65%;" src="art/spark/sparkContextKnowsClusterManager3.png" class="nostyle"/>
-	    <p>SparkContext talks with <b>Cluster Manager</b></p>	    
+	    <p>SparkContext talks with <b>Cluster Manager</b>.</p>	    
 	  </section>
 
 	  <section data-transition="fade-in fade-out">
 	    <h3 style="background-color:white;">Anatomy of Spark Application</h3>
 	    <img style="position: absolute;left:-2%;max-width: 200%;max-height: 308%;top:65%;" src="art/spark/clusterManagerKnowsEveryone4.png" class="nostyle"/>
-	    <p>And it ofcourse talks to <b>all nodes</b></p>	    
+	    <p>And it ofcourse talks to <b>all nodes</b>.</p>	    
 	  </section>
 
 	  <section data-transition="fade-in fade-out">
 	    <h3 style="background-color:white;">Anatomy of Spark Application</h3>
 	    <img style="position: absolute;left:-2%;max-width: 200%;max-height: 308%;top:65%;" src="art/spark/workerNode5.png" class="nostyle"/>
-	    <p>B/w these nodes are called <b>Worker nodes</b></p>	    
+	    <p>B/w these nodes are called <b>Worker nodes</b>.</p>	    
 	  </section>
 
 	  <section data-transition="fade-in fade-out">
 	    <h3 style="background-color:white;">Anatomy of Spark Application</h3>
 	    <img style="position: absolute;left:-2%;max-width: 200%;max-height: 308%;top:65%;" src="art/spark/executors6.png" class="nostyle"/>
-	    <p>And SparkContext talks with <b>Executor processes</b></p>
+	    <p>And SparkContext talks with <b>Executor processes</b>.</p>
 	  </section>
+
+	  <section data-transition="fade-in fade-out">
+	    <h3 style="background-color:white;">Anatomy of Spark Application</h3>
+	    <img style="position: absolute;left:-2%;max-width: 200%;max-height: 308%;top:65%;" src="art/spark/EachExecHasStuff.png" class="nostyle"/>
+	    <p>Each process is <b>configured</b> with some CPU and memory.</p>
+	    <p style="position:absolute;left:4%;" class="fragment" data-fragment-index="1">Controlled by either <b>commandline args or SparkConf</b></p>
+	    <p style="position:absolute;top:285%;left:11%;" class="fragment" data-fragment-index="1">e.g. --executor-mem 10GB --driver-memory 3GB --num-executors 3</p>
+	  </section>
+	  
 
 	  <section data-transition="fade-in">
 	    <h3 style="background-color:white;">Anatomy of Spark Application</h3>
 	    <img style="position: absolute;left:-2%;max-width: 200%;max-height: 308%;top:65%;" src="art/spark/multipleExecutors7.png" class="nostyle"/>
-	    <p>And there can be multiple executors per machine...</p>
+	    <p>And there <b>can be multiple executors</b> per worker node.</p>
 	  </section>
 
+	  <section data-transition="fade-in">
+	    <h3 style="background-color:white;">Anatomy of Spark Application</h3>
+	    <img style="position: absolute;left:-2%;max-width: 200%;max-height: 308%;top:65%;" src="art/spark/withHDFS8.png" class="nostyle"/>
+	    <p>We might also be running <b>DataNodes</b> as well...</p>
+	  </section>
+	  
 	  
 	  <section data-transition="fade-out">
 	    <h3 style="background-color:white;">Anatomy of Spark Application</h3>
@@ -2208,7 +2307,7 @@
 	      <svg style="left: 55%;top: 25%;background-color: rgba(112,173,71,0.5);position: absolute;z-index: -1;width: 50%;height:75%;">
 	      </svg>
 
-	      <img style="position: absolute;left: -8.5%;max-width: 200%;max-height: 165%;top:56%;" src="art/spark/multipleExecutors7.png" class="nostyle"/>
+	    <img style="position: absolute;left:-5%;max-width: 200%;max-height:156%;top:65%;" src="art/spark/withHDFS8.png" class="nostyle"/>
 	      
 	      
 	    </div>
@@ -2232,7 +2331,7 @@
 		<span class="ScalaVal">val</span> inputRDD = sc.textFile(<span class="ScalaString">"~/temp/"</span>)<br/>
 	      </p>
 	      <br/>
-	      <p style="font-size:75%;" >
+	      <p style="font-size:75%;" class="fragment" >
 		<span class="ScalaVal">val</span> numberOfLines = inputRDD.count
 	      </p>
 
@@ -2248,11 +2347,79 @@
 	    </div>
 
 	    <div style="color:white;position:absolute;float:left;width:54%;text-align:right;top:37%;">Creating RDD, starting<br/> point of the 'recipe'</div>	      	      	    
-	    <div style="color:white;position:absolute;float:left;width:30%;text-align:right;top:73%;left:24%;">Starts a <b>Job</b> in this application</div>	      	      	    
+	    <div style="color:white;position:absolute;float:left;width:30%;text-align:right;top:73%;left:24%;" class="fragment">Starts a <b>Job</b> in this application.</div>	      	      	    
 	    <div style="color:white;position:absolute;float:left;width:100%;top:60%;background-color:rgba(0,0,0,0.5);left:5%;">No execution has happened till now.</div>	      	      	    
 
 	  </section>	  
 	  
+	  <section data-transition="fade-out">
+	    <h3 style="background-color:white;">Anatomy of Spark Application</h3>
+	    <p><b>Conceptual</b> representation of RDD.</p>
+	    <img style="position: absolute;left:-2%;max-width: 200%;max-height: 308%;top:65%;" src="art/spark/RDD9.png" class="nostyle"/>	    
+	  </section>
+
+	  <section data-transition="fade-in fade-out">
+	    <h3 style="background-color:white;">Anatomy of Spark Application</h3>
+	    <p>Each "instance" of RDD in executor knows <b><span style="color:darkorange">"partitions"</span></b> its working on. Each partition corresponds to <b>some amount of <span style="color:rgb(0,176,240);">data</span>.</b></p>
+	    <img style="position: absolute;left: -25%;max-width: 200%;max-height: 308%;top: 33%;" src="art/spark/RDDKnowsPartition10.png" class="nostyle"/>
+	  </section>
+
+	  <section data-transition="fade-in fade-out">
+	    <h3 style="background-color:white;">Anatomy of Spark Application</h3>
+	    <p>A <b style="color:red">task</b> runs for each <span style="color:darkorange">partition</span>. <span>All the tasks can <i>potentially</i> run in <b>parallel</b>.</span> <span class>Only limited by number of cores available.</span> </p>
+	    <img style="position: absolute;left: -25%;max-width: 200%;max-height: 308%;top: 33%;" src="art/spark/taskOnPartitions.png" class="nostyle"/>
+	  </section>
+
+	  <section data-transition="fade-in fade-out">
+	    <h3 style="background-color:white;">Anatomy of Spark Application</h3>
+	    <p>A <b style="color:red">task</b> runs for each <span style="color:darkorange">partition</span>. <span>All the tasks can <i>potentially</i> run in <b>parallel</b>. In our case, <b>count is computed</b> for each partition... </p>
+	    <img style="position: absolute;left: -25%;max-width: 200%;max-height: 308%;top: 33%;" src="art/spark/taskCounts.png" class="nostyle"/>
+	  </section>
+
+	  <section data-transition="fade-in fade-out">
+	    <h3 style="background-color:white;">Anatomy of Spark Application</h3>
+	    <p>Each <span style="color:red;">task</span> computes count for its own <span style="color:darkorange;">partition</span>... All the individual counts are sent to <b>Driver</b> through <b>SparkContext</b> where it sums all the counts.</p>
+	    <img style="position: absolute;left: -25%;max-width: 200%;max-height: 308%;top: 33%;" src="art/spark/taskBack.png" class="nostyle"/>
+	  </section>
+
+	  <section>
+	    <h3 style="background-color:white;">Anatomy of Spark Application</h3>
+	    <div style="background-color: rgb(20, 98, 135); width: 100%; height: 1600%; position: absolute; top: -400%; left: -45%; z-index: -1;"></div>
+
+	    <div style="width:44%; float:right; text-align:left">
+
+	      <p style="font-size:75%;">
+		<span class="ScalaVal">val</span> sc = new SparkContext(conf)<br/>
+	      </p>
+
+	      <p style="font-size:75%;" >
+		<span class="ScalaVal">val</span> inputRDD = sc.textFile(<span class="ScalaString">"~/temp/"</span>)<br/>
+	      </p>
+	      <br/>
+	      <p style="font-size:75%;" >
+		<span class="ScalaVal">val</span> numberOfLines = inputRDD.count
+	      </p>
+	      <p style="font-size:75%;" class="fragment" data-fragment-index="1" >
+		inputRDD<br/>
+		&emsp;.flatMap(line => line.split(" "))<br/>
+		&emsp;.map(word => (word,1))<br/>
+		&emsp;.reduceByKey((a,b) => a+b)<br/>
+		&emsp;.<b>collect()</b>
+	      </p>
+	      
+
+	      <svg style="left: 55%;top: 20%;background-color: rgba(112,173,71,0.5);position: absolute;z-index: -1;width: 50%;height:75%;">
+	      </svg>
+
+	      <!-- <img style="position: absolute;left: -8.5%;max-width: 200%;max-height: 165%;top:56%;" src="art/spark/multipleExecutors7.png" class="nostyle"/> -->
+	    </div>
+
+	    <div style="color:white;position:absolute;float:left;width:54%;text-align:right;top:26%;">Creating RDD, starting<br/> point of the 'recipe'</div>	      	      	    
+	    <div style="color:white;position:absolute;float:left;width:30%;text-align:right;top:51%;left:24%;">Starts a <b>Job</b> in this application.</div>	      	      	    
+	    <div style="color:white;position:absolute;float:left;width:30%;text-align:right;top:82%;left:24%;" class="fragment">Starts another <b>Job</b> in <b>same application.</b></div>	      	      	    
+	    <div style="color:white;position:absolute;float:left;width:100%;top:42%;background-color:rgba(0,0,0,0.5);left:5%;">No execution has happened till now.</div>	      	      	    
+
+	  </section>	  	  
 	  
 	  
 	</section>
