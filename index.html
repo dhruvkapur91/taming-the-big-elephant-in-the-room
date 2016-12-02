@@ -1632,45 +1632,6 @@
         </section>
 
 	
-
-	<section id="landscape_before_spark" >
-	  <section data-background="art/before_spark.png">
-	    <h1 style="text-align:left;">Landscape</h1>
-	    <h2>of big data</h2>
-	  </section>
-	  <section>
-	    <p class="fragment">Sqoop</p>
-	    <img src="art/sqoopLogo.png"/ class="nostyle">
-	    <p class="fragment"><b>Transferring</b> bulk data</p>
-	    <ul>
-	      <li>RDBMS to HDFS</li>
-	      <li>HDFS to RDBMS</li>
-	    </ul>
-	  </section>
-	  <section>
-	    Sqoop query and demo.
-	    <pre>
-sqoop import-all-tables \
-    -m 1 \
-    --connect jdbc:mysql://quickstart:3306/retail_db \
-    --username=retail_dba \
-    --password=cloudera \
-    --compression-codec=snappy \
-    --as-parquetfile \
-    --warehouse-dir=/user/hive/warehouse \
-    --hive-import
-	    </pre>
-	  </section>
-	  <section>
-	    <p>Map-Reduce</p>
-	    <p>Bare metal computation engine of Hadoop.</p>
-	    <p>Knows how to read and write from HDFS.</p>
-	  </section>
-	  <section>
-	    <p>Map-Reduce demo</p>
-	  </section>
-	</section>
-
 	<section id="spark_execution_model" >
 	  <section data-background="art/spark.png">
 	    <h2 style="position:absolute;top:-78%;left:6%;">Introducing</h2>
@@ -2358,6 +2319,45 @@ sqoop import-all-tables \
 	  </section>
 	  
 	</section>
+
+	<section id="landscape_before_spark" >
+	  <section data-background="art/before_spark.png">
+	    <h1 style="text-align:left;">Landscape</h1>
+	    <h2>of big data</h2>
+	  </section>
+	  <section>
+	    <p class="fragment">Sqoop</p>
+	    <img src="art/sqoopLogo.png"/ class="nostyle">
+	    <p class="fragment"><b>Transferring</b> bulk data</p>
+	    <ul>
+	      <li>RDBMS to HDFS</li>
+	      <li>HDFS to RDBMS</li>
+	    </ul>
+	  </section>
+	  <section>
+	    Sqoop query and demo.
+	    <pre>
+sqoop import-all-tables \
+    -m 1 \
+    --connect jdbc:mysql://quickstart:3306/retail_db \
+    --username=retail_dba \
+    --password=cloudera \
+    --compression-codec=snappy \
+    --as-parquetfile \
+    --warehouse-dir=/user/hive/warehouse \
+    --hive-import
+	    </pre>
+	  </section>
+	  <section>
+	    <p>Map-Reduce</p>
+	    <p>Bare metal computation engine of Hadoop.</p>
+	    <p>Knows how to read and write from HDFS.</p>
+	  </section>
+	  <section>
+	    <p>Map-Reduce demo</p>
+	  </section>
+	</section>
+	
 
       </div>
     </div>
