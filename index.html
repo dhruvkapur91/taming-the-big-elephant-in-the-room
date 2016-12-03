@@ -28,51 +28,6 @@
 	  <aside class="notes">Talk about structure of presentation - 2 parts</aside>
 	</section>
 
-	<section id="premier_to_functional_programming">
-	  <section data-background="art/functional_programming.png">
-	    <p style="text-align:right;background:rgba(255,255,255,0.4);">Hello<br/><b>ScalaTest</b></p>
-	    <p class="fragment" style="text-align:right;background:rgba(255,255,255,0.4);">Checkout the talk - <a href="https://www.youtube.com/watch?v=DFAdLCqDbLQ">Why big data must be functional</a></p>
-	  </section>
-	  <section>
-	    <p>Familiar word count</p>
-	    <pre data-trim contenteditable class="hljs wordCountInput" style="padding:1%" onkeypress="updateWordCount()">Type some some more duplicated words</pre>
-	    <span>Output : <span class="wordCountOutput green"></span></span>
-	  </section>
-	  <section>
-	    <h3>On high level</h3>
-	    <p class="fragment">Given a <b>list</b> of sentences</p>
-	    <p class="fragment"><span style="background-color:wheat">This is one sentence </span><span style="background-color:white">This is another sentence</span></p>
-	    <p class="fragment">We <b>split</b> it into words</p>
-	    <p class="fragment"><span style="background-color:rgb(245,222,179)">This</span> <span style="background-color:rgb(245,222,82)">is</span> <span style="background-color:rgb(195,222,179)">one</span> <span style="background-color:rgb(245,190,179)">sentence</span> <span style="background-color:rgb(212,200,179)">This</span> <span style="background-color:rgb(245,222,179)">is</span> <span style="background-color:rgb(188,199,211)">another</span> <span style="background-color:rgb(245,222,179)">sentence</span></p>
-	  </section>
-	  <section data-state="functional_word_count">
-	    <h3>On high level cont'd...</h3>
-	    <p style="text-align:left;">Initialize a dictionary</p>
-	    <p class="wordCountDictionary"></p>
-	    <p style="text-align:left;">With each word</p>
-	    <p><span class="fragment wordZero" data-fragment-index="0" style="background-color:rgb(245,222,179)">This</span> <span class="fragment wordOne" data-fragment-index="1" style="background-color:rgb(245,222,82)">is</span> <span class="fragment wordTwo" data-fragment-index="2" style="background-color:rgb(195,222,179)">one</span> <span class="fragment wordThree" data-fragment-index="3" style="background-color:rgb(245,190,179)">sentence</span> <span class="fragment wordFour" data-fragment-index="4" style="background-color:rgb(212,200,179)">This</span> <span class="fragment wordFive" data-fragment-index="5" style="background-color:rgb(245,222,179)">is</span> <span class="fragment wordSix" data-fragment-index="6" style="background-color:rgb(188,199,211)">another</span> <span class="fragment wordSeven" data-fragment-index="7" style="background-color:rgb(245,222,179)">sentence</span></p>
-	    <p style="text-align:right;">Either add new entry</p>
-	    <p style="text-align:right;">Or update count<p>
-	  </section>	  
-	  <section>
-	    <p>Say Hello to <a href="http://www.scalatest.org/getting_started_with_fun_suite">FunSuite</a>.</p>
-	    <p>One of the testing frameworks of <a href="http://www.scalatest.org/">ScalaTest</a>.</p>
-	    <img src="art/funsuite.png"/>
-	  </section>
-	  <section>
-	    <p>Scala allows to extend functionality with <a href="http://baddotrobot.com/blog/2014/09/22/scala-mixins/">mixins</a>.</p>
-	  </section>
-	  <section>
-	    <p>Say Hello to <a href="http://www.scalatest.org/user_guide/using_matchers">ShouldMatchers</a>.</p>
-	    <p>Allows BDD style of test</p>
-	    <img src="art/shouldMatchers.png"/>
-	  </section>
-	  <section>
-	    <p> Say Hello to <a href="http://www.scalatest.org/user_guide/tests_as_specifications">GivenWhenThen</a> </p>
-	    <img class="fragment" src="art/givenwhenthen.png"/>
-	    <img class="fragment" src="art/givenwhenthenlog.png"/>
-	  </section>
-        </section>
 	
 
 	<section id="what_is_big_data" class="vertical_1">
@@ -1510,6 +1465,10 @@
 	      Why can't NN just give me what I want?
 	    </aside>	    
 	  </section>
+	  <section>
+	    Small Quiz.<br/>
+	    Go to: <a href = "https://bhawnasingla.github.io/readQuiz.html">https://bhawnasingla.github.io/readQuiz.html</a>
+	  </section>
 	  <section data-transition="fade-in">
 	    <img src="art/hdfs/read/allseq9.png" class="nostyle" style="width:110%" >	    
 	  </section>
@@ -1555,6 +1514,10 @@
 	  </section>
 	  <section data-transition="fade-in fade-out">
 	    <img src="art/hdfs/write/blockAdded13.png" class="nostyle" style="width:110%" >	    
+	  </section>
+	  <section>
+	    Another small quiz<br/>
+	    Goto : <a href="https://bhawnasingla.github.io/writeQuiz.html">https://bhawnasingla.github.io/writeQuiz.html</a>
 	  </section>
 	  <section data-transition="fade-in fade-out">
 	    <img src="art/hdfs/write/seq14.png" class="nostyle" style="width:110%" >	    
@@ -1624,9 +1587,6 @@
 	      <li>Block level stats: hdfs fsck / -files -blocks -locations</li>
 	    </ul>
 	  </section>
-	  
-
-	  
 	</section>
 
 	<section>
@@ -1641,9 +1601,55 @@
 	  </section>
 	  <section>
 	    <img src="art/three.png" class="nostyle"/>
-	  </section>
-	  
+	  </section>	  
 	</section>
+
+	<section id="premier_to_functional_programming">
+	  <section data-background="art/functional_programming.png">
+	    <p style="text-align:right;background:rgba(255,255,255,0.4);">Hello<br/><b>ScalaTest</b></p>
+	    <p class="fragment" style="text-align:right;background:rgba(255,255,255,0.4);">Checkout the talk - <a href="https://www.youtube.com/watch?v=DFAdLCqDbLQ">Why big data must be functional</a></p>
+	  </section>
+	  <section>
+	    <p>Familiar word count</p>
+	    <pre data-trim contenteditable class="hljs wordCountInput" style="padding:1%" onkeypress="updateWordCount()">Type some some more duplicated words</pre>
+	    <span>Output : <span class="wordCountOutput green"></span></span>
+	  </section>
+	  <section>
+	    <h3>On high level</h3>
+	    <p class="fragment">Given a <b>list</b> of sentences</p>
+	    <p class="fragment"><span style="background-color:wheat">This is one sentence </span><span style="background-color:white">This is another sentence</span></p>
+	    <p class="fragment">We <b>split</b> it into words</p>
+	    <p class="fragment"><span style="background-color:rgb(245,222,179)">This</span> <span style="background-color:rgb(245,222,82)">is</span> <span style="background-color:rgb(195,222,179)">one</span> <span style="background-color:rgb(245,190,179)">sentence</span> <span style="background-color:rgb(212,200,179)">This</span> <span style="background-color:rgb(245,222,179)">is</span> <span style="background-color:rgb(188,199,211)">another</span> <span style="background-color:rgb(245,222,179)">sentence</span></p>
+	  </section>
+	  <section data-state="functional_word_count">
+	    <h3>On high level cont'd...</h3>
+	    <p style="text-align:left;">Initialize a dictionary</p>
+	    <p class="wordCountDictionary"></p>
+	    <p style="text-align:left;">With each word</p>
+	    <p><span class="fragment wordZero" data-fragment-index="0" style="background-color:rgb(245,222,179)">This</span> <span class="fragment wordOne" data-fragment-index="1" style="background-color:rgb(245,222,82)">is</span> <span class="fragment wordTwo" data-fragment-index="2" style="background-color:rgb(195,222,179)">one</span> <span class="fragment wordThree" data-fragment-index="3" style="background-color:rgb(245,190,179)">sentence</span> <span class="fragment wordFour" data-fragment-index="4" style="background-color:rgb(212,200,179)">This</span> <span class="fragment wordFive" data-fragment-index="5" style="background-color:rgb(245,222,179)">is</span> <span class="fragment wordSix" data-fragment-index="6" style="background-color:rgb(188,199,211)">another</span> <span class="fragment wordSeven" data-fragment-index="7" style="background-color:rgb(245,222,179)">sentence</span></p>
+	    <p style="text-align:right;">Either add new entry</p>
+	    <p style="text-align:right;">Or update count<p>
+	  </section>	  
+	  <section>
+	    <p>Say Hello to <a href="http://www.scalatest.org/getting_started_with_fun_suite">FunSuite</a>.</p>
+	    <p>One of the testing frameworks of <a href="http://www.scalatest.org/">ScalaTest</a>.</p>
+	    <img src="art/funsuite.png"/>
+	  </section>
+	  <section>
+	    <p>Scala allows to extend functionality with <a href="http://baddotrobot.com/blog/2014/09/22/scala-mixins/">mixins</a>.</p>
+	  </section>
+	  <section>
+	    <p>Say Hello to <a href="http://www.scalatest.org/user_guide/using_matchers">ShouldMatchers</a>.</p>
+	    <p>Allows BDD style of test</p>
+	    <img src="art/shouldMatchers.png"/>
+	  </section>
+	  <section>
+	    <p> Say Hello to <a href="http://www.scalatest.org/user_guide/tests_as_specifications">GivenWhenThen</a> </p>
+	    <img class="fragment" src="art/givenwhenthen.png"/>
+	    <img class="fragment" src="art/givenwhenthenlog.png"/>
+	  </section>
+        </section>
+	
 
 
 
